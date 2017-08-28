@@ -2552,10 +2552,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.Mvvm\\Diassoft.Mvvm.csproj",
+      "projectUniqueName": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.Mvvm\\Diassoft.Mvvm.csproj",
       "projectName": "Diassoft.Mvvm",
-      "projectPath": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.Mvvm\\Diassoft.Mvvm.csproj",
-      "outputPath": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.Mvvm\\obj\\",
+      "projectPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.Mvvm\\Diassoft.Mvvm.csproj",
+      "outputPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.Mvvm\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "originalTargetFrameworks": [

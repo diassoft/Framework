@@ -2546,10 +2546,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
+      "projectUniqueName": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
       "projectName": "Diassoft.DataAccess",
-      "projectPath": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
-      "outputPath": "D:\\Olavo\\Clientes\\OHD\\Diassoft\\Github\\Framework\\Diassoft\\Diassoft.DataAccess\\obj\\",
+      "projectPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
+      "outputPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.2"
