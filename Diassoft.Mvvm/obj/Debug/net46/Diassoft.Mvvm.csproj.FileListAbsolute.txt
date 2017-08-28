@@ -1,0 +1,6 @@
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\bin\Debug\net46\Diassoft.Mvvm.dll
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\bin\Debug\net46\Diassoft.Mvvm.pdb
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\bin\Debug\net46\Diassoft.Mvvm.xml
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\obj\Debug\net46\Diassoft.Mvvm.AssemblyInfo.cs
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\obj\Debug\net46\Diassoft.Mvvm.dll
+D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\obj\Debug\net46\Diassoft.Mvvm.pdb
