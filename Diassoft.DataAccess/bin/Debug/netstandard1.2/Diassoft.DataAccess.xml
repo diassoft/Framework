@@ -22,6 +22,21 @@
             Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
             </summary>
         </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Field">
+            <summary>
+            Represents a Field
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Field.Name">
+            <summary>
+            The Field Name
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Field.Type">
+            <summary>
+            The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.FieldTypes"/>.
+            </summary>
+        </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
             <summary>
             Represents a Table in the Database
