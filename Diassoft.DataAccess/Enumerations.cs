@@ -5,10 +5,9 @@ using System.Text;
 namespace Diassoft.DataAccess
 {
     /// <summary>
-    /// Database Dialects
-    /// This defines how the data is parsed for the sql statement to be created
+    /// Databse Dialects (DO NOT USE, it was replaced by the dialect class)
     /// </summary>
-    public enum DialectsA : int
+    internal enum DialectsA : int
     {
         /// <summary>
         /// Microsoft Access Database

@@ -167,6 +167,8 @@ namespace Diassoft.DataAccess
 
         #region Formatting Methods / Functions
 
+        #region Table Formatting
+        
         /// <summary>
         /// Validates the Table Name. Tables may not have blank spaces inside the string, unless there is a valid table name character.
         /// </summary>
@@ -231,36 +233,8 @@ namespace Diassoft.DataAccess
         /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>.</returns>
         public virtual string FormatTable(string tableOwner, string tableName)
         {
-            // Check if the table name is valid
-            if (!ValidateTableName(tableName)) throw new Exception("Invalid table name or table character");
-
-            if (TableNameChar.Length == 2)
-            {
-                if (tableOwner?.ToString() == "")
-                {
-                    // Format is: [myTable]
-                    return $"{TableNameChar[0]}{tableName}{TableNameChar[1]}";
-                }
-                else
-                {
-                    // Format is: [dbo].[myTable]
-                    return $"{TableNameChar[0]}{tableOwner}{TableNameChar[1]}.{TableNameChar[0]}{tableName}{TableNameChar[1]}";
-                }
-            }
-            else
-            {
-                if (tableOwner?.ToString() == "")
-                {
-                    // Format is: myTable
-                    return $"{TableNameChar}{tableName}{TableNameChar}";
-                }
-                else
-                {
-                    // Format is: dbo.myTable
-                    return $"{TableNameChar}{tableOwner}{TableNameChar}.{TableNameChar}{tableName}{TableNameChar}";
-                }
-            }
-                
+            // For security reasons (avoid users passing commands on the table alias), add the "T_" before the table alias.
+            return $"{FormatTable(tableOwner, tableName, "")}";
         }
 
         /// <summary>
@@ -272,9 +246,72 @@ namespace Diassoft.DataAccess
         /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
         public virtual string FormatTable(string tableOwner, string tableName, string tableAlias)
         {
-            // For security reasons (avoid users passing commands on the table alias), add the "T_" before the table alias.
-            return $"{FormatTable(tableOwner, tableName)} T_{tableAlias}";
+            // Variable to hold the Table Name
+            string FormattedTableName = "";
+            string CharacterBegin = "";
+            string CharacterEnd = "";
+
+            // Check if the table name is valid
+            if (!ValidateTableName(tableName)) throw new Exception("Invalid table name or table character");
+
+            if (TableNameChar.Length == 2)
+            {
+                // Set Character Begin / End
+                CharacterBegin = TableNameChar[0].ToString();
+                CharacterEnd = TableNameChar[1].ToString();
+            }
+            else if (TableNameChar.Length == 1)
+            {
+                // Set Character Begin / End (the same)
+                CharacterBegin = TableNameChar[0].ToString();
+                CharacterEnd = TableNameChar[0].ToString();
+            }
+
+            // Verify Owner
+            if (tableOwner?.ToString() != "")
+            {
+                // There is an owner, add it to the string
+                FormattedTableName += $"{CharacterBegin}{tableOwner}{CharacterEnd}.";
+            }
+
+            // Add the table name
+            FormattedTableName += $"{CharacterBegin}{tableName}{CharacterEnd}";
+
+            // Verify Alias
+            if (tableAlias?.ToString() != "")
+            {
+                // For security reasons (avoid users passing additional commands on the table alias), add the "T_" before the table alias.
+                FormattedTableName += $" T_{tableAlias}";
+            }
+
+            return FormattedTableName;
         }
+
+        /// <summary>
+        /// Formats the table
+        /// </summary>
+        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableAlias">The table alias</param>
+        /// <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+        /// <returns>A <see cref="bool">bool</see> value to define whether the table formatting was successfull or not.</returns>
+        public bool TryFormatTable(string tableOwner, string tableName, string tableAlias, out string formattedTable)
+        {
+            try
+            {
+                // Format the table
+                formattedTable = FormatTable(tableOwner, tableName, tableAlias);
+                return true;
+            }
+            catch 
+            {
+                // Formatting Failed
+                formattedTable = "";
+                return false;
+            }
+        }
+
+        #endregion Table Formatting
 
         #endregion Formatting Methods / Functions
 
@@ -376,5 +413,6 @@ namespace Diassoft.DataAccess
         #endregion Dialect - DB2/400
 
         #endregion Static Dialect Implementations
+
     }
 }

@@ -4,89 +4,171 @@
         <name>Diassoft.DataAccess</name>
     </assembly>
     <members>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.ReservedWords">
+        <member name="T:Diassoft.DataAccess.Dialect">
+            <summary>
+            Represents the Dialect used to communicate with a database.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialect.ReservedWords">
             <summary>
             The list of reserved words for the dialect
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldNameChar">
+        <member name="P:Diassoft.DataAccess.Dialect.FieldNameChar">
             <summary>
             The Character to add before and after any field. Add two characters to consider the first for the beginning and the second for the end. 
             Use it for databases where you add field names that follow this example: [myFieldName].
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldValueChar">
+        <member name="P:Diassoft.DataAccess.Dialect.FieldValueChar">
             <summary>
             The Character to add before and after any text field. Use it to add " or ' before any text assignment. The default value is '.
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">
+        <member name="P:Diassoft.DataAccess.Dialect.TableNameChar">
             <summary>
             The Character to add before and after any table name. Add two characters to consider the first for the beginning and the second for the end. 
             Use it for databases where you add table names that follow this example: [myTableName].
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DateFormat">
+        <member name="P:Diassoft.DataAccess.Dialect.DateFormat">
             <summary>
             The default date format to be used by the dialect
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TimeFormat">
+        <member name="P:Diassoft.DataAccess.Dialect.TimeFormat">
             <summary>
             The default time format to be used by the dialect
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.NumericFormat">
+        <member name="P:Diassoft.DataAccess.Dialect.NumericFormat">
             <summary>
             The default Numeric format to be used by the dialect
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DecimalFormat">
+        <member name="P:Diassoft.DataAccess.Dialect.DecimalFormat">
             <summary>
             The default Decimal format to be used by the dialect
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.BeforeQueryStatements">
+        <member name="P:Diassoft.DataAccess.Dialect.DateTimeFormat">
+            <summary>
+            The datetime format
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialect.BeforeQueryStatements">
             <summary>
             Any statement that might be executed right before running any query
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.AfterQueryStatements">
+        <member name="P:Diassoft.DataAccess.Dialect.AfterQueryStatements">
             <summary>
             Any statement that might be executed right after a query runs
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Dialects.Dialect.StatementEndCharacter">
+        <member name="P:Diassoft.DataAccess.Dialect.StatementEndCharacter">
             <summary>
             The character to be appended at the end of any statement
             </summary>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialects.Dialect.ValidateTableName(System.String)">
+        <member name="M:Diassoft.DataAccess.Dialect.#ctor">
+            <summary>
+            Initializes a new instance of a Dialect
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of a Dialect
+            </summary>
+            <param name="fieldNameChar">The character that goes before and after any field name</param>
+            <param name="fieldValueChar">The character that goes before and after any text field value</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a Dialect
+            </summary>
+            <param name="fieldNameChar">The character that goes before and after any field name</param>
+            <param name="fieldValueChar">The character that goes before and after any text field value</param>
+            <param name="numericFormat">The numeric format</param>
+            <param name="decimalFormat">The decimal format</param>
+            <param name="dateFormat">The Date Format according to the <see cref="T:System.DateTime">DateTime formats</see></param>
+            <param name="timeFormat">The Time Format according to the <see cref="T:System.DateTime">DateTime formats</see></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.AddReservedWords(System.String[])">
+            <summary>
+            Adds many reserved words to the list
+            </summary>
+            <param name="list">List of parameters</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.AddBeforeStatements(System.String[])">
+            <summary>
+            Adds many sql statements to run before any query to the list
+            </summary>
+            <param name="list">The list of sql statements</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.AddAfterStatements(System.String[])">
+            <summary>
+            Adds many sql statements to run after any query to the list
+            </summary>
+            <param name="list">The list of sql statements</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.ValidateTableName(System.String)">
             <summary>
             Validates the Table Name. Tables may not have blank spaces inside the string, unless there is a valid table name character.
             </summary>
             <param name="tableName"></param>
             <returns></returns>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatTable(System.String)">
+        <member name="M:Diassoft.DataAccess.Dialect.FormatTable(System.String,System.String)">
             <summary>
             Returns the default formatting for a table name.
             </summary>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableName">The table name</param>
-            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">table character separator</see>.</returns>
+            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialect.TableNameChar">table character separator</see>.</returns>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatTable(System.String,System.String)">
+        <member name="M:Diassoft.DataAccess.Dialect.FormatTable(System.String,System.String,System.String)">
             <summary>
             Returns the default formatting for a table name and its alias.
             </summary>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableName">The table name</param>
             <param name="tableAlias">The table alias</param>
-            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
+            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialect.TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatTable(System.String,System.String,System.String,System.String@)">
+            <summary>
+            Formats the table
+            </summary>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+            <param name="tableName">The table name</param>
+            <param name="tableAlias">The table alias</param>
+            <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+            <returns>A <see cref="T:System.Boolean">bool</see> value to define whether the table formatting was successfull or not.</returns>
+        </member>
+        <member name="F:Diassoft.DataAccess.Dialect._msSqlDialect">
+            <summary>
+            Static container for the MsSqlDialect, implementing the Singleton Design Pattern
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialect.MsSqlDialect">
+            <summary>
+            Represents a Dialect to be interacting with Microsoft SQL Server Databases
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.Dialect._db2400Dialect">
+            <summary>
+            Static container for the Db2400, implementing the Singleton Design Pattern
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialect.DB2400Dialect">
+            <summary>
+            Represents a Dialect to be interacting with DB2 Databases in AS400
+            </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DialectsA">
             <summary>
-            Database Dialects
-            This defines how the data is parsed for the sql statement to be created
+            Databse Dialects (DO NOT USE, it was replaced by the dialect class)
             </summary>
         </member>
         <member name="F:Diassoft.DataAccess.DialectsA.Access">
@@ -129,42 +211,65 @@
             Any other database
             </summary>
         </member>
-        <member name="T:Diassoft.DataAccess.OperationBase">
+        <member name="T:Diassoft.DataAccess.Operations.DbOperation">
             <summary>
             Represents the Base of Any Database Operation
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.OperationBase.TableAlias">
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.Dialect">
+            <summary>
+            The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to use when formatting fields and values for a statement
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableOwner">
+            <summary>
+            The Table Owner or Library
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableName">
+            <summary>
+            The Table Name
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableAlias">
             <summary>
             Represents the alias to refer to the Table.
             An alias is usually necessary when you have the same table twice on an statement.
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.OperationBase.TableName">
-            <summary>
-            The Table Name
-            </summary>
-        </member>
-        <member name="P:Diassoft.DataAccess.OperationBase.FullTableName">
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.FullTableName">
             <summary>
             The Formatted Table Name, including the alias
             </summary>
         </member>
-        <member name="M:Diassoft.DataAccess.OperationBase.GetStatement">
+        <member name="M:Diassoft.DataAccess.Operations.DbOperation.GetStatement">
             <summary>
             Creates the SQL Statement
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Diassoft.DataAccess.OperationBase.Connection">
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.Connection">
             <summary>
             Reference to the Database Connection in use
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.OperationBase.Transaction">
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.Transaction">
             <summary>
             Reference to the Database Transaction in use
             </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DbOperation.Run">
+            <summary>
+            Runs the NonQuery Operation
+            </summary>
+            <returns>The number of rows processed</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DbOperation.TryRun(System.Int32@)">
+            <summary>
+            Tries to run the operation
+            </summary>
+            <param name="rowsProcessed">Reference to an <see cref="T:System.Int32">integer</see> to display the number of rows counted</param>
+            <returns>A <see cref="T:System.Boolean">boolean</see> to define whether the execution succeed or failed</returns>
         </member>
     </members>
 </doc>
