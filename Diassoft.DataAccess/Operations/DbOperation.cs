@@ -6,11 +6,13 @@ using System.Text;
 namespace Diassoft.DataAccess.Operations
 {
     /// <summary>
-    /// Represents the Base of Any Database Operation
+    /// Represents the Base of Any Database Operation Class
     /// </summary>
     public abstract class DbOperation
     {
-        
+
+        #region Properties
+
         /// <summary>
         /// The <see cref="Diassoft.DataAccess.Dialect">Dialect</see> to use when formatting fields and values for a statement
         /// </summary>
@@ -46,12 +48,6 @@ namespace Diassoft.DataAccess.Operations
         }
 
         /// <summary>
-        /// Creates the SQL Statement
-        /// </summary>
-        /// <returns></returns>
-        public abstract string GetStatement();
-
-        /// <summary>
         /// Reference to the Database Connection in use
         /// </summary>
         public IDbConnection Connection { get; private set; }
@@ -61,87 +57,89 @@ namespace Diassoft.DataAccess.Operations
         /// </summary>
         public IDbTransaction Transaction { get; private set; }
 
-
-        #region Query Execution Methods / Functions
-
         /// <summary>
-        /// Runs the NonQuery Operation
+        /// Returns whether a Connection has been defined and if it's valid for running
         /// </summary>
-        /// <returns>The number of rows processed</returns>
-        public virtual int Run()
+        public bool IsConnectionValid
         {
-            // Variable to hold the query
-            string Query = "";
-
-            try
+            get
             {
-                // Validate Connection
-                if (Connection == null) throw new NullReferenceException($"There is no {nameof(Connection)} defined for this operation");
-                if (Connection?.State != ConnectionState.Open) throw new Exception($"The connection is at '{Enum.GetName(typeof(ConnectionState), Connection.State)}' state and therefore it is not possible to process an operation.");
+                if (Connection == null) return false;
+                if (Connection?.State != ConnectionState.Open) return false;
 
-                // Gets the Query based on the GetStatement Function
-                Query = GetStatement();
-
-                using (IDbCommand command = Connection.CreateCommand())
-                {
-                    if (Transaction != null) command.Transaction = Transaction;
-                    command.CommandText = Query;
-                    return command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// Tries to run the operation
-        /// </summary>
-        /// <param name="rowsProcessed">Reference to an <see cref="int">integer</see> to display the number of rows counted</param>
-        /// <returns>A <see cref="bool">boolean</see> to define whether the execution succeed or failed</returns>
-        public bool TryRun(out int rowsProcessed)
-        {
-            try
-            {
-                rowsProcessed = Run();
                 return true;
             }
-            catch 
-            {
-                rowsProcessed = 0;
-                return false;
-            }
         }
 
-        public virtual object RunScalar()
+        /// <summary>
+        /// Validates the Database Connection
+        /// </summary>
+        public void ValidateConnection()
         {
-            // Variable to hold the query
-            string Query = "";
+            // Checks if the connection exists
+            if (Connection == null) throw new NullReferenceException($"There is no {nameof(Connection)} defined for this operation");
 
-            try
-            {
-                // Validate Connection
-                if (Connection == null) throw new NullReferenceException($"There is no {nameof(Connection)} defined for this operation");
-                if (Connection?.State != ConnectionState.Open) throw new Exception($"The connection is at '{Enum.GetName(typeof(ConnectionState), Connection.State)}' state and therefore it is not possible to process an operation.");
-
-                // Gets the Query based on the GetStatement Function
-                Query = GetStatement();
-
-                using (IDbCommand command = Connection.CreateCommand())
-                {
-                    if (Transaction != null) command.Transaction = Transaction;
-                    command.CommandText = Query;
-                    return command.ExecuteScalar();
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            // Checks the connection state
+            if (Connection?.State != ConnectionState.Open) throw new Exception($"The connection is at '{Enum.GetName(typeof(ConnectionState), Connection.State)}' state and therefore it is not possible to perform any operation.");
         }
 
-        #endregion Query Execution Methods / Functions
+        #endregion Properties
+
+        #region Abstract Methods to be implemented by classes inheriting from this class
+
+        /// <summary>
+        /// Creates the SQL Statement
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetStatement();
+
+        #endregion Abstract Methods to be implemented by classes inheriting from this class
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the Database Operation
+        /// </summary>
+        protected DbOperation()
+        {
+            // Initialize Table Variables
+            TableOwner = "";
+            TableName = "";
+            TableAlias = "";
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        protected DbOperation(Dialect dialect): this()
+        {
+            Dialect = dialect;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        protected DbOperation(Dialect dialect, IDbConnection connection): this(dialect)
+        {
+            Connection = connection;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        protected DbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): this(dialect, connection)
+        {
+            Transaction = transaction;
+        }
+
+        #endregion Constructors
+
 
     }
 }
