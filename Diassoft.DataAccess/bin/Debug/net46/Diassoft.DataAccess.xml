@@ -4,38 +4,47 @@
         <name>Diassoft.DataAccess</name>
     </assembly>
     <members>
-        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.Display">
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Display">
             <summary>
             Represents a field to be displayed in a select statement.
-            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
             </summary>
         </member>
-        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.Aggregate">
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Aggregate">
             <summary>
             Represents an aggregate field on an Sql Statement.
-            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
             </summary>
         </member>
-        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.FieldFilter">
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.FieldFilter">
             <summary>
             Represents a field to be filtered according to another field.
-            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
             </summary>
         </member>
-        <member name="T:Diassoft.DataAccess.DatabaseObjects.Field">
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field">
             <summary>
-            Represents a Field
+            Represents the base for any Field
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Field.Name">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.Field.Name">
             <summary>
             The Field Name
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Field.Type">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.Field.Type">
             <summary>
-            The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.FieldTypes"/>.
+            The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/>.
             </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.Field.#ctor">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.Field.#ctor(System.String,Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="type">The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/> enumeration.</param>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
             <summary>

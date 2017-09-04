@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Diassoft.DataAccess.DatabaseObjects
+namespace Diassoft.DataAccess.DatabaseObjects.Fields
 {
     public enum FieldTypes : int
     {
@@ -14,17 +14,14 @@ namespace Diassoft.DataAccess.DatabaseObjects
         Boolean = 5,
         /// <summary>
         /// Represents a field to be displayed in a select statement.
-        /// Valid only for <see cref="IO.SelectOperation">Select Operation</see>.
         /// </summary>
         Display = 90,
         /// <summary>
         /// Represents an aggregate field on an Sql Statement.
-        /// Valid only for <see cref="IO.SelectOperation">Select Operation</see>.
         /// </summary>
         Aggregate = 91,
         /// <summary>
         /// Represents a field to be filtered according to another field.
-        /// Valid only for <see cref="IO.SelectOperation">Select Operation</see>.
         /// </summary>
         FieldFilter = 92
     }

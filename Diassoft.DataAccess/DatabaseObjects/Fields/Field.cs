@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Diassoft.DataAccess.DatabaseObjects
+namespace Diassoft.DataAccess.DatabaseObjects.Fields
 {
     /// <summary>
     /// Represents the base for any Field
