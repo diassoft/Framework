@@ -4,6 +4,122 @@
         <name>Diassoft.DataAccess</name>
     </assembly>
     <members>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField">
+            <summary>
+            Defines an Aggregate Field, which is an operation that is applied on a database field.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField.Function">
+            <summary>
+            An <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions">Aggregate Function</see> to define which calculation will be applied on the database field.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/>.
+            </summary>
+            <param name="function">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions">Aggregate Function</see></param>
+            <param name="name">The Field Name</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/>.
+            </summary>
+            <param name="function">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions">Aggregate Function</see></param>
+            <param name="name">The Field Name</param>
+            <param name="tableAlias">The Table Alias</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/>.
+            </summary>
+            <param name="function">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions">Aggregate Function</see></param>
+            <param name="name">The Field Name</param>
+            <param name="tableAlias">The Table Alias</param>
+            <param name="alternateName">An alternative name to give to the field</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField">
+            <summary>
+            Represents a field to be displayed on a Select Statement
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField.TableAlias">
+            <summary>
+            The Table Alias
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField.AlternateName">
+            <summary>
+            The alternative name to assign to this field.
+            </summary>
+            <remarks>By default, all fields return their own names on the result set. This property allows you to change that behavior.</remarks>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="tableAlias">The Table Alias</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="tableAlias">The Table Alias</param>
+            <param name="alternateName">An alternative name to give to the field</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes">
+            <summary>
+            A list of Database Field Types 
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.None">
+            <summary>
+            Undefined field type
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.String">
+            <summary>
+            A Text Field (string, varchar, char)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Numeric">
+            <summary>
+            A Numeric Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Decimal">
+            <summary>
+            A Numeric Field with Decimal Places
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.DateTime">
+            <summary>
+            A DateTime field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Date">
+            <summary>
+            A Date Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Time">
+            <summary>
+            A Time Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Boolean">
+            <summary>
+            A <see cref="T:System.Boolean">Boolean</see> Field (stores 0 for false and 1 for true)"/>
+            </summary>
+        </member>
         <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.Display">
             <summary>
             Represents a field to be displayed in a select statement.
@@ -17,6 +133,149 @@
         <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes.FieldFilter">
             <summary>
             Represents a field to be filtered according to another field.
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators">
+            <summary>
+            A list of Operators
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.None">
+            <summary>
+            Undefined Operator
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.Equal">
+            <summary>
+            Equal Operator (when a value is equal another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotEqual">
+            <summary>
+            NotEqual Operator (when a value is different than another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.GreaterThan">
+            <summary>
+            GreaterThan Operator (when a value is greater than another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.LessThan">
+            <summary>
+            LessThan Operator (when a value is less than another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.GreaterThanOrEqual">
+            <summary>
+            GreaterThanOrEqual Operator (when a value is greater than or equal to another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.LessThanOrEqual">
+            <summary>
+            LessThanOrEqual Operator (when a value is less than or equal to another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.Like">
+            <summary>
+            Like Operator (when a value is similar to another value).
+            </summary>
+            <remarks>
+            When using this operator, you need to add the symbol '%' to the text. If there isn't one, it will be added to the end by the engine.
+            The engine will use the proper symbol when necessary.
+            </remarks>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotLike">
+            <summary>
+            Not Like Operator (when a value is not similar to another value).
+            </summary>
+            <remarks>
+            When using this operator, you need to add the symbol '%' to the text. If there isn't one, it will be added to the end by the engine.
+            The engine will use the proper symbol when necessary.
+            </remarks>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.In">
+            <summary>
+            In Operator (when a value is in the list of values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotIn">
+            <summary>
+            NotIn Operator (when a value is not in the list of values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.IsNull">
+            <summary>
+            IsNull Operator (when the value is null)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotIsNull">
+            <summary>
+            NotIsNull Operator (when the value is not null)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.Between">
+            <summary>
+            Between Operator (when the value is between two values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotBetween">
+            <summary>
+            NotBetween Operator (when the value is not between two values)
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr">
+            <summary>
+            Syntax Connector
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.None">
+            <summary>
+            Undefined Connector
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.And">
+            <summary>
+            Combine two syntaxes with the AND operator
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.Or">
+            <summary>
+            Combine two syntaxes with the OR operator
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions">
+            <summary>
+            List of Valid Aggregate Functions
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.Count">
+            <summary>
+            Count of Records
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.Max">
+            <summary>
+            Maximum Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.Min">
+            <summary>
+            Minimum Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.Average">
+            <summary>
+            Average Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.CountDistinct">
+            <summary>
+            Count of Distinct Records (to avoid duplication)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateFunctions.Sum">
+            <summary>
+            Sum of the Value of a Field
             </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field">
@@ -45,6 +304,23 @@
             </summary>
             <param name="name">The Field Name</param>
             <param name="type">The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/> enumeration.</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.IFilterable`1">
+            <summary>
+            Interface to be implemented by classes that exposes a filter field
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.IValued`1">
+            <summary>
+            Interface to be implemented by classes that exposes a value field
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.IValued`1.Value">
+            <summary>
+            The Value to be exposed
+            </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
             <summary>

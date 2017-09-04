@@ -9,6 +9,9 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
     /// </summary>
     public class DisplayField: Field
     {
+
+        #region Properties
+
         /// <summary>
         /// The Table Alias
         /// </summary>
@@ -19,6 +22,10 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
         /// </summary>
         /// <remarks>By default, all fields return their own names on the result set. This property allows you to change that behavior.</remarks>
         public string AlternateName { get; set; }
+
+        #endregion Properties
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of a <see cref="DisplayField"/>.
@@ -46,6 +53,8 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
         {
             AlternateName = alternateName;
         }
+
+        #endregion Constructors
 
     }
 }
