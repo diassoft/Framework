@@ -9,6 +9,9 @@ namespace Diassoft.DataAccess.Operations
     /// </summary>
     public interface IKeyedDbOperation
     {
+        /// <summary>
+        /// A list of Keys to be used to filter data on the Operation
+        /// </summary>
         List<string> Keys { get; set; }
     }
 }

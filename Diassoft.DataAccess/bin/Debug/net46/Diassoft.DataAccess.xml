@@ -4,6 +4,24 @@
         <name>Diassoft.DataAccess</name>
     </assembly>
     <members>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.Display">
+            <summary>
+            Represents a field to be displayed in a select statement.
+            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.Aggregate">
+            <summary>
+            Represents an aggregate field on an Sql Statement.
+            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.FieldTypes.FieldFilter">
+            <summary>
+            Represents a field to be filtered according to another field.
+            Valid only for <see cref="!:IO.SelectOperation">Select Operation</see>.
+            </summary>
+        </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
             <summary>
             Represents a Table in the Database
@@ -219,9 +237,13 @@
         </member>
         <member name="M:Diassoft.DataAccess.Dialect.FormatStatement(System.String)">
             <summary>
-            Format the statement to the dialect
+            Format the statement accordingly to the the dialect.
             </summary>
-            <param name="statement">The statement</param>
+            <param name="statement">The statement to format</param>
+            <remarks>
+            Formatting will append the queries on the <see cref="P:Diassoft.DataAccess.Dialect.BeforeQueryStatements"/> and <see cref="P:Diassoft.DataAccess.Dialect.AfterQueryStatements"/> to the query, and append the <see cref="P:Diassoft.DataAccess.Dialect.StatementEndCharacter"/> to the end of each sentence.
+            It will not format any data inside it. Use <see cref="M:Diassoft.DataAccess.Dialect.FormatTable(Diassoft.DataAccess.DatabaseObjects.Table)"/> to Format the tables inside the statement.
+            </remarks>
             <returns></returns>
         </member>
         <member name="F:Diassoft.DataAccess.Dialect._msSqlDialect">
@@ -357,6 +379,16 @@
             <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
             <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
         </member>
+        <member name="T:Diassoft.DataAccess.Operations.IKeyedDbOperation">
+            <summary>
+            An interface to be implemented for classes that have a Keyed Operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.IKeyedDbOperation.Keys">
+            <summary>
+            A list of Keys to be used to filter data on the Operation
+            </summary>
+        </member>
         <member name="T:Diassoft.DataAccess.Operations.InquiryDbOperation">
             <summary>
             Represents the Base Class for any Database Operation that read records
@@ -472,6 +504,11 @@
             <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
             <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
         </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.PreStatementValidation">
+            <summary>
+            Validates the Conditions for the Statement Execution
+            </summary>
+        </member>
         <member name="T:Diassoft.DataAccess.Operations.ModifyDbOperation">
             <summary>
             Represents the Base Class for any Database Operation that change records
@@ -486,6 +523,7 @@
             <summary>
             The Formatted Table Name, including the alias
             </summary>
+            <exception cref="T:System.NullReferenceException">An exception that is thrown when there is no <see cref="T:Diassoft.DataAccess.Dialect"/> or <see cref="P:Diassoft.DataAccess.Operations.ModifyDbOperation.Table"/> setup.</exception>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.ModifyDbOperation.Run">
             <summary>
@@ -581,11 +619,113 @@
             <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
             <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
         </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.PreStatementValidation">
+            <summary>
+            Validates the Conditions for the Statement Execution
+            </summary>
+        </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.GetStatement">
             <summary>
             Returns the Select All Statement
             </summary>
-            <returns></returns>
+            <returns>A string containing the statement</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.SelectDbOperation">
+            <summary>
+            A class that represents a Select database operation
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.Distinct">
+            <summary>
+            Defines whether the select will be of the distinct fields.
+            By default the value is false.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.TopNRows">
+            <summary>
+            Defines the Top N Rows to be displayed.
+            By default the value is zero.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.GetStatement">
+            <summary>
+            Returns the Statement for the <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/>.
+            </summary>
+            <returns>A string containing the select statement</returns>
         </member>
     </members>
 </doc>
