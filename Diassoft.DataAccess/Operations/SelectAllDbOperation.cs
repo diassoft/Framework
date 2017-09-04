@@ -79,22 +79,20 @@ namespace Diassoft.DataAccess.Operations
             // Call the default PreStatementValidation
             base.PreStatementValidation();
 
-            // Validate number of Tables
-            if (base.Tables?.Count == 0) throw new Exception($"You must define at least one table on the {nameof(SelectAllDbOperation)}.");
-            else if (base.Tables?.Count > 1) throw new Exception($"The {nameof(SelectAllDbOperation)} does not support multiple tables on the statement. Currently there are {base.Tables.Count.ToString()} tables to be searched.");
+            // Make sure the table count is only one (the minimum number of tables has already been validated on the InquiryDbOperation)
+            if (base.Tables?.Count > 1) throw new Exception($"The {nameof(SelectAllDbOperation)} does not support multiple tables on the statement. Currently there are {base.Tables.Count.ToString()} tables to be searched.");
         }
 
         /// <summary>
         /// Returns the Select All Statement
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string containing the statement</returns>
         public override string GetStatement()
         {
             // Perform Necessary Validations
             this.PreStatementValidation();
             
             return base.Dialect.FormatStatement($"SELECT * FROM {base.Dialect.FormatTable(base.Tables[0])}");
-         
         }
 
         #endregion Methods / Functions

@@ -14,26 +14,11 @@ namespace Diassoft.DataAccess.Operations
 
         #region Properties
 
-        private List<Table> m_Tables;
         /// <summary>
         /// A list containing all the tables being inquired on the operation
         /// </summary>
         /// <remarks>The order the tables are added is the order they will be placed on the inquiry statement</remarks>
-        public List<Table> Tables
-        {
-            get
-            {
-                // Initializes a new instance of m_Tables if there isn't one already initialized
-                if (m_Tables == null) m_Tables = new List<Table>();
-
-                return m_Tables;
-            }
-            set
-            {
-                // Sets the Tables
-                m_Tables = value;
-            }
-        }
+        public List<Table> Tables { get; set; } = new List<Table>();
 
         #endregion Properties
         
@@ -210,6 +195,22 @@ namespace Diassoft.DataAccess.Operations
         protected InquiryDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table[] tables) : this(dialect, connection, transaction) { Tables.AddRange(tables); }
 
         #endregion Constructors
+
+        #region Methods
+
+        /// <summary>
+        /// Validates the Conditions for the Statement Execution
+        /// </summary>
+        public new void PreStatementValidation()
+        {
+            // Call the default PreStatementValidation
+            base.PreStatementValidation();
+
+            // Validate number of Tables
+            if (Tables?.Count == 0) throw new Exception($"You must define at least one table on the {nameof(InquiryDbOperation)}.");
+        }
+
+        #endregion Methods
 
     }
 }
