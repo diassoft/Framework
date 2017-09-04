@@ -1,0 +1,8 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net461\Diassoft.DataAccess.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net461\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net461\Diassoft.DataAccess.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net461\System.Data.Common.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.csprojResolveAssemblyReference.cache

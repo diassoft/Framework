@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diassoft.DataAccess</name>
+    </assembly>
+    <members>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.ReservedWords">
+            <summary>
+            The list of reserved words for the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldNameChar">
+            <summary>
+            The Character to add before and after any field. Add two characters to consider the first for the beginning and the second for the end. 
+            Use it for databases where you add field names that follow this example: [myFieldName].
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldValueChar">
+            <summary>
+            The Character to add before and after any text field. Use it to add " or ' before any text assignment. The default value is '.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">
+            <summary>
+            The Character to add before and after any table name. Add two characters to consider the first for the beginning and the second for the end. 
+            Use it for databases where you add table names that follow this example: [myTableName].
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DateFormat">
+            <summary>
+            The default date format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TimeFormat">
+            <summary>
+            The default time format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.NumericFormat">
+            <summary>
+            The default Numeric format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DecimalFormat">
+            <summary>
+            The default Decimal format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.BeforeQueryStatements">
+            <summary>
+            Any statement that might be executed right before running any query
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.AfterQueryStatements">
+            <summary>
+            Any statement that might be executed right after a query runs
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.StatementEndCharacter">
+            <summary>
+            The character to be appended at the end of any statement
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.ValidateTableName(System.String)">
+            <summary>
+            Validates the Table Name. Tables may not have blank spaces inside the string, unless there is a valid table name character.
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatTable(System.String)">
+            <summary>
+            Returns the default formatting for a table name.
+            </summary>
+            <param name="tableName">The table name</param>
+            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">table character separator</see>.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatTable(System.String,System.String)">
+            <summary>
+            Returns the default formatting for a table name and its alias.
+            </summary>
+            <param name="tableName">The table name</param>
+            <param name="tableAlias">The table alias</param>
+            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.DialectsA">
+            <summary>
+            Database Dialects
+            This defines how the data is parsed for the sql statement to be created
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.Access">
+            <summary>
+            Microsoft Access Database
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.SQL">
+            <summary>
+            Microsoft SQL Server Databases
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.Oracle">
+            <summary>
+            Oracle Databases
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.MySql">
+            <summary>
+            MySql Databases
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.DB2">
+            <summary>
+            DB2/400 Databases
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.GenericOleDb">
+            <summary>
+            A Generic OleDb
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.GenericODBC">
+            <summary>
+            A Generic ODBC
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DialectsA.Other">
+            <summary>
+            Any other database
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.OperationBase">
+            <summary>
+            Represents the Base of Any Database Operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.OperationBase.TableAlias">
+            <summary>
+            Represents the alias to refer to the Table.
+            An alias is usually necessary when you have the same table twice on an statement.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.OperationBase.TableName">
+            <summary>
+            The Table Name
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.OperationBase.FullTableName">
+            <summary>
+            The Formatted Table Name, including the alias
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.OperationBase.GetStatement">
+            <summary>
+            Creates the SQL Statement
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Diassoft.DataAccess.OperationBase.Connection">
+            <summary>
+            Reference to the Database Connection in use
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.OperationBase.Transaction">
+            <summary>
+            Reference to the Database Transaction in use
+            </summary>
+        </member>
+    </members>
+</doc>
