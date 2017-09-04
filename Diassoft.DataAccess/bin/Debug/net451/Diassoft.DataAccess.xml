@@ -158,27 +158,52 @@
             </summary>
             <param name="list">The list of sql statements</param>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialect.ValidateTableName(System.String)">
+        <member name="M:Diassoft.DataAccess.Dialect.ValidateTable(Diassoft.DataAccess.DatabaseObjects.Table)">
             <summary>
-            Validates the Table Name. Tables may not have blank spaces inside the string, unless there is a valid table name character.
+            Validates the Table Object. 
             </summary>
-            <param name="tableName"></param>
+            <param name="table">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> containing the database table information</param>
+            <remarks>Tables may not have blank spaces inside the string, unless there is a valid table name character.</remarks>
             <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatTable(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Returns the default formatting for a table name.
+            </summary>
+            <param name="table">An instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> object to represent the database table</param>
+            <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialect.TableNameChar">table character separator</see>.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatTable(Diassoft.DataAccess.DatabaseObjects.Table,System.String@)">
+            <summary>
+            Formats the table
+            </summary>
+            <param name="table">An instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> object to represent the database table</param>
+            <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+            <returns>A <see cref="T:System.Boolean">bool</see> value to define whether the table formatting was successfull or not.</returns>
         </member>
         <member name="M:Diassoft.DataAccess.Dialect.FormatTable(System.String,System.String)">
             <summary>
             Returns the default formatting for a table name.
             </summary>
-            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableName">The table name</param>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialect.TableNameChar">table character separator</see>.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatTable(System.String,System.String,System.String@)">
+            <summary>
+            Formats the table
+            </summary>
+            <param name="tableName">The table name</param>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+            <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+            <returns>A <see cref="T:System.Boolean">bool</see> value to define whether the table formatting was successfull or not.</returns>
         </member>
         <member name="M:Diassoft.DataAccess.Dialect.FormatTable(System.String,System.String,System.String)">
             <summary>
             Returns the default formatting for a table name and its alias.
             </summary>
-            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableName">The table name</param>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableAlias">The table alias</param>
             <returns>The input table name prefixed and suffixed with the <see cref="P:Diassoft.DataAccess.Dialect.TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
         </member>
@@ -186,11 +211,18 @@
             <summary>
             Formats the table
             </summary>
-            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableName">The table name</param>
+            <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
             <param name="tableAlias">The table alias</param>
             <param name="formattedTable">Output parameter where the formatted table will be stored</param>
             <returns>A <see cref="T:System.Boolean">bool</see> value to define whether the table formatting was successfull or not.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatStatement(System.String)">
+            <summary>
+            Format the statement to the dialect
+            </summary>
+            <param name="statement">The statement</param>
+            <returns></returns>
         </member>
         <member name="F:Diassoft.DataAccess.Dialect._msSqlDialect">
             <summary>
@@ -267,35 +299,9 @@
             The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to use when formatting fields and values for a statement
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableOwner">
-            <summary>
-            The Table Owner or Library
-            </summary>
-        </member>
-        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableName">
-            <summary>
-            The Table Name
-            </summary>
-        </member>
-        <member name="P:Diassoft.DataAccess.Operations.DbOperation.TableAlias">
-            <summary>
-            Represents the alias to refer to the Table.
-            An alias is usually necessary when you have the same table twice on an statement.
-            </summary>
-        </member>
-        <member name="P:Diassoft.DataAccess.Operations.DbOperation.FullTableName">
-            <summary>
-            The Formatted Table Name, including the alias
-            </summary>
-        </member>
         <member name="P:Diassoft.DataAccess.Operations.DbOperation.Connection">
             <summary>
             Reference to the Database Connection in use
-            </summary>
-        </member>
-        <member name="P:Diassoft.DataAccess.Operations.DbOperation.Transaction">
-            <summary>
-            Reference to the Database Transaction in use
             </summary>
         </member>
         <member name="P:Diassoft.DataAccess.Operations.DbOperation.IsConnectionValid">
@@ -303,10 +309,21 @@
             Returns whether a Connection has been defined and if it's valid for running
             </summary>
         </member>
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation.Transaction">
+            <summary>
+            Reference to the Database Transaction in use
+            </summary>
+        </member>
         <member name="M:Diassoft.DataAccess.Operations.DbOperation.ValidateConnection">
             <summary>
             Validates the Database Connection
             </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DbOperation.PreStatementValidation">
+            <summary>
+            Validate Conditions to Start Building any Statement 
+            </summary>
+            <exception cref="T:System.NullReferenceException">The exception that is thrown when there is no <see cref="P:Diassoft.DataAccess.Operations.DbOperation.Dialect"/> setup</exception>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.DbOperation.GetStatement">
             <summary>
@@ -344,6 +361,12 @@
             <summary>
             Represents the Base Class for any Database Operation that read records
             </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.InquiryDbOperation.Tables">
+            <summary>
+            A list containing all the tables being inquired on the operation
+            </summary>
+            <remarks>The order the tables are added is the order they will be placed on the inquiry statement</remarks>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.RunReader">
             <summary>
@@ -401,9 +424,67 @@
             <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
             <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
         </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InquiryDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction,Diassoft.DataAccess.DatabaseObjects.Table[])">
+            <summary>
+            Initializes a new instance of the Inquiry Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+            <param name="tables">An array of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> with the tables to be searched</param>
+        </member>
         <member name="T:Diassoft.DataAccess.Operations.ModifyDbOperation">
             <summary>
             Represents the Base Class for any Database Operation that change records
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.ModifyDbOperation.Table">
+            <summary>
+            The Table to be Modified
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.ModifyDbOperation.FullTableName">
+            <summary>
+            The Formatted Table Name, including the alias
             </summary>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.ModifyDbOperation.Run">
@@ -452,29 +533,53 @@
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor">
             <summary>
-            Initializes a new instance of the Inquiry Database Operation
+            Initializes a new instance of the Select All Database Operation
             </summary>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect)">
             <summary>
-            Initializes a new instance of the Inquiry Database Operation
+            Initializes a new instance of the Select All Database Operation
             </summary>
             <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection)">
             <summary>
-            Initializes a new instance of the Inquiry Database Operation
+            Initializes a new instance of the Select All Database Operation
             </summary>
             <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
             <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction)">
             <summary>
-            Initializes a new instance of the Inquiry Database Operation
+            Initializes a new instance of the Select All Database Operation
             </summary>
             <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
             <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
             <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select All Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select All Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.#ctor(Diassoft.DataAccess.Dialect,System.Data.IDbConnection,System.Data.IDbTransaction,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select All Database Operation
+            </summary>
+            <param name="dialect">The <see cref="T:Diassoft.DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+            <param name="connection">Reference to the <see cref="T:System.Data.IDbConnection">Connection</see> to the database</param>
+            <param name="transaction">Reference to the <see cref="T:System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be inquired</param>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectAllDbOperation.GetStatement">
             <summary>

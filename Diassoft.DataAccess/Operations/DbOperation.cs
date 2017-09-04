@@ -25,11 +25,6 @@ namespace Diassoft.DataAccess.Operations
         public IDbConnection Connection { get; private set; }
 
         /// <summary>
-        /// Reference to the Database Transaction in use
-        /// </summary>
-        public IDbTransaction Transaction { get; private set; }
-
-        /// <summary>
         /// Returns whether a Connection has been defined and if it's valid for running
         /// </summary>
         public bool IsConnectionValid
@@ -44,6 +39,15 @@ namespace Diassoft.DataAccess.Operations
         }
 
         /// <summary>
+        /// Reference to the Database Transaction in use
+        /// </summary>
+        public IDbTransaction Transaction { get; private set; }
+
+        #endregion Properties
+
+        #region Validation Methods
+
+        /// <summary>
         /// Validates the Database Connection
         /// </summary>
         public void ValidateConnection()
@@ -55,7 +59,18 @@ namespace Diassoft.DataAccess.Operations
             if (Connection?.State != ConnectionState.Open) throw new Exception($"The connection is at '{Enum.GetName(typeof(ConnectionState), Connection.State)}' state and therefore it is not possible to perform any operation.");
         }
 
-        #endregion Properties
+        /// <summary>
+        /// Validate Conditions to Start Building any Statement 
+        /// </summary>
+        /// <exception cref="NullReferenceException">The exception that is thrown when there is no <see cref="Dialect"/> setup</exception>
+        protected virtual void PreStatementValidation()
+        {
+            // Validate if Dialect was informed
+            if (Dialect == null) throw new NullReferenceException($"There is no {nameof(Dialect)} setup");
+        }
+
+
+        #endregion Validation Methods
 
         #region Abstract Methods to be implemented by classes inheriting from this class
 

@@ -371,6 +371,34 @@ namespace Diassoft.DataAccess
 
         #endregion Table Formatting
 
+        #region Statement Formatting
+
+        /// <summary>
+        /// Format the statement accordingly to the the dialect.
+        /// </summary>
+        /// <param name="statement">The statement to format</param>
+        /// <remarks>
+        /// Formatting will append the queries on the <see cref="BeforeQueryStatements"/> and <see cref="AfterQueryStatements"/> to the query, and append the <see cref="StatementEndCharacter"/> to the end of each sentence.
+        /// It will not format any data inside it. Use <see cref="FormatTable(Table)"/> to Format the tables inside the statement.
+        /// </remarks>
+        /// <returns></returns>
+        public virtual string FormatStatement(string statement)
+        {
+            // Variable to hold the results
+            string resultStatement = $"{statement}{StatementEndCharacter}\n"; ;
+
+            // Add Before Query Statements
+            if (BeforeQueryStatements?.Count > 0) resultStatement = String.Join(StatementEndCharacter + "\n", BeforeQueryStatements.ToArray()) + resultStatement;
+
+            // Add After Query Statements
+            if (AfterQueryStatements?.Count > 0) resultStatement += String.Join(StatementEndCharacter + "\n", AfterQueryStatements.ToArray());
+
+            // Finally return the statement
+            return resultStatement;
+        }
+
+        #endregion Statement Formatting
+
         #endregion Formatting Methods / Functions
 
         #region Static Dialect Implementations

@@ -21,6 +21,7 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// The Formatted Table Name, including the alias
         /// </summary>
+        /// <exception cref="NullReferenceException">An exception that is thrown when there is no <see cref="Dialect"/> or <see cref="Table"/> setup.</exception>
         public string FullTableName
         {
             get
@@ -31,7 +32,6 @@ namespace Diassoft.DataAccess.Operations
                 return this.Dialect.FormatTable(Table);
             }
         }
-
 
         #endregion Properties
 

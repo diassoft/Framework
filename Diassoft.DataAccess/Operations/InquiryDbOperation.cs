@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using Diassoft.DataAccess.DatabaseObjects;
 
 namespace Diassoft.DataAccess.Operations
 {
@@ -11,6 +12,31 @@ namespace Diassoft.DataAccess.Operations
     public abstract class InquiryDbOperation: DbOperation
     {
 
+        #region Properties
+
+        private List<Table> m_Tables;
+        /// <summary>
+        /// A list containing all the tables being inquired on the operation
+        /// </summary>
+        /// <remarks>The order the tables are added is the order they will be placed on the inquiry statement</remarks>
+        public List<Table> Tables
+        {
+            get
+            {
+                // Initializes a new instance of m_Tables if there isn't one already initialized
+                if (m_Tables == null) m_Tables = new List<Table>();
+
+                return m_Tables;
+            }
+            set
+            {
+                // Sets the Tables
+                m_Tables = value;
+            }
+        }
+
+        #endregion Properties
+        
         #region Reader Functions
 
         /// <summary>
@@ -134,6 +160,54 @@ namespace Diassoft.DataAccess.Operations
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
         /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
         protected InquiryDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        protected InquiryDbOperation(Dialect dialect, Table table) : this(dialect) { Tables.Add(table); }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        protected InquiryDbOperation(Dialect dialect, IDbConnection connection, Table table) : this(dialect, connection) { Tables.Add(table); }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        protected InquiryDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : this(dialect, connection, transaction) { Tables.Add(table); }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
+        protected InquiryDbOperation(Dialect dialect, params Table[] tables) : this(dialect) { Tables.AddRange(tables); }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
+        protected InquiryDbOperation(Dialect dialect, IDbConnection connection, params Table[] tables) : this(dialect, connection) { Tables.AddRange(tables); }
+
+        /// <summary>
+        /// Initializes a new instance of the Inquiry Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
+        protected InquiryDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table[] tables) : this(dialect, connection, transaction) { Tables.AddRange(tables); }
 
         #endregion Constructors
 
