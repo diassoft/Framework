@@ -4,6 +4,138 @@
         <name>Diassoft.DataAccess</name>
     </assembly>
     <members>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1">
+            <summary>
+            Represents an Assignment Expression (x = y)
+            </summary>
+            <typeparam name="T">The Type of the Value Field</typeparam>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1.Value">
+            <summary>
+            The value to be assigned to the expression
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1.#ctor">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,`0)">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+            <param name="value">The Value to be assigned to the field</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression">
+            <summary>
+            Represents the base class for an Expression. Assignments and Filters are considered expressions. (x = y)
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.Field">
+            <summary>
+            The Field to be Used
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.Operator">
+            <summary>
+            The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators">FieldOperator</see>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor">
+            <summary>
+            Initializes a new expression
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Initializes a new expression
+            </summary>
+            <param name="field">The Field to be Processed by the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression"/>.</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators)">
+            <summary>
+            Initializes a new expression
+            </summary>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators)">
+            <summary>
+            Initializes a new expression
+            </summary>
+            <param name="field">The Field to be Processed by the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression"/>.</param>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1">
+            <summary>
+            Represents a Filter Expression (x = y? x != y? x > y?)
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.Values">
+            <summary>
+            The list of values to be included on the Filter Expression
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,`0)">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            </summary>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+            <param name="value">The Value to be assigned to the field</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,System.Collections.Generic.IList{`0})">
+            <summary>
+            
+            </summary>
+            <param name="field"></param>
+            <param name="values"></param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterable`1">
+            <summary>
+            Interface to be implemented by classes that exposes a filter field
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IListValued`1">
+            <summary>
+            Interface to be implemented by classes that exposes a list value field
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type"/> of the values inside the list</typeparam>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.IListValued`1.Values">
+            <summary>
+            Represents the List of Values
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IValued`1">
+            <summary>
+            Interface to be implemented by classes that exposes a single value field
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type"/> of the Value</typeparam>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.IValued`1.Value">
+            <summary>
+            The Value to be exposed
+            </summary>
+        </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField">
             <summary>
             Defines an Aggregate Field, which is an operation that is applied on a database field.
@@ -304,23 +436,6 @@
             </summary>
             <param name="name">The Field Name</param>
             <param name="type">The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/> enumeration.</param>
-        </member>
-        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.IFilterable`1">
-            <summary>
-            Interface to be implemented by classes that exposes a filter field
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.IValued`1">
-            <summary>
-            Interface to be implemented by classes that exposes a value field
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.IValued`1.Value">
-            <summary>
-            The Value to be exposed
-            </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
             <summary>

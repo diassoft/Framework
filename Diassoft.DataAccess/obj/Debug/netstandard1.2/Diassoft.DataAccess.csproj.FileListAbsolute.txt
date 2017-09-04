@@ -5,4 +5,3 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\netstan
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.csprojResolveAssemblyReference.cache

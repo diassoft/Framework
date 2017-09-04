@@ -5,9 +5,9 @@ using System.Text;
 namespace Diassoft.DataAccess.DatabaseObjects.Expressions
 {
     /// <summary>
-    /// Interface to be implemented by classes that exposes a value field
+    /// Interface to be implemented by classes that exposes a single value field
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The <see cref="System.Type"/> of the Value</typeparam>
     public interface IValued<T>
     {
         /// <summary>
