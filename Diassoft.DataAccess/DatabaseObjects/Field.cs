@@ -9,7 +9,7 @@ namespace Diassoft.DataAccess.DatabaseObjects
 
         public string Name { get; set; }
 
-
+        public FieldTypes Type { get; set; }
 
     }
 
