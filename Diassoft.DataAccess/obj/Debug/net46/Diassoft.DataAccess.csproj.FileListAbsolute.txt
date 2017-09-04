@@ -1,7 +1,7 @@
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net46\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net46\Diassoft.DataAccess.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net46\Diassoft.DataAccess.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net46\System.Data.Common.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net46\Diassoft.DataAccess.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net46\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net46\Diassoft.DataAccess.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Debug\net46\System.Data.Common.dll

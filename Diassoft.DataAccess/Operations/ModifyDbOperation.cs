@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using Diassoft.DataAccess.DatabaseObjects;
 
 namespace Diassoft.DataAccess.Operations
 {
@@ -10,6 +11,29 @@ namespace Diassoft.DataAccess.Operations
     /// </summary>
     public abstract class ModifyDbOperation: DbOperation
     {
+        #region Properties
+
+        /// <summary>
+        /// The Table to be Modified
+        /// </summary>
+        public Table Table { get; set; }
+
+        /// <summary>
+        /// The Formatted Table Name, including the alias
+        /// </summary>
+        public string FullTableName
+        {
+            get
+            {
+                if (Dialect == null) throw new NullReferenceException($"A {nameof(Dialect)} has not been setup for the operation");
+                if (Table == null) throw new NullReferenceException($"A {nameof(Table)} has not been defined for the operation");
+
+                return this.Dialect.FormatTable(Table);
+            }
+        }
+
+
+        #endregion Properties
 
         #region Query Execution Methods
 

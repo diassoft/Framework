@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diassoft.DataAccess.DatabaseObjects;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -17,35 +18,6 @@ namespace Diassoft.DataAccess.Operations
         /// The <see cref="Diassoft.DataAccess.Dialect">Dialect</see> to use when formatting fields and values for a statement
         /// </summary>
         public Dialect Dialect { get; protected set; }
-
-        /// <summary>
-        /// The Table Owner or Library
-        /// </summary>
-        public string TableOwner { get; set; }
-
-        /// <summary>
-        /// The Table Name
-        /// </summary>
-        public string TableName { get; set; }
-
-        /// <summary>
-        /// Represents the alias to refer to the Table.
-        /// An alias is usually necessary when you have the same table twice on an statement.
-        /// </summary>
-        public string TableAlias { get; set; }
-
-        /// <summary>
-        /// The Formatted Table Name, including the alias
-        /// </summary>
-        public string FullTableName
-        {
-            get
-            {
-                if (Dialect == null) throw new NullReferenceException($"A {nameof(Dialect)} has not been setup for the operation");
-
-                return this.Dialect.FormatTable(TableOwner, TableName, TableAlias);
-            }
-        }
 
         /// <summary>
         /// Reference to the Database Connection in use
@@ -102,10 +74,7 @@ namespace Diassoft.DataAccess.Operations
         /// </summary>
         protected DbOperation()
         {
-            // Initialize Table Variables
-            TableOwner = "";
-            TableName = "";
-            TableAlias = "";
+
         }
 
         /// <summary>
@@ -139,7 +108,6 @@ namespace Diassoft.DataAccess.Operations
         }
 
         #endregion Constructors
-
 
     }
 }

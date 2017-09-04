@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diassoft.DataAccess.DatabaseObjects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -168,13 +169,14 @@ namespace Diassoft.DataAccess
         #region Formatting Methods / Functions
 
         #region Table Formatting
-        
+
         /// <summary>
-        /// Validates the Table Name. Tables may not have blank spaces inside the string, unless there is a valid table name character.
+        /// Validates the Table Object. 
         /// </summary>
-        /// <param name="tableName"></param>
+        /// <param name="table">A <see cref="Table"/> containing the database table information</param>
+        /// <remarks>Tables may not have blank spaces inside the string, unless there is a valid table name character.</remarks>
         /// <returns></returns>
-        protected bool ValidateTableName(string tableName)
+        protected bool ValidateTable(Table table)
         {
             // Remove any blanks from the string
             TableNameChar = TableNameChar.Trim();
@@ -191,8 +193,8 @@ namespace Diassoft.DataAccess
                 if (TableNameChar.Length == 2)
                 {
                     // There is a begin / end character
-                    if ((tableName.Contains(TableNameChar[0].ToString())) &&
-                        (tableName.Contains(TableNameChar[1].ToString())))
+                    if ((table.Name.Contains(TableNameChar[0].ToString())) &&
+                        (table.Name.Contains(TableNameChar[1].ToString())))
                     {
                         /* There is a problem , the table name should not have the separator character inside it */
                         return false;
@@ -201,7 +203,7 @@ namespace Diassoft.DataAccess
                 else
                 {
                     // There is only one character
-                    if (tableName.Contains(TableNameChar[0].ToString()))
+                    if (table.Name.Contains(TableNameChar[0].ToString()))
                     {
                         /* There is a problem , the table name should not have the separator character inside it */
                         return false;
@@ -214,7 +216,7 @@ namespace Diassoft.DataAccess
                 /* On this case, it's not acceptable to have inner blank spaces */
 
                 // Look for blank spaces
-                if (tableName.Contains(" "))
+                if (table.Name.Contains(" "))
                 {
                     /* There are blank spaces inside it, consider invalid */
                     return false;
@@ -228,23 +230,9 @@ namespace Diassoft.DataAccess
         /// <summary>
         /// Returns the default formatting for a table name.
         /// </summary>
-        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
-        /// <param name="tableName">The table name</param>
+        /// <param name="table">An instance of a <see cref="Table"/> object to represent the database table</param>
         /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>.</returns>
-        public virtual string FormatTable(string tableOwner, string tableName)
-        {
-            // For security reasons (avoid users passing commands on the table alias), add the "T_" before the table alias.
-            return $"{FormatTable(tableOwner, tableName, "")}";
-        }
-
-        /// <summary>
-        /// Returns the default formatting for a table name and its alias.
-        /// </summary>
-        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
-        /// <param name="tableName">The table name</param>
-        /// <param name="tableAlias">The table alias</param>
-        /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
-        public virtual string FormatTable(string tableOwner, string tableName, string tableAlias)
+        public virtual string FormatTable(Table table)
         {
             // Variable to hold the Table Name
             string FormattedTableName = "";
@@ -252,7 +240,7 @@ namespace Diassoft.DataAccess
             string CharacterEnd = "";
 
             // Check if the table name is valid
-            if (!ValidateTableName(tableName)) throw new Exception("Invalid table name or table character");
+            if (!ValidateTable(table)) throw new Exception("Invalid table name or table character");
 
             if (TableNameChar.Length == 2)
             {
@@ -268,20 +256,20 @@ namespace Diassoft.DataAccess
             }
 
             // Verify Owner
-            if (tableOwner?.ToString() != "")
+            if (table?.Owner?.ToString() != "")
             {
                 // There is an owner, add it to the string
-                FormattedTableName += $"{CharacterBegin}{tableOwner}{CharacterEnd}.";
+                FormattedTableName += $"{CharacterBegin}{table.Owner}{CharacterEnd}.";
             }
 
             // Add the table name
-            FormattedTableName += $"{CharacterBegin}{tableName}{CharacterEnd}";
+            FormattedTableName += $"{CharacterBegin}{table.Name}{CharacterEnd}";
 
             // Verify Alias
-            if (tableAlias?.ToString() != "")
+            if (table?.Alias?.ToString() != "")
             {
                 // For security reasons (avoid users passing additional commands on the table alias), add the "T_" before the table alias.
-                FormattedTableName += $" T_{tableAlias}";
+                FormattedTableName += $" T_{table.Alias}";
             }
 
             return FormattedTableName;
@@ -290,17 +278,87 @@ namespace Diassoft.DataAccess
         /// <summary>
         /// Formats the table
         /// </summary>
-        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
-        /// <param name="tableName">The table name</param>
-        /// <param name="tableAlias">The table alias</param>
+        /// <param name="table">An instance of a <see cref="Table"/> object to represent the database table</param>
         /// <param name="formattedTable">Output parameter where the formatted table will be stored</param>
         /// <returns>A <see cref="bool">bool</see> value to define whether the table formatting was successfull or not.</returns>
-        public bool TryFormatTable(string tableOwner, string tableName, string tableAlias, out string formattedTable)
+        public bool TryFormatTable(Table table, out string formattedTable)
         {
             try
             {
                 // Format the table
-                formattedTable = FormatTable(tableOwner, tableName, tableAlias);
+                formattedTable = FormatTable(table);
+                return true;
+            }
+            catch
+            {
+                // Formatting Failed
+                formattedTable = "";
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns the default formatting for a table name.
+        /// </summary>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+        /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>.</returns>
+        public virtual string FormatTable(string tableName, string tableOwner)
+        {
+            // For security reasons (avoid users passing commands on the table alias), add the "T_" before the table alias.
+            return $"{FormatTable(new Table(tableName, tableOwner))}";
+        }
+
+        /// <summary>
+        /// Formats the table
+        /// </summary>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+        /// <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+        /// <returns>A <see cref="bool">bool</see> value to define whether the table formatting was successfull or not.</returns>
+        public bool TryFormatTable(string tableName, string tableOwner, out string formattedTable)
+        {
+            try
+            {
+                // Format the table
+                formattedTable = FormatTable(tableName, tableOwner);
+                return true;
+            }
+            catch
+            {
+                // Formatting Failed
+                formattedTable = "";
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the default formatting for a table name and its alias.
+        /// </summary>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+        /// <param name="tableAlias">The table alias</param>
+        /// <returns>The input table name prefixed and suffixed with the <see cref="TableNameChar">table character separator</see>, concatenated with the table alias preceeded by "T_".</returns>
+        public virtual string FormatTable(string tableName, string tableOwner, string tableAlias)
+        {
+            return $"{FormatTable(new Table(tableName, tableOwner, tableAlias))}";
+        }
+
+        /// <summary>
+        /// Formats the table
+        /// </summary>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableOwner">The owner of the table (or library depending on the database type)</param>
+        /// <param name="tableAlias">The table alias</param>
+        /// <param name="formattedTable">Output parameter where the formatted table will be stored</param>
+        /// <returns>A <see cref="bool">bool</see> value to define whether the table formatting was successfull or not.</returns>
+        public bool TryFormatTable(string tableName, string tableOwner, string tableAlias, out string formattedTable)
+        {
+            try
+            {
+                // Format the table
+                formattedTable = FormatTable(tableName, tableOwner, tableAlias);
                 return true;
             }
             catch 
