@@ -566,6 +566,11 @@
             The character to be appended at the end of any statement
             </summary>
         </member>
+        <member name="P:Diassoft.DataAccess.Dialect.AggregateFunctionMapping">
+            <summary>
+            Default Mapping to find the Corresponding Aggregate Function
+            </summary>
+        </member>
         <member name="M:Diassoft.DataAccess.Dialect.#ctor">
             <summary>
             Initializes a new instance of a Dialect
@@ -676,6 +681,42 @@
             It will not format any data inside it. Use <see cref="M:Diassoft.DataAccess.Dialect.FormatTable(Diassoft.DataAccess.DatabaseObjects.Table)"/> to Format the tables inside the statement.
             </remarks>
             <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.ValidateField(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Validates the Field Information
+            </summary>
+            <param name="field">The Field to be Validated</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatField(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Formats the field to a valid string appendable to a query
+            </summary>
+            <param name="field">The field to be formatted</param>
+            <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatField(Diassoft.DataAccess.DatabaseObjects.Fields.Field,System.String@)">
+            <summary>
+            Tries to Format the field to a valid string appendable to a query
+            </summary>
+            <param name="field">The field to be formatted</param>
+            <param name="formattedField">Reference to a string where the formatted field will be returned</param>
+            <returns>A <see cref="T:System.Boolean">Boolean</see> value to define whether the formatting succeeded or failed</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatAggregateField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField)">
+            <summary>
+            Formats the field to a valid string appendable to a query
+            </summary>
+            <param name="aggregateField">The aggregate field to be formatted</param>
+            <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatAggregateField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField,System.String@)">
+            <summary>
+            Tries to Format the Aggregate Field
+            </summary>
+            <param name="aggregateField">The aggregate field to be formatted</param>
+            <param name="formattedAggregateField">Reference to the string where the formmatted aggregate field will be stored</param>
+            <returns>A <see cref="T:System.Boolean">Boolean</see> value to define whether the formatting succeeded or failed</returns>
         </member>
         <member name="F:Diassoft.DataAccess.Dialect._msSqlDialect">
             <summary>
@@ -1150,6 +1191,26 @@
             <summary>
             Defines the Top N Rows to be displayed.
             By default the value is zero.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.GroupBy">
+            <summary>
+            Defines whether there will be a Group By at the end of the query
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.SelectFields">
+            <summary>
+            A list with the fields to be selected, including aggregates
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.Where">
+            <summary>
+            List of Filter Expressions
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.PreStatementValidation">
+            <summary>
+            Validates the Conditions for the Statement Execution
             </summary>
         </member>
         <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.GetStatement">

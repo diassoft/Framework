@@ -206,8 +206,9 @@ namespace Diassoft.DataAccess.Operations
             // Call the default PreStatementValidation
             base.PreStatementValidation();
 
-            // Validate number of Tables
-            if (Tables?.Count == 0) throw new Exception($"You must define at least one table on the {nameof(InquiryDbOperation)}.");
+            // Validate Tables
+            if (Tables == null) throw new NullReferenceException($"You need to define the {nameof(Tables)} collection.");
+            if (Tables.Count == 0) throw new Exception($"You must add at least one table to the {nameof(InquiryDbOperation)}.");
         }
 
         #endregion Methods

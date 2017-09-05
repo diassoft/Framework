@@ -30,6 +30,7 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
         public AggregateField(AggregateFunctions function, string name) : base(name)
         {
             Function = function;
+            base.Type = FieldTypes.Aggregate;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using Diassoft.DataAccess.DatabaseObjects;
+using Diassoft.DataAccess.DatabaseObjects.Fields;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,38 +23,38 @@ namespace Diassoft.DataAccess
         /// The Character to add before and after any field. Add two characters to consider the first for the beginning and the second for the end. 
         /// Use it for databases where you add field names that follow this example: [myFieldName].
         /// </summary>
-        public string FieldNameChar { get; protected internal set; }
+        public string FieldNameChar { get; protected set; }
 
         /// <summary>
         /// The Character to add before and after any text field. Use it to add " or ' before any text assignment. The default value is '.
         /// </summary>
-        public string FieldValueChar { get; protected internal set; }
+        public string FieldValueChar { get; protected set; }
 
         /// <summary>
         /// The Character to add before and after any table name. Add two characters to consider the first for the beginning and the second for the end. 
         /// Use it for databases where you add table names that follow this example: [myTableName].
         /// </summary>
-        public string TableNameChar { get; protected internal set; }
+        public string TableNameChar { get; protected set; }
 
         /// <summary>
         /// The default date format to be used by the dialect
         /// </summary>
-        public string DateFormat { get; protected internal set; }
+        public string DateFormat { get; protected set; }
 
         /// <summary>
         /// The default time format to be used by the dialect
         /// </summary>
-        public string TimeFormat { get; protected internal set; }
+        public string TimeFormat { get; protected set; }
 
         /// <summary>
         /// The default Numeric format to be used by the dialect
         /// </summary>
-        public string NumericFormat { get; protected internal set; }
+        public string NumericFormat { get; protected set; }
 
         /// <summary>
         /// The default Decimal format to be used by the dialect
         /// </summary>
-        public string DecimalFormat { get; protected internal set; }
+        public string DecimalFormat { get; protected set; }
 
         /// <summary>
         /// The datetime format
@@ -81,6 +82,11 @@ namespace Diassoft.DataAccess
         /// </summary>
         public string StatementEndCharacter { get; set; }
 
+        /// <summary>
+        /// Default Mapping to find the Corresponding Aggregate Function
+        /// </summary>
+        public Dictionary<AggregateFunctions, string> AggregateFunctionMapping { get; protected set; }
+
         #endregion Properties
 
         #region Constructors
@@ -103,6 +109,17 @@ namespace Diassoft.DataAccess
             ReservedWords = new List<string>();
             BeforeQueryStatements = new List<string>();
             AfterQueryStatements = new List<string>();
+
+            // Add the Default Mapping to the Dialect
+            AggregateFunctionMapping = new Dictionary<AggregateFunctions, string>()
+            {
+                {AggregateFunctions.Average, "AVG" },
+                {AggregateFunctions.Count, "COUNT" },
+                {AggregateFunctions.CountDistinct, "COUNT DISTINCT" },
+                {AggregateFunctions.Max, "MAX" },
+                {AggregateFunctions.Min, "MIN" },
+                {AggregateFunctions.Sum, "SUM" }
+            };
         }
 
         /// <summary>
@@ -398,6 +415,138 @@ namespace Diassoft.DataAccess
         }
 
         #endregion Statement Formatting
+
+        #region Field Formatting
+
+        /// <summary>
+        /// Validates the Field Information
+        /// </summary>
+        /// <param name="field">The Field to be Validated</param>
+        protected void ValidateField(Field field)
+        {
+            // Remove any blanks from the string
+            FieldNameChar = FieldNameChar.Trim();
+
+            // Validate Field Name Char (might not have more than two characters)
+            if (FieldNameChar.Length > 2) throw new Exception($"The {nameof(FieldNameChar)} has an invalid value. It may not be over 2 characters.");
+
+            // Look for the separator inside it
+            if (FieldNameChar != "")
+            {
+                /* There is a Field Name Char */
+                /* On this case, it's acceptable to have inner blank spaces */
+                if (FieldNameChar.Length == 2)
+                {
+                    // There is a begin / end character
+                    if ((field.Name.Contains(FieldNameChar[0].ToString())) &&
+                        (field.Name.Contains(FieldNameChar[1].ToString())))
+                    {
+                        /* There is a problem , the table name should not have the separator character inside it */
+                        throw new Exception($"The {nameof(FieldNameChar)} was found inside the {nameof(field)} ({field.Name}).");
+                    }
+                }
+                else
+                {
+                    // There is only one character
+                    if (field.Name.Contains(FieldNameChar[0].ToString()))
+                    {
+                        /* There is a problem , the table name should not have the separator character inside it */
+                        throw new Exception($"The {nameof(FieldNameChar)} was found inside the {nameof(field)} ({field.Name}).");
+                    }
+                }
+            }
+            else
+            {
+                /* There is no field name char */
+                /* On this case, it's not acceptable to have inner blank spaces */
+
+                // Look for blank spaces
+                if (field.Name.Contains(" "))
+                {
+                    /* There are blank spaces inside it, consider invalid */
+                    throw new Exception($"Field name '{field.Name}' is invalid. It's not possible to have blank characters inside the field name unless you have a {nameof(FieldNameChar)} configured.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Formats the field to a valid string appendable to a query
+        /// </summary>
+        /// <param name="field">The field to be formatted</param>
+        /// <returns>A <see cref="string"/> with the formatted field.</returns>
+        public virtual string FormatField(Field field)
+        {
+            // Checks if the field is valid
+            ValidateField(field);
+
+            // Return the formatted field
+            return $"{FieldNameChar}{field.Name}{FieldNameChar}";
+        }
+
+        /// <summary>
+        /// Tries to Format the field to a valid string appendable to a query
+        /// </summary>
+        /// <param name="field">The field to be formatted</param>
+        /// <param name="formattedField">Reference to a string where the formatted field will be returned</param>
+        /// <returns>A <see cref="bool">Boolean</see> value to define whether the formatting succeeded or failed</returns>
+        public bool TryFormatField(Field field, out string formattedField)
+        {
+            // Ensure to have a value on the formatted field
+            formattedField = "";
+
+            try
+            {
+                formattedField = FormatField(field);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Formats the field to a valid string appendable to a query
+        /// </summary>
+        /// <param name="aggregateField">The aggregate field to be formatted</param>
+        /// <returns>A <see cref="string"/> with the formatted field.</returns>
+        public virtual string FormatAggregateField(AggregateField aggregateField)
+        {
+            // Checks if the aggregate field is valid
+            ValidateField(aggregateField);
+
+            // Retrieve Aggregate Function Name
+            string aggregateFunctionString = "";
+            if (AggregateFunctionMapping == null) throw new NullReferenceException($"There is no definition for the default {nameof(AggregateFunctionMapping)}. Unable to process aggregate fields.");
+            if (!AggregateFunctionMapping.TryGetValue(aggregateField.Function, out aggregateFunctionString)) throw new Exception($"There is no mapping for the Aggregate Function '{Enum.GetName(typeof(AggregateFunctions), aggregateField.Function)}'. Unable to process aggregate field.");
+
+            // Return the formatted field
+            return $"{aggregateFunctionString}({FieldNameChar}{aggregateField.Name}{FieldNameChar})";
+        }
+
+        /// <summary>
+        /// Tries to Format the Aggregate Field
+        /// </summary>
+        /// <param name="aggregateField">The aggregate field to be formatted</param>
+        /// <param name="formattedAggregateField">Reference to the string where the formmatted aggregate field will be stored</param>
+        /// <returns>A <see cref="bool">Boolean</see> value to define whether the formatting succeeded or failed</returns>
+        public bool TryFormatAggregateField(AggregateField aggregateField, out string formattedAggregateField)
+        {
+            // Initialize Return String
+            formattedAggregateField = "";
+
+            try
+            {
+                formattedAggregateField = FormatAggregateField(aggregateField);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
+        #endregion Field Formatting
 
         #endregion Formatting Methods / Functions
 
