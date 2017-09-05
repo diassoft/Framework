@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diassoft.Mvvm", "Diassoft.Mvvm\Diassoft.Mvvm.csproj", "{1D0155F7-AC11-400B-B2FD-B97E25861D22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.DataAccess", "Diassoft.DataAccess\Diassoft.DataAccess.csproj", "{94C98AB0-F5A1-446C-816D-183E63F5CDD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diassoft.DataAccess", "Diassoft.DataAccess\Diassoft.DataAccess.csproj", "{94C98AB0-F5A1-446C-816D-183E63F5CDD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.DataAccess.Tests", "Diassoft.DataAccess.Tests\Diassoft.DataAccess.Tests.csproj", "{E62F86E9-442A-4C45-96ED-6C987B7C669E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{94C98AB0-F5A1-446C-816D-183E63F5CDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C98AB0-F5A1-446C-816D-183E63F5CDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C98AB0-F5A1-446C-816D-183E63F5CDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62F86E9-442A-4C45-96ED-6C987B7C669E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62F86E9-442A-4C45-96ED-6C987B7C669E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62F86E9-442A-4C45-96ED-6C987B7C669E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62F86E9-442A-4C45-96ED-6C987B7C669E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
