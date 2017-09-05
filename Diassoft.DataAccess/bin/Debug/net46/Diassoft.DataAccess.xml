@@ -85,28 +85,44 @@
         </member>
         <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor">
             <summary>
-            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1"/>.
             </summary>
         </member>
-        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators)">
             <summary>
-            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1"/>.
             </summary>
             <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
         </member>
-        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,`0)">
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators,`0)">
             <summary>
-            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.AssignExpression`1"/>.
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1"/>.
             </summary>
             <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
             <param name="value">The Value to be assigned to the field</param>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
         </member>
-        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,System.Collections.Generic.IList{`0})">
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators,System.Collections.Generic.IList{`0})">
             <summary>
-            
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1"/>.
             </summary>
-            <param name="field"></param>
-            <param name="values"></param>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
+            <param name="values">A <see cref="T:System.Collections.Generic.IList`1"/> of values</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.Field,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators,`0[])">
+            <summary>
+            Initializes a new instance of an <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1"/>.
+            </summary>
+            <param name="field">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be processed by the expression</param>
+            <param name="operator">The Operator. See <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators"/> for reference</param>
+            <param name="values">A <see cref="T:System.Collections.Generic.IList`1"/> of values</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression`1.ParseOperator">
+            <summary>
+            Process the Operator accordingly to the number of elements on the List
+            </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterable`1">
             <summary>
