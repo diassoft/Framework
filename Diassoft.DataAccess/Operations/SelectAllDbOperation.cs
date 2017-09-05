@@ -20,43 +20,20 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// Initializes a new instance of the Select All Database Operation
         /// </summary>
-        protected SelectAllDbOperation() : base() { }
+        public SelectAllDbOperation() : base() { }
 
         /// <summary>
         /// Initializes a new instance of the Select All Database Operation
         /// </summary>
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        protected SelectAllDbOperation(Dialect dialect): base(dialect) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select All Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        protected SelectAllDbOperation(Dialect dialect, IDbConnection connection): base(dialect, connection) { }
+        public SelectAllDbOperation(Dialect dialect): base(dialect) { }
 
         /// <summary>
         /// Initializes a new instance of the Select All Database Operation
         /// </summary>
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
-        protected SelectAllDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select All Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectAllDbOperation(Dialect dialect, Table table) : base(dialect, table) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select All Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectAllDbOperation(Dialect dialect, IDbConnection connection, Table table) : base(dialect, connection, table) { }
+        public SelectAllDbOperation(Dialect dialect, IDbConnection connection): base(dialect, connection) { }
 
         /// <summary>
         /// Initializes a new instance of the Select All Database Operation
@@ -64,8 +41,31 @@ namespace Diassoft.DataAccess.Operations
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
         /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        public SelectAllDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select All Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectAllDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : base(dialect, connection, transaction, table) { }
+        public SelectAllDbOperation(Dialect dialect, Table table) : base(dialect, table) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select All Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        public SelectAllDbOperation(Dialect dialect, IDbConnection connection, Table table) : base(dialect, connection, table) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select All Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        public SelectAllDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : base(dialect, connection, transaction, table) { }
 
         #endregion Constructors
 

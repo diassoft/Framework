@@ -23,43 +23,20 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
-        protected SelectDbOperation() : base() { }
+        public SelectDbOperation() : base() { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        protected SelectDbOperation(Dialect dialect): base(dialect) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection): base(dialect, connection) { }
+        public SelectDbOperation(Dialect dialect): base(dialect) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectDbOperation(Dialect dialect, Table table) : base(dialect, table) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection, Table table) : base(dialect, connection, table) { }
+        public SelectDbOperation(Dialect dialect, IDbConnection connection): base(dialect, connection) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
@@ -67,15 +44,38 @@ namespace Diassoft.DataAccess.Operations
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
         /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : base(dialect, connection, transaction, table) { }
+        public SelectDbOperation(Dialect dialect, Table table) : base(dialect, table) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        public SelectDbOperation(Dialect dialect, IDbConnection connection, Table table) : base(dialect, connection, table) { }
+
+        /// <summary>
+        /// Initializes a new instance of the Select Database Operation
+        /// </summary>
+        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
+        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
+        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
+        /// <param name="table">The <see cref="Table"/> to be inquired</param>
+        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : base(dialect, connection, transaction, table) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        protected SelectDbOperation(Dialect dialect, params Table[] tables) : base(dialect, tables) { }
+        public SelectDbOperation(Dialect dialect, params Table[] tables) : base(dialect, tables) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
@@ -83,7 +83,7 @@ namespace Diassoft.DataAccess.Operations
         /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
         /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection, params Table[] tables) : base(dialect, connection, tables) { }
+        public SelectDbOperation(Dialect dialect, IDbConnection connection, params Table[] tables) : base(dialect, connection, tables) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
@@ -92,7 +92,7 @@ namespace Diassoft.DataAccess.Operations
         /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
         /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
         /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        protected SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table[] tables) : base(dialect, connection, transaction, tables) { }
+        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table[] tables) : base(dialect, connection, transaction, tables) { }
 
         #endregion Constructors
 
@@ -168,17 +168,19 @@ namespace Diassoft.DataAccess.Operations
             if (Distinct) sbSelect.Append("DISTINCT ");
 
             // Check all Non-Aggregate Fields
-            if (SelectFields?.Count(field => field.Type != FieldTypes.Aggregate) == 0)
+            if (SelectFields?.Count(field => field is DisplayField) == 0)
             {
                 // Select All Fields
                 sbSelect.Append('*');
+                sbSelect.AppendLine();
             }
             else
             {
                 // Select Specific Fields (Ignore Aggregates)
-                sbSelect.Append(String.Join(",\n", from field in SelectFields
-                                                   where field.Type != FieldTypes.Aggregate
-                                                   select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField(field))));
+                sbSelect.AppendLine();
+                sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
+                                                         where field is DisplayField
+                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((DisplayField)field))));
             }
 
             #endregion Select
@@ -186,11 +188,11 @@ namespace Diassoft.DataAccess.Operations
             #region Select Aggregates
 
             // Check all Aggregate Fields
-            if (SelectFields?.Count(Field => Field.Type == FieldTypes.Aggregate) > 0)
+            if (SelectFields?.Count(field => field is AggregateField) > 0)
             {
-                sbSelect.Append(String.Join(",\n", from field in SelectFields
-                                                   where field.Type == FieldTypes.Aggregate && field is AggregateField
-                                                   select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatAggregateField((AggregateField)field))));
+                sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
+                                                         where field is AggregateField
+                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((AggregateField)field))));
             }
 
             #endregion Select Aggregates
@@ -212,8 +214,8 @@ namespace Diassoft.DataAccess.Operations
             {
                 // Append Multiple Tables Separated by a Comma
                 sbSelect.AppendLine();
-                sbSelect.Append(String.Join(",\n", from tbl in base.Tables
-                                                   select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatTable(tbl))));
+                sbSelect.Append(String.Join(",\r\n", from tbl in base.Tables
+                                                     select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatTable(tbl))));
             }
 
             #endregion From
@@ -242,11 +244,11 @@ namespace Diassoft.DataAccess.Operations
             {
                 sbSelect.AppendLine("GROUP BY");
 
-                if (SelectFields?.Count(field => field.Type != FieldTypes.Aggregate) > 0)
+                if (SelectFields?.Count(field => field is DisplayField) > 0)
                 {
-                    sbSelect.AppendLine(String.Join(",\n", from item in SelectFields
-                                                           where item.Type != FieldTypes.Aggregate
-                                                           select String.Concat(String.Empty.PadLeft(9,' '), Dialect.FormatField(item))));
+                    sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
+                                                             where field is DisplayField
+                                                             select String.Concat(String.Empty.PadLeft(9,' '), Dialect.FormatField((DisplayField)field))));
                 }
             }
 

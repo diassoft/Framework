@@ -470,24 +470,52 @@ namespace Diassoft.DataAccess
         }
 
         /// <summary>
+        /// Formats the field after passed validation
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        private string FormatFieldAfterValidation(Field field)
+        {
+            // Begin/End Strings
+            string CharacterBegin = "";
+            string CharacterEnd = "";
+
+            if (FieldNameChar.Length == 2)
+            {
+                // Set Character Begin / End
+                CharacterBegin = FieldNameChar[0].ToString();
+                CharacterEnd = FieldNameChar[1].ToString();
+            }
+            else if (FieldNameChar.Length == 1)
+            {
+                // Set Character Begin / End (the same)
+                CharacterBegin = FieldNameChar[0].ToString();
+                CharacterEnd = FieldNameChar[0].ToString();
+            }
+
+            // Return the formatted field
+            return $"{CharacterBegin}{field.Name}{CharacterEnd}";
+        }
+
+        /// <summary>
         /// Formats the field to a valid string appendable to a query
         /// </summary>
-        /// <param name="field">The field to be formatted</param>
+        /// <param name="field">The <see cref="Field"/> to be formatted</param>
         /// <returns>A <see cref="string"/> with the formatted field.</returns>
         public virtual string FormatField(Field field)
         {
             // Checks if the field is valid
             ValidateField(field);
 
-            // Return the formatted field
-            return $"{FieldNameChar}{field.Name}{FieldNameChar}";
+            return FormatFieldAfterValidation(field);
+
         }
 
         /// <summary>
         /// Tries to Format the field to a valid string appendable to a query
         /// </summary>
-        /// <param name="field">The field to be formatted</param>
-        /// <param name="formattedField">Reference to a string where the formatted field will be returned</param>
+        /// <param name="field">The <see cref="Field"/> to be formatted</param>
+        /// <param name="formattedField">Reference to a string where the formatted <see cref="Field"/> will be returned</param>
         /// <returns>A <see cref="bool">Boolean</see> value to define whether the formatting succeeded or failed</returns>
         public bool TryFormatField(Field field, out string formattedField)
         {
@@ -508,9 +536,57 @@ namespace Diassoft.DataAccess
         /// <summary>
         /// Formats the field to a valid string appendable to a query
         /// </summary>
-        /// <param name="aggregateField">The aggregate field to be formatted</param>
+        /// <param name="displayField">The <see cref="DisplayField"/> to be formatted</param>
         /// <returns>A <see cref="string"/> with the formatted field.</returns>
-        public virtual string FormatAggregateField(AggregateField aggregateField)
+        public virtual string FormatField(DisplayField displayField)
+        {
+            // Checks if the field is valid
+            ValidateField(displayField);
+
+            // Return the formatted display field
+            StringBuilder sb = new StringBuilder();
+
+            // Append Table Alias
+            if (displayField.TableAlias != "") sb.Append($"T_{displayField.TableAlias}.");
+
+            // Append Field Name Itself
+            sb.Append(FormatFieldAfterValidation((Field)displayField));
+
+            // Append Alternate Name at the End
+            if (displayField.AlternateName != "") sb.Append($" {displayField.AlternateName}");
+
+            // Return the formatted DisplayField
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Tries to Format the Aggregate Field
+        /// </summary>
+        /// <param name="displayField">The <see cref="DisplayField"/> to be formatted</param>
+        /// <param name="formattedDisplayField">Reference to the string where the formmatted <see cref="DisplayField"/> will be stored</param>
+        /// <returns>A <see cref="bool">Boolean</see> value to define whether the formatting succeeded or failed</returns>
+        public bool TryFormatField(DisplayField displayField, out string formattedDisplayField)
+        {
+            // Initialize Return String
+            formattedDisplayField = "";
+
+            try
+            {
+                formattedDisplayField = FormatField(displayField);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Formats the field to a valid string appendable to a query
+        /// </summary>
+        /// <param name="aggregateField">The <see cref="AggregateField"/> to be formatted</param>
+        /// <returns>A <see cref="string"/> with the formatted field.</returns>
+        public virtual string FormatField(AggregateField aggregateField)
         {
             // Checks if the aggregate field is valid
             ValidateField(aggregateField);
@@ -521,23 +597,23 @@ namespace Diassoft.DataAccess
             if (!AggregateFunctionMapping.TryGetValue(aggregateField.Function, out aggregateFunctionString)) throw new Exception($"There is no mapping for the Aggregate Function '{Enum.GetName(typeof(AggregateFunctions), aggregateField.Function)}'. Unable to process aggregate field.");
 
             // Return the formatted field
-            return $"{aggregateFunctionString}({FieldNameChar}{aggregateField.Name}{FieldNameChar})";
+            return $"{aggregateFunctionString}({FormatField(aggregateField)})";
         }
 
         /// <summary>
         /// Tries to Format the Aggregate Field
         /// </summary>
-        /// <param name="aggregateField">The aggregate field to be formatted</param>
-        /// <param name="formattedAggregateField">Reference to the string where the formmatted aggregate field will be stored</param>
+        /// <param name="aggregateField">The <see cref="AggregateField"/> to be formatted</param>
+        /// <param name="formattedAggregateField">Reference to the string where the formmatted <see cref="AggregateField"/> will be stored</param>
         /// <returns>A <see cref="bool">Boolean</see> value to define whether the formatting succeeded or failed</returns>
-        public bool TryFormatAggregateField(AggregateField aggregateField, out string formattedAggregateField)
+        public bool TryFormatField(AggregateField aggregateField, out string formattedAggregateField)
         {
             // Initialize Return String
             formattedAggregateField = "";
 
             try
             {
-                formattedAggregateField = FormatAggregateField(aggregateField);
+                formattedAggregateField = FormatField(aggregateField);
                 return true;
             }
             catch 
@@ -572,7 +648,7 @@ namespace Diassoft.DataAccess
                 {
                     _msSqlDialect = new Dialect()
                     {
-                        FieldNameChar = "",
+                        FieldNameChar = "[]",
                         FieldValueChar = "'",
                         TableNameChar = "[]",
                         NumericFormat = "",

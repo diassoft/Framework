@@ -688,34 +688,56 @@
             </summary>
             <param name="field">The Field to be Validated</param>
         </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatFieldAfterValidation(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Formats the field after passed validation
+            </summary>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diassoft.DataAccess.Dialect.FormatField(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
             <summary>
             Formats the field to a valid string appendable to a query
             </summary>
-            <param name="field">The field to be formatted</param>
+            <param name="field">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be formatted</param>
             <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
         </member>
         <member name="M:Diassoft.DataAccess.Dialect.TryFormatField(Diassoft.DataAccess.DatabaseObjects.Fields.Field,System.String@)">
             <summary>
             Tries to Format the field to a valid string appendable to a query
             </summary>
-            <param name="field">The field to be formatted</param>
-            <param name="formattedField">Reference to a string where the formatted field will be returned</param>
+            <param name="field">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be formatted</param>
+            <param name="formattedField">Reference to a string where the formatted <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> will be returned</param>
             <returns>A <see cref="T:System.Boolean">Boolean</see> value to define whether the formatting succeeded or failed</returns>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialect.FormatAggregateField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField)">
+        <member name="M:Diassoft.DataAccess.Dialect.FormatField(Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField)">
             <summary>
             Formats the field to a valid string appendable to a query
             </summary>
-            <param name="aggregateField">The aggregate field to be formatted</param>
+            <param name="displayField">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/> to be formatted</param>
             <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
         </member>
-        <member name="M:Diassoft.DataAccess.Dialect.TryFormatAggregateField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField,System.String@)">
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatField(Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField,System.String@)">
             <summary>
             Tries to Format the Aggregate Field
             </summary>
-            <param name="aggregateField">The aggregate field to be formatted</param>
-            <param name="formattedAggregateField">Reference to the string where the formmatted aggregate field will be stored</param>
+            <param name="displayField">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/> to be formatted</param>
+            <param name="formattedDisplayField">Reference to the string where the formmatted <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.DisplayField"/> will be stored</param>
+            <returns>A <see cref="T:System.Boolean">Boolean</see> value to define whether the formatting succeeded or failed</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.FormatField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField)">
+            <summary>
+            Formats the field to a valid string appendable to a query
+            </summary>
+            <param name="aggregateField">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/> to be formatted</param>
+            <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialect.TryFormatField(Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField,System.String@)">
+            <summary>
+            Tries to Format the Aggregate Field
+            </summary>
+            <param name="aggregateField">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/> to be formatted</param>
+            <param name="formattedAggregateField">Reference to the string where the formmatted <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField"/> will be stored</param>
             <returns>A <see cref="T:System.Boolean">Boolean</see> value to define whether the formatting succeeded or failed</returns>
         </member>
         <member name="F:Diassoft.DataAccess.Dialect._msSqlDialect">
