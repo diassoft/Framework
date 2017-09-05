@@ -123,6 +123,5 @@ namespace Diassoft.DataAccess.Operations
 
         #endregion Methods / Functions
 
-
     }
 }
