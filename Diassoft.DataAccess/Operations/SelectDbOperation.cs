@@ -137,6 +137,9 @@ namespace Diassoft.DataAccess.Operations
             // Calls the Base PreStatementValidation (This already takes care of validating the number of tables)
             base.PreStatementValidation();
 
+            // Make sure SelectFields is not a null value
+            if (SelectFields == null) throw new NullReferenceException($"The {nameof(SelectFields)} collection cannot be null.");
+
             // Make sure Distinct and Group by are not activated at the same time
             if (Distinct && GroupBy) throw new Exception($"Unable to make a Select Statement with both DISTINCT and GROUP BY activated.");
             
@@ -168,7 +171,7 @@ namespace Diassoft.DataAccess.Operations
             if (Distinct) sbSelect.Append("DISTINCT ");
 
             // Check all Non-Aggregate Fields
-            if (SelectFields?.Count(field => field is DisplayField) == 0)
+            if (SelectFields.Count == 0)
             {
                 // Select All Fields
                 sbSelect.Append('*');
@@ -176,24 +179,27 @@ namespace Diassoft.DataAccess.Operations
             }
             else
             {
-                // Select Specific Fields (Ignore Aggregates)
+                // For formatting purposes, add a line right after the select
                 sbSelect.AppendLine();
+
+                // Select Specific Fields
                 sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-                                                         where field is DisplayField
-                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((DisplayField)field))));
+                                                         select String.Concat(String.Empty.PadLeft(7, ' '), 
+                                                                              field.Type == FieldTypes.Display ? 
+                                                                              Dialect.FormatField((DisplayField)field) : Dialect.FormatField((AggregateField)field))));
             }
 
             #endregion Select
 
             #region Select Aggregates
 
-            // Check all Aggregate Fields
-            if (SelectFields?.Count(field => field is AggregateField) > 0)
-            {
-                sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-                                                         where field is AggregateField
-                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((AggregateField)field))));
-            }
+            //// Check all Aggregate Fields
+            //if (SelectFields.Count(field => field.Type == FieldTypes.Aggregate) > 0)
+            //{
+            //    sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
+            //                                             where field.Type == FieldTypes.Aggregate
+            //                                             select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((AggregateField)field))));
+            //}
 
             #endregion Select Aggregates
 
@@ -205,7 +211,7 @@ namespace Diassoft.DataAccess.Operations
             if (base.Tables == null) throw new NullReferenceException($"Tables are not defined for the {nameof(SelectDbOperation)}.");
             if (base.Tables.Count == 0) throw new Exception($"There are no tables assigned for the {nameof(SelectDbOperation)}.");
 
-            if (base.Tables?.Count == 1)
+            if (base.Tables.Count == 1)
             {
                 // Append Single Table
                 sbSelect.AppendLine(base.Dialect.FormatTable(base.Tables[0]));
@@ -214,19 +220,21 @@ namespace Diassoft.DataAccess.Operations
             {
                 // Append Multiple Tables Separated by a Comma
                 sbSelect.AppendLine();
-                sbSelect.Append(String.Join(",\r\n", from tbl in base.Tables
-                                                     select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatTable(tbl))));
+                sbSelect.AppendLine(String.Join(",\r\n", from tbl in base.Tables
+                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatTable(tbl))));
             }
 
             #endregion From
 
             #region Joins
 
-
+            //TODO: Implement SelectDbOperation -> Joins
 
             #endregion Joins
 
             #region Where
+
+            //TODO: Implement SelectDbOperation -> Where
 
             // Add Filters, if needed
             if (Where?.Count > 0)
@@ -244,15 +252,22 @@ namespace Diassoft.DataAccess.Operations
             {
                 sbSelect.AppendLine("GROUP BY");
 
-                if (SelectFields?.Count(field => field is DisplayField) > 0)
+                if (SelectFields?.Count(field => field.Type == FieldTypes.Display) > 0)
                 {
+                    // Add all display fields but make sure to not have the alternate name on it
                     sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-                                                             where field is DisplayField
-                                                             select String.Concat(String.Empty.PadLeft(9,' '), Dialect.FormatField((DisplayField)field))));
+                                                             where field.Type == FieldTypes.Display
+                                                             select String.Concat(String.Empty.PadLeft(9,' '), Dialect.FormatField(new DisplayField(field.Name, field.TableAlias)))));
                 }
             }
 
             #endregion Group By
+
+            #region Having
+
+            //TODO: Implement SelectDbOperation -> Having
+
+            #endregion Having
 
             // Return the Final Statement
             return sbSelect.ToString();

@@ -31,7 +31,7 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
         /// Initializes a new instance of a <see cref="DisplayField"/>.
         /// </summary>
         /// <param name="name">The Field Name</param>
-        public DisplayField(string name): base(name, FieldTypes.None) { }
+        public DisplayField(string name): base(name, FieldTypes.Display) { }
 
         /// <summary>
         /// Initializes a new instance of a <see cref="DisplayField"/>.

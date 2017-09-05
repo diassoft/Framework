@@ -115,7 +115,7 @@ namespace Diassoft.DataAccess
             {
                 {AggregateFunctions.Average, "AVG" },
                 {AggregateFunctions.Count, "COUNT" },
-                {AggregateFunctions.CountDistinct, "COUNT DISTINCT" },
+                {AggregateFunctions.CountDistinct, "COUNT(DISTINCT)" },
                 {AggregateFunctions.Max, "MAX" },
                 {AggregateFunctions.Min, "MIN" },
                 {AggregateFunctions.Sum, "SUM" }
@@ -494,6 +494,19 @@ namespace Diassoft.DataAccess
             }
 
             // Return the formatted field
+            if (field is DisplayField)
+            {
+                DisplayField dpf = field as DisplayField;
+                if (dpf != null)
+                {
+                    if (dpf.TableAlias != null)
+                    {
+                        if (dpf.TableAlias != "") return $"T_{dpf.TableAlias}.{CharacterBegin}{field.Name}{CharacterEnd}";
+                    }
+                }
+            }
+
+            // Return the formatted field
             return $"{CharacterBegin}{field.Name}{CharacterEnd}";
         }
 
@@ -546,14 +559,14 @@ namespace Diassoft.DataAccess
             // Return the formatted display field
             StringBuilder sb = new StringBuilder();
 
-            // Append Table Alias
-            if (displayField.TableAlias != "") sb.Append($"T_{displayField.TableAlias}.");
-
             // Append Field Name Itself
             sb.Append(FormatFieldAfterValidation((Field)displayField));
 
             // Append Alternate Name at the End
-            if (displayField.AlternateName != "") sb.Append($" {displayField.AlternateName}");
+            if (displayField.AlternateName != null)
+            {
+                if (displayField.AlternateName != "") sb.Append($" {displayField.AlternateName}");
+            }
 
             // Return the formatted DisplayField
             return sb.ToString();
@@ -596,8 +609,24 @@ namespace Diassoft.DataAccess
             if (AggregateFunctionMapping == null) throw new NullReferenceException($"There is no definition for the default {nameof(AggregateFunctionMapping)}. Unable to process aggregate fields.");
             if (!AggregateFunctionMapping.TryGetValue(aggregateField.Function, out aggregateFunctionString)) throw new Exception($"There is no mapping for the Aggregate Function '{Enum.GetName(typeof(AggregateFunctions), aggregateField.Function)}'. Unable to process aggregate field.");
 
+            // The Count Aggregation Function accepts "0" and "*", verify that
+            if (aggregateField.Function == AggregateFunctions.Count)
+            {
+                // Look for "Zero" or "*" on the Name of the Field
+                if ((aggregateField.Name == "0") ||
+                    (aggregateField.Name == "*"))
+                {
+                    return $"{aggregateFunctionString}({aggregateField.Name})";
+                }
+            }
+            else if (aggregateField.Function == AggregateFunctions.CountDistinct)
+            {
+                // Replace the word "DISTINCT" for "DISTINCT [field]"
+                return aggregateFunctionString.Replace("DISTINCT", $"DISTINCT {FormatFieldAfterValidation((Field)aggregateField)}");
+            }
+
             // Return the formatted field
-            return $"{aggregateFunctionString}({FormatField(aggregateField)})";
+            return $"{aggregateFunctionString}({FormatFieldAfterValidation((Field)aggregateField)})";
         }
 
         /// <summary>
