@@ -402,13 +402,13 @@ namespace Diassoft.DataAccess
         public virtual string FormatStatement(string statement)
         {
             // Variable to hold the results
-            string resultStatement = $"{statement}{StatementEndCharacter}\n"; ;
+            string resultStatement = $"{statement}{StatementEndCharacter}\r\n"; ;
 
             // Add Before Query Statements
-            if (BeforeQueryStatements?.Count > 0) resultStatement = String.Join(StatementEndCharacter + "\n", BeforeQueryStatements.ToArray()) + resultStatement;
+            if (BeforeQueryStatements?.Count > 0) resultStatement = String.Join(StatementEndCharacter + "\r\n", BeforeQueryStatements.ToArray()) + resultStatement;
 
             // Add After Query Statements
-            if (AfterQueryStatements?.Count > 0) resultStatement += String.Join(StatementEndCharacter + "\n", AfterQueryStatements.ToArray());
+            if (AfterQueryStatements?.Count > 0) resultStatement += String.Join(StatementEndCharacter + "\r\n", AfterQueryStatements.ToArray());
 
             // Finally return the statement
             return resultStatement;
