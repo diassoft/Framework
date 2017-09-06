@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diassoft.Intelligence</name>
+    </assembly>
+    <members>
+        <member name="T:Diassoft.Intelligence.Translators.StringToDateTranslator">
+            <summary>
+            This class receives an string input and translates it to a valid date
+            </summary>
+        </member>
+    </members>
+</doc>
