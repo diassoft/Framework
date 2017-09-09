@@ -7,5 +7,7 @@ namespace Diassoft.Intelligence.Translators
     public interface ITranslatable<TOrigin, TDestination>
     {
         TDestination Translate(TOrigin input);
+
+        bool TryTranslate(TOrigin input, out TDestination translation);
     }
 }
