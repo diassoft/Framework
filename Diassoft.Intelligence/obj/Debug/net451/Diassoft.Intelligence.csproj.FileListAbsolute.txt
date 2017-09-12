@@ -1,0 +1,7 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Debug\net451\Diassoft.Intelligence.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Debug\net451\Diassoft.Intelligence.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Debug\net451\Diassoft.Intelligence.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.csprojResolveAssemblyReference.cache
