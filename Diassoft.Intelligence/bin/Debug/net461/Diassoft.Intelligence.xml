@@ -31,11 +31,32 @@
             This class receives an string input and translates it to a valid date
             </summary>
         </member>
+        <member name="P:Diassoft.Intelligence.Translators.StringToDateTranslator.Formats">
+            <summary>
+            Represents the Formats Available per Culture
+            </summary>
+        </member>
+        <member name="P:Diassoft.Intelligence.Translators.StringToDateTranslator.Culture">
+            <summary>
+            The Culture in Use to Perform the Translation
+            </summary>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.#ctor(System.String)">
+            <summary>
+             Initializes a new instance of the String To Date Translator
+            </summary>
+            <param name="culture">The code representing the culture</param>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.#ctor">
+            <summary>
+            ///  Initializes a new instance of the String To Date Translator
+            </summary>
+        </member>
         <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.Translate(System.String)">
             <summary>
             Translates a String to a DateTime
             </summary>
-            <param name="input">The string</param>
+            <param name="input">The string to be translated</param>
             <returns>A <see cref="T:System.DateTime"/> with the translated information</returns>
         </member>
         <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.TryTranslate(System.String,System.DateTime@)">
@@ -45,6 +66,26 @@
             <param name="input">The string</param>
             <param name="translation">A reference to a <see cref="T:System.DateTime"/> where the translation will be stored</param>
             <returns>A <see cref="T:System.Boolean"/> value to inform whether the translation was successfull or not</returns>
+        </member>
+        <member name="T:Diassoft.Intelligence.Translators.Formats">
+            <summary>
+            Structure with the Format Details
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.Formats.WithSeparator">
+            <summary>
+            Array of formats with separator
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.Formats.WithoutSeparator">
+            <summary>
+            Array of formats without the separator
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.Formats.Separator">
+            <summary>
+            Date Separator
+            </summary>
         </member>
     </members>
 </doc>
