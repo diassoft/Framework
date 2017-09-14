@@ -45,12 +45,14 @@ namespace Diassoft.Intelligence.Translators
             CultureInfo newCulture = new CultureInfo(culture);
 
             // Look for separator
-            CultureAdditionalInformation CultureAdditionalInfo = new Translators.CultureAdditionalInformation();
-            CultureAdditionalInfo.DateSeparator = '\0';
-            CultureAdditionalInfo.DateFormatsWithoutSeparator = new string[] { };
-            CultureAdditionalInfo.DateFormatsWithSeparator = new string[] { };
-            CultureAdditionalInfo.DaysOfTheWeek = new HashSet<string>();
-            CultureAdditionalInfo.DaysOfTheWeekAbbreviated = new HashSet<string>();
+            CultureAdditionalInformation CultureAdditionalInfo = new Translators.CultureAdditionalInformation()
+            {
+                DateSeparator = '\0',
+                DateFormatsWithoutSeparator = new string[] { },
+                DateFormatsWithSeparator = new string[] { },
+                DaysOfTheWeek = new HashSet<string>(),
+                DaysOfTheWeekAbbreviated = new HashSet<string>()
+            };
 
             // Add the Days of the Week
             foreach (string s in newCulture.DateTimeFormat.DayNames)
@@ -181,10 +183,9 @@ namespace Diassoft.Intelligence.Translators
 
             // Internal Variables
             DateTime date = DateTime.MinValue;
-            byte inputNumber = 0;
 
             // Single Digit / Double Digit Numbers (to represent the day of the month)
-            if (byte.TryParse(input, out inputNumber))
+            if (byte.TryParse(input, out byte inputNumber))
             {
                 // This is a valid number, try to return a date with that
                 if ((inputNumber >= 1) && (inputNumber <= 31))
