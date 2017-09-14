@@ -30,7 +30,7 @@ namespace Diassoft.Intelligence.Translators
         /// <summary>
         /// Represents the Formats Available per Culture
         /// </summary>
-        public static Dictionary<string, CultureDateFormat> Formats { get; } = new Dictionary<string, CultureDateFormat>();
+        public static Dictionary<string, CultureAdditionalInformation> Formats { get; } = new Dictionary<string, CultureAdditionalInformation>();
 
         /// <summary>
         /// Method to create the DateFormats for the given culture
@@ -45,8 +45,27 @@ namespace Diassoft.Intelligence.Translators
             CultureInfo newCulture = new CultureInfo(culture);
 
             // Look for separator
-            CultureDateFormat CultureFormat = new Translators.CultureDateFormat();
-            CultureFormat.Separator = '\0';
+            CultureAdditionalInformation CultureAdditionalInfo = new Translators.CultureAdditionalInformation();
+            CultureAdditionalInfo.DateSeparator = '\0';
+            CultureAdditionalInfo.DateFormatsWithoutSeparator = new string[] { };
+            CultureAdditionalInfo.DateFormatsWithSeparator = new string[] { };
+            CultureAdditionalInfo.DaysOfTheWeek = new HashSet<string>();
+            CultureAdditionalInfo.DaysOfTheWeekAbbreviated = new HashSet<string>();
+
+            // Add the Days of the Week
+            foreach (string s in newCulture.DateTimeFormat.DayNames)
+            {
+                // As it is version
+                string tmpString = s.ToUpper();
+                CultureAdditionalInfo.DaysOfTheWeek.Add(tmpString);
+
+                // Abbreviated Version
+                tmpString = tmpString.Substring(0, 3);
+                if (!CultureAdditionalInfo.DaysOfTheWeekAbbreviated.Contains(tmpString))
+                    CultureAdditionalInfo.DaysOfTheWeekAbbreviated.Add(tmpString);
+            }
+
+            // Array of Properties of the Date Format
             string[] dateFormatArray;
 
             foreach (char c in newCulture.DateTimeFormat.ShortDatePattern)
@@ -56,15 +75,15 @@ namespace Diassoft.Intelligence.Translators
                      ((c >= 91) && (c <= 96)) ||
                      ((c >= 123) && (c <= 126)) )
                 {
-                    CultureFormat.Separator = c;
+                    CultureAdditionalInfo.DateSeparator = c;
                     break;
                 }
             }
 
             // Make sure a separator was found
-            if (CultureFormat.Separator != '\0')
+            if (CultureAdditionalInfo.DateSeparator != '\0')
             {
-                dateFormatArray = newCulture.DateTimeFormat.ShortDatePattern.Split(CultureFormat.Separator);
+                dateFormatArray = newCulture.DateTimeFormat.ShortDatePattern.Split(CultureAdditionalInfo.DateSeparator);
 
                 // Keep the only string character on the array
                 for (int i = 0; i < dateFormatArray.Length; i++)
@@ -90,7 +109,7 @@ namespace Diassoft.Intelligence.Translators
                     }
                 }
 
-                CultureFormat.DateWithoutSeparator = tempCombinations.ToArray();
+                CultureAdditionalInfo.DateFormatsWithoutSeparator = tempCombinations.ToArray();
 
                 tempCombinations.Clear();
 
@@ -101,15 +120,15 @@ namespace Diassoft.Intelligence.Translators
                     {
                         foreach (string c3 in Combinations[$"{dateFormatArray[2]}-"])
                         {
-                            tempCombinations.Add($"{c1}{CultureFormat.Separator}{c2}{CultureFormat.Separator}{c3}");
+                            tempCombinations.Add($"{c1}{CultureAdditionalInfo.DateSeparator}{c2}{CultureAdditionalInfo.DateSeparator}{c3}");
                         }
                     }
                 }
 
-                CultureFormat.DateWithSeparator = tempCombinations.ToArray();
+                CultureAdditionalInfo.DateFormatsWithSeparator = tempCombinations.ToArray();
 
                 // Add to Formats
-                Formats.Add(culture, CultureFormat);
+                Formats.Add(culture, CultureAdditionalInfo);
             }
         }
 
@@ -160,11 +179,38 @@ namespace Diassoft.Intelligence.Translators
             // Hard coded values
             if ((input == "T") || (input == "t")) return DateTime.Now.Date;
 
-            // Values
+            // Internal Variables
             DateTime date = DateTime.MinValue;
+            byte inputNumber = 0;
 
+            // Single Digit / Double Digit Numbers (to represent the day of the month)
+            if (byte.TryParse(input, out inputNumber))
+            {
+                // This is a valid number, try to return a date with that
+                if ((inputNumber >= 1) && (inputNumber <= 31))
+                {
+                    // This is a good candidate, try to parse a date with that
+                    if (DateTime.TryParseExact($"{DateTime.Now.ToString("yyyyMM")}{inputNumber.ToString().PadLeft(2, '0')}",
+                                               "yyyyMMdd",
+                                               CultureInfo.InvariantCulture,
+                                               DateTimeStyles.None,
+                                               out date)) return date;
+                }
+            }
+
+            // Check for Parsing Requirements
+            if (Culture == null) throw new Exception($"There is no {nameof(Culture)} defined for the translation. Unable to parse dates.");
+            if (!StringToDateTranslator.Formats.ContainsKey(Culture.Name)) throw new Exception($"The system could not create the culture format. Unable to parse dates.");
+
+            // Internal Variables
+            CultureAdditionalInformation cultureAdditionalInfo = StringToDateTranslator.Formats[Culture.Name];
+
+            //TODO: Check Days of the Week
+            
+
+            // Try all formats with the date sparator
 #if DEBUG
-            foreach (string format in StringToDateTranslator.Formats[Culture.Name].DateWithSeparator)
+            foreach (string format in cultureAdditionalInfo.DateFormatsWithSeparator)
             {
                 if (DateTime.TryParseExact(input,
                                            format,
@@ -175,7 +221,7 @@ namespace Diassoft.Intelligence.Translators
             }
 #else
             if (DateTime.TryParseExact(input,
-                                       StringToDateTranslator.Formats[Culture.Name].WithSeparator,
+                                       cultureAdditionalInfo.WithSeparator,
                                        Culture,
                                        DateTimeStyles.None,
                                        out date))
@@ -207,8 +253,9 @@ namespace Diassoft.Intelligence.Translators
                 }
             }
 
+            // Try all formats without the date sparator
 #if DEBUG
-            foreach (string format in StringToDateTranslator.Formats[Culture.Name].DateWithoutSeparator)
+            foreach (string format in cultureAdditionalInfo.DateFormatsWithoutSeparator)
             {
                 if (DateTime.TryParseExact(sbInput.ToString(),
                                            format,
@@ -222,7 +269,7 @@ namespace Diassoft.Intelligence.Translators
             throw new Exception($"The value of '{input}' could not be interpreted as a valid date");
 #else
             if (DateTime.TryParseExact(sbInput.ToString(),
-                                       StringToDateTranslator.Formats[Culture.Name].WithoutSeparator,
+                                       cultureAdditionalInfo.WithoutSeparator,
                                        Culture,
                                        DateTimeStyles.None,
                                        out date))
@@ -262,22 +309,34 @@ namespace Diassoft.Intelligence.Translators
     /// <summary>
     /// Structure with the Format Details
     /// </summary>
-    public struct CultureDateFormat
+    public struct CultureAdditionalInformation
     {
         /// <summary>
         /// Array of formats with separator
         /// </summary>
-        public string[] DateWithSeparator;
+        public string[] DateFormatsWithSeparator;
 
         /// <summary>
         /// Array of formats without the separator
         /// </summary>
-        public string[] DateWithoutSeparator;
+        public string[] DateFormatsWithoutSeparator;
 
         /// <summary>
         /// Date Separator
         /// </summary>
-        public char Separator;
+        public char DateSeparator;
+
+        /// <summary>
+        /// Represents a <see cref="HashSet{T}"/> containing the Days of the Week
+        /// </summary>
+        /// <remarks>All data is capitalized</remarks>
+        public HashSet<string> DaysOfTheWeek;
+
+        /// <summary>
+        /// Represents a <see cref="HashSet{T}"/> containing the Days of the Week Abbreviated (just the first three digits)
+        /// </summary>
+        /// <remarks>All data is capitalized</remarks>
+        public HashSet<string> DaysOfTheWeekAbbreviated;
     }
     
 }

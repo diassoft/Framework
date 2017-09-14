@@ -34,6 +34,9 @@ namespace Diassoft.Intelligence.Tests
             Assert.AreEqual<DateTime>(DateTime.Now.Date, translator.Translate("T"));
             Assert.AreEqual<DateTime>(DateTime.Now.Date, translator.Translate("t"));
 
+            Assert.AreEqual<DateTime>(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 5), translator.Translate("5"));
+            Assert.AreEqual<DateTime>(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27), translator.Translate("27"));
+
         }
     }
 }
