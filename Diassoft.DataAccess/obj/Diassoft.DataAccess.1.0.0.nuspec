@@ -29,8 +29,12 @@ Implements the SQL Server and DB2 400 dialects.</description>
   </metadata>
   <files>
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.dll" target="lib\netstandard1.2\Diassoft.DataAccess.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.xml" target="lib\netstandard1.2\Diassoft.DataAccess.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net451\Diassoft.DataAccess.dll" target="lib\net451\Diassoft.DataAccess.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net451\Diassoft.DataAccess.xml" target="lib\net451\Diassoft.DataAccess.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net46\Diassoft.DataAccess.dll" target="lib\net46\Diassoft.DataAccess.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net46\Diassoft.DataAccess.xml" target="lib\net46\Diassoft.DataAccess.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net461\Diassoft.DataAccess.dll" target="lib\net461\Diassoft.DataAccess.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net461\Diassoft.DataAccess.xml" target="lib\net461\Diassoft.DataAccess.xml" />
   </files>
 </package>

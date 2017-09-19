@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v1.2": {},
     ".NETStandard,Version=v1.2/": {
-      "diassoft.dataaccess/1.0.0.0": {
+      "diassoft.dataaccess/1.0.0.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
           "System.Data.Common": "4.3.0"
@@ -296,7 +296,7 @@
     }
   },
   "libraries": {
-    "diassoft.dataaccess/1.0.0.0": {
+    "diassoft.dataaccess/1.0.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

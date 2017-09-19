@@ -21,8 +21,12 @@
   </metadata>
   <files>
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.dll" target="lib\netstandard1.2\Diassoft.Intelligence.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.xml" target="lib\netstandard1.2\Diassoft.Intelligence.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net451\Diassoft.Intelligence.dll" target="lib\net451\Diassoft.Intelligence.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net451\Diassoft.Intelligence.xml" target="lib\net451\Diassoft.Intelligence.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net46\Diassoft.Intelligence.dll" target="lib\net46\Diassoft.Intelligence.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net46\Diassoft.Intelligence.xml" target="lib\net46\Diassoft.Intelligence.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net461\Diassoft.Intelligence.dll" target="lib\net461\Diassoft.Intelligence.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net461\Diassoft.Intelligence.xml" target="lib\net461\Diassoft.Intelligence.xml" />
   </files>
 </package>

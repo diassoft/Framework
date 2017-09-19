@@ -3,3 +3,5 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net451\Dias
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net451\Diassoft.Mvvm.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net451\Diassoft.Mvvm.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net451\Diassoft.Mvvm.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net451\Diassoft.Mvvm.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net451\Diassoft.Mvvm.csprojResolveAssemblyReference.cache

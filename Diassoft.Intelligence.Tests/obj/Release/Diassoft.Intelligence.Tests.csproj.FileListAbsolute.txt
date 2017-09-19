@@ -12,3 +12,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Relea
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Release\Diassoft.Intelligence.Tests.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Release\Diassoft.Intelligence.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Release\Diassoft.Intelligence.Tests.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Release\Diassoft.Intelligence.xml

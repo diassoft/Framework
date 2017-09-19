@@ -3,3 +3,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net46\Diassoft.Intelligence.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net46\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net46\Diassoft.Intelligence.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net46\Diassoft.Intelligence.xml

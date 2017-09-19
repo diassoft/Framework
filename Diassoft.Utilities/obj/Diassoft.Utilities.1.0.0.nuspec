@@ -21,6 +21,7 @@
   </metadata>
   <files>
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\netstandard1.2\Diassoft.Utilities.dll" target="lib\netstandard1.2\Diassoft.Utilities.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\netstandard1.2\Diassoft.Utilities.xml" target="lib\netstandard1.2\Diassoft.Utilities.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net451\Diassoft.Utilities.dll" target="lib\net451\Diassoft.Utilities.dll" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net46\Diassoft.Utilities.dll" target="lib\net46\Diassoft.Utilities.dll" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net461\Diassoft.Utilities.dll" target="lib\net461\Diassoft.Utilities.dll" />

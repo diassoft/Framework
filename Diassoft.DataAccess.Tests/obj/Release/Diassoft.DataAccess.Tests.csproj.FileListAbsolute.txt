@@ -12,3 +12,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Diassoft.DataAccess.xml
