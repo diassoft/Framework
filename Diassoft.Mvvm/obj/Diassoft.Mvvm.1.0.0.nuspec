@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Diassoft.Mvvm</id>
+    <version>1.0.0</version>
+    <authors>Olavo Henrique Dias</authors>
+    <owners>Olavo Henrique Dias</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Model-View-View-Model Design Pattern Objects implementation.</description>
+    <releaseNotes>This Framework contains a Mvvm compatible with Windows, UWP and Xamarin.</releaseNotes>
+    <copyright>© 2017 Diassoft Corporation</copyright>
+    <tags>Diassot Mvvm Model View ViewModel</tags>
+    <repository url="https://github.com/diassoft/Framework" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.2">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETFramework4.6" />
+      <group targetFramework=".NETFramework4.6.1" />
+      <group targetFramework=".NETFramework4.5.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.dll" target="lib\netstandard1.2\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net451\Diassoft.Mvvm.dll" target="lib\net451\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net46\Diassoft.Mvvm.dll" target="lib\net46\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.dll" target="lib\net461\Diassoft.Mvvm.dll" />
+  </files>
+</package>
