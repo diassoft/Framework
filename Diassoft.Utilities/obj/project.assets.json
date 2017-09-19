@@ -2550,7 +2550,7 @@
     "C:\\Users\\olavodias\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.0.1",
     "restore": {
       "projectUniqueName": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.Utilities\\Diassoft.Utilities.csproj",
       "projectName": "Diassoft.Utilities",

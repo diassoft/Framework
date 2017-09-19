@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diassoft.Mvvm</name>
+    </assembly>
+    <members>
+        <member name="T:Diassoft.Mvvm.CommandBase">
+            <summary>
+            The base class for a Mvvm Command
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.CommandBase.CanExecute(System.Object)">
+            <summary>
+            Funcition to define whether the commmand can be executed or not
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.Mvvm.CommandBase.Execute(System.Object)">
+            <summary>
+            Method to execute the commamnd action
+            </summary>
+            <param name="parameter">Command Input Parameter</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.CommandBase.Requery">
+            <summary>
+            Method that recalculate the command availability to run
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.CommandBase.Requery(System.Object)">
+            <summary>
+            Method that recalculate the command availability to run
+            </summary>
+            <param name="parameter">Command Input Parameter</param>
+        </member>
+        <member name="T:Diassoft.Mvvm.Command.RelayCommand`1">
+            <summary>
+            Represents a Relay Command. The Command Design Pattern is used in MVVM.
+            A RelayCommand is a generic implementation of a command that accepts one parameter of any given type (using generics).
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">Type</see> of the Parameter that the command will receive. If there is no strong-typed parameter, use <see cref="T:System.Object">object.</see></typeparam>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Initializes a new instance of a Relay Command
+            </summary>
+            <param name="execute">Reference to the method which will perform the command action</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            Initializes a new instance of a Relay Command
+            </summary>
+            <param name="execute">Reference to the method which will perform the command action</param>
+            <param name="canExecute">Reference to the function to define whether the command can be executed or not</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand`1.CanExecute(System.Object)">
+            <summary>
+            Checks if a command can be executed
+            </summary>
+            <param name="parameter">The command parameter</param>
+            <returns></returns>
+        </member>
+        <member name="E:Diassoft.Mvvm.Command.RelayCommand`1.CanExecuteChanged">
+            <summary>
+            Event triggered when the CanExecute property has changed
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand`1.Execute(System.Object)">
+            <summary>
+            Executes the Command Action
+            </summary>
+            <param name="parameter">The command parameter</param>
+        </member>
+        <member name="T:Diassoft.Mvvm.Command.RelayCommand">
+            <summary>
+            Represents a Relay Command to be used in MVVM.
+            A Relay Command allows you to point to methods and functions to perform the commmand tasks.
+            This command is compatible with Xamarin Forms.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Initializes a new Relay Command
+            </summary>
+            <param name="handler">Delegate to the Command Action</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.#ctor(System.Action{System.Object},System.Predicate{System.Object})">
+            <summary>
+            Initializes a new Relay Command
+            </summary>
+            <param name="handler">Delegate to the Command Action</param>
+            <param name="canExecute">Delegate to a Function that will validate if the command can be executed</param>
+        </member>
+        <member name="P:Diassoft.Mvvm.Command.RelayCommand.IsEnabled">
+            <summary>
+            Defines whether the command is enabled or not
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Defines if the command can be executed or not
+            </summary>
+            <param name="parameter">The command input parameter</param>
+            <returns><see cref="T:System.Boolean"/>True when the Command Can be Executed, False when it cannot be executed</returns>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.Requery">
+            <summary>
+            Verify if the command can be executed. This method is used internally to validate the commands.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.Requery(System.Object)">
+            <summary>
+            Verify if the command can be executed. This method is used internally to validate the commands.
+            </summary>
+            <param name="parameter">The Command Input Parameter</param>
+        </member>
+        <member name="E:Diassoft.Mvvm.Command.RelayCommand.CanExecuteChanged">
+            <summary>
+            Event to be triggered when the CanExecute value changes
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Command.RelayCommand.Execute(System.Object)">
+            <summary>
+            Executes the command
+            </summary>
+            <param name="parameter">A generic input parameter of the command</param>
+        </member>
+        <member name="T:Diassoft.Mvvm.Messenger.MessageBase">
+            <summary>
+            Represents the Base Class for a Message
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.Messenger.MessageBase.Sender">
+            <summary>
+            The sender of the message
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Messenger.MessageBase.#ctor">
+            <summary>
+            Initializes a new instance of the MessageBase class
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Messenger.MessageBase.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the MessageBase Class
+            </summary>
+            <param name="sender">The sender of the message</param>
+        </member>
+        <member name="T:Diassoft.Mvvm.Messenger.MessageReceiver">
+            <summary>
+            Definition of the Message Receiver that will intercept messages.
+            </summary>
+            <param name="sender">The object sending the message</param>
+            <param name="message">The message itself</param>
+        </member>
+        <member name="T:Diassoft.Mvvm.Messenger.MessageDispatcher">
+            <summary>
+            Represents a Class that Exchange Messages for Mvvm Implementation
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.Messenger.MessageDispatcher.Subscribers">
+            <summary>
+            A <see cref="T:System.Collections.Generic.Dictionary`2">Dictionary</see> containing the subscribers callbacks of a message.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Messenger.MessageDispatcher.#ctor">
+            <summary>
+            Initializes a new instance of the Message Dispatcher
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.Messenger.MessageDispatcher.Send``1(System.Object,``0)">
+            <summary>
+            Sends a Message using the Dispatcher
+            </summary>
+            <typeparam name="T">Message Type</typeparam>
+            <param name="sender">Reference to the object throwing the message</param>
+            <param name="message">The Message to be sent</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.Messenger.MessageDispatcher.Subscribe``1(System.Object,Diassoft.Mvvm.Messenger.MessageReceiver)">
+            <summary>
+            Subscribe to a Message
+            </summary>
+            <typeparam name="T">Message Type</typeparam>
+            <param name="requester">Reference to the object subscribing to the message</param>
+            <param name="callbackMethod">The delegate to a callback method that will be called once the message is thrown</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diassoft.Mvvm.ObservableObjectBase">
+            <summary>
+            Represents a Mvvm Observable Object
+            All classes that inherit from this class must implement the SetProperty of the Setters inside properties.
+            </summary>
+        </member>
+        <member name="E:Diassoft.Mvvm.ObservableObjectBase.PropertyChanged">
+            <summary>
+            The event triggered when a property value is changed
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ObservableObjectBase.OnPropertyChanged(System.String)">
+            <summary>
+            Event handler for the On Property Changed Event
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="M:Diassoft.Mvvm.ObservableObjectBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            Sets the Property Value if it changed. Notify proper listeners.
+            </summary>
+            <typeparam name="T">Type of the Property</typeparam>
+            <param name="storage">Reference to the Property (must have a get and set)</param>
+            <param name="value">Desired value for the property</param>
+            <param name="propertyName">The property name itself</param>
+            <returns>
+            <see cref="T:System.Boolean">True / False</see> to define whether the value changed or not.
+            </returns>
+        </member>
+        <member name="T:Diassoft.Mvvm.ViewModelBase">
+            <summary>
+            Defines the base class for a ViewModel
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.WireCommands">
+            <summary>
+            Method to be overwritten to wire the internal commands
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.RegisterCommand(System.String,Diassoft.Mvvm.CommandBase)">
+            <summary>
+            Register the Command 
+            </summary>
+            <param name="commandName">The Command Name</param>
+            <param name="command">The Command Object</param>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.RequeryCommands">
+            <summary>
+            Method to Requery The Command Status.
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.ViewModelBase.Dispatcher">
+            <summary>
+            The <see cref="T:Diassoft.Mvvm.Messenger.MessageDispatcher">Message Dispatcher</see> attached to the operation.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.SubscribeToMessages">
+            <summary>
+            Override this method to setup the Message Subscriptions
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.ViewModelBase.IsInitialized">
+            <summary>
+            Defines whether the ViewModel is initialized or not
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.Initialize">
+            <summary>
+            Initializes the ViewModel
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.ViewModelBase.IsLoaded">
+            <summary>
+            Defines whether the ViewModel is loaded or not
+            </summary>
+        </member>
+        <member name="P:Diassoft.Mvvm.ViewModelBase.IsBusy">
+            <summary>
+            Defines whether the ViewModel is busy at the momment
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.OnLoaded">
+            <summary>
+            Method to be called after the ViewModel is loaded.
+            It should be assigned to the Vew OnLoaded event handler.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.OnUnloaded">
+            <summary>
+            Method to be called when the view model is being uloaded.
+            It should be assigned to the View OnUnloaded event handler.
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.#ctor">
+            <summary>
+            Initializes a new instance of the view model
+            </summary>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.#ctor(Diassoft.Mvvm.Messenger.MessageDispatcher)">
+            <summary>
+            Initializes a new instance of the view model and tie it to the Dispatcher
+            </summary>
+            <param name="dispatcher">Reference to the <see cref="T:Diassoft.Mvvm.Messenger.MessageDispatcher">MessageDispatcher</see></param>
+        </member>
+        <member name="M:Diassoft.Mvvm.ViewModelBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            Sets the Property Value if it changed. Notify proper listeners.
+            </summary>
+            <typeparam name="T">Type of the Property</typeparam>
+            <param name="storage">Reference to the Property (must have a get and set)</param>
+            <param name="value">Desired value for the property</param>
+            <param name="propertyName">The property name itself</param>
+            <returns>
+            True if the value has changed. False if the value hasn't changed.
+            </returns>
+        </member>
+    </members>
+</doc>

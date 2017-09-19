@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diassoft.Intelligence</name>
+    </assembly>
+    <members>
+        <member name="T:Diassoft.Intelligence.Translators.ITranslatable`2">
+            <summary>
+            Defines an interface that all Translators must implement
+            </summary>
+            <typeparam name="TOrigin">The Origin Type (content to be translated)</typeparam>
+            <typeparam name="TDestination">The Destination Type (translation)</typeparam>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.ITranslatable`2.Translate(`0)">
+            <summary>
+            A function that will perform the translation
+            </summary>
+            <param name="input">The input parameter</param>
+            <returns>Returns the transaction</returns>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.ITranslatable`2.TryTranslate(`0,`1@)">
+            <summary>
+            Tries to translate a value
+            </summary>
+            <param name="input">The input parameter</param>
+            <param name="translation">The translation</param>
+            <returns>A <see cref="T:System.Boolean"/> value to define whether the translation was successfull or not</returns>
+        </member>
+        <member name="T:Diassoft.Intelligence.Translators.StringToDateTranslator">
+            <summary>
+            This class receives an string input and translates it to a valid date
+            </summary>
+        </member>
+        <member name="P:Diassoft.Intelligence.Translators.StringToDateTranslator.Combinations">
+            <summary>
+            Combinations to be generated for each value member of a date.
+            Those with a "-" is to be used when having separators added on the string to be parsed
+            </summary>
+        </member>
+        <member name="P:Diassoft.Intelligence.Translators.StringToDateTranslator.Formats">
+            <summary>
+            Represents the Formats Available per Culture
+            </summary>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.CreateDateFormatsForCulture(System.String)">
+            <summary>
+            Method to create the DateFormats for the given culture
+            </summary>
+            <param name="culture">A string representing the culture</param>
+        </member>
+        <member name="P:Diassoft.Intelligence.Translators.StringToDateTranslator.Culture">
+            <summary>
+            The Culture in Use to Perform the Translation
+            </summary>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.#ctor(System.String)">
+            <summary>
+             Initializes a new instance of the String To Date Translator
+            </summary>
+            <param name="culture">The code representing the culture</param>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.#ctor">
+            <summary>
+            ///  Initializes a new instance of the String To Date Translator
+            </summary>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.Translate(System.String)">
+            <summary>
+            Translates a String to a DateTime
+            </summary>
+            <param name="input">The string to be translated</param>
+            <returns>A <see cref="T:System.DateTime"/> with the translated information</returns>
+        </member>
+        <member name="M:Diassoft.Intelligence.Translators.StringToDateTranslator.TryTranslate(System.String,System.DateTime@)">
+            <summary>
+            Tries to translate a String to a DateTime
+            </summary>
+            <param name="input">The string</param>
+            <param name="translation">A reference to a <see cref="T:System.DateTime"/> where the translation will be stored</param>
+            <returns>A <see cref="T:System.Boolean"/> value to inform whether the translation was successfull or not</returns>
+        </member>
+        <member name="T:Diassoft.Intelligence.Translators.CultureAdditionalInformation">
+            <summary>
+            Structure with the Format Details
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.CultureAdditionalInformation.DateFormatsWithSeparator">
+            <summary>
+            Array of formats with separator
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.CultureAdditionalInformation.DateFormatsWithoutSeparator">
+            <summary>
+            Array of formats without the separator
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.CultureAdditionalInformation.DateSeparator">
+            <summary>
+            Date Separator
+            </summary>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.CultureAdditionalInformation.DaysOfTheWeek">
+            <summary>
+            Represents a <see cref="T:System.Collections.Generic.HashSet`1"/> containing the Days of the Week
+            </summary>
+            <remarks>All data is capitalized</remarks>
+        </member>
+        <member name="F:Diassoft.Intelligence.Translators.CultureAdditionalInformation.DaysOfTheWeekAbbreviated">
+            <summary>
+            Represents a <see cref="T:System.Collections.Generic.HashSet`1"/> containing the Days of the Week Abbreviated (just the first three digits)
+            </summary>
+            <remarks>All data is capitalized</remarks>
+        </member>
+    </members>
+</doc>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Diassoft.Mvvm</id>
-    <version>1.0.0</version>
+    <version>1.0.0.1</version>
     <authors>Olavo Henrique Dias</authors>
     <owners>Olavo Henrique Dias</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -22,8 +22,12 @@
   </metadata>
   <files>
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.dll" target="lib\netstandard1.2\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.xml" target="lib\netstandard1.2\Diassoft.Mvvm.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net451\Diassoft.Mvvm.dll" target="lib\net451\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net451\Diassoft.Mvvm.xml" target="lib\net451\Diassoft.Mvvm.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net46\Diassoft.Mvvm.dll" target="lib\net46\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net46\Diassoft.Mvvm.xml" target="lib\net46\Diassoft.Mvvm.xml" />
     <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.dll" target="lib\net461\Diassoft.Mvvm.dll" />
+    <file src="D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.xml" target="lib\net461\Diassoft.Mvvm.xml" />
   </files>
 </package>
