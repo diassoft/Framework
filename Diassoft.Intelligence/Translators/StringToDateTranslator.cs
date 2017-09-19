@@ -222,7 +222,7 @@ namespace Diassoft.Intelligence.Translators
             }
 #else
             if (DateTime.TryParseExact(input,
-                                       cultureAdditionalInfo.WithSeparator,
+                                       cultureAdditionalInfo.DateFormatsWithSeparator,
                                        Culture,
                                        DateTimeStyles.None,
                                        out date))
@@ -270,7 +270,7 @@ namespace Diassoft.Intelligence.Translators
             throw new Exception($"The value of '{input}' could not be interpreted as a valid date");
 #else
             if (DateTime.TryParseExact(sbInput.ToString(),
-                                       cultureAdditionalInfo.WithoutSeparator,
+                                       cultureAdditionalInfo.DateFormatsWithoutSeparator,
                                        Culture,
                                        DateTimeStyles.None,
                                        out date))

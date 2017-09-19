@@ -1,0 +1,6 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.deps.json
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\netstandard1.2\Diassoft.Mvvm.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\netstandard1.2\Diassoft.Mvvm.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\netstandard1.2\Diassoft.Mvvm.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\netstandard1.2\Diassoft.Mvvm.pdb

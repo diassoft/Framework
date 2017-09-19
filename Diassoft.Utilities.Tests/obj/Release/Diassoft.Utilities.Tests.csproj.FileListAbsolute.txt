@@ -1,0 +1,14 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Diassoft.Utilities.Tests.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Diassoft.Utilities.Tests.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Diassoft.Utilities.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Diassoft.Utilities.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.pdb

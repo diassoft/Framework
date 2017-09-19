@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard1.2;net451;net46;net461</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Description>Provides a set of classes to provide database access. 
 Implements the SQL Server and DB2 400 dialects.</Description>
     <Copyright>© 2017 Diassoft Corporation</Copyright>
