@@ -4,3 +4,5 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net45
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net451\Diassoft.DataAccess.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net451\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net451\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\net451\Diassoft.DataAccess.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net451\Diassoft.DataAccess.csprojResolveAssemblyReference.cache
