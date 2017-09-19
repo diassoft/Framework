@@ -1,0 +1,5 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.pdb

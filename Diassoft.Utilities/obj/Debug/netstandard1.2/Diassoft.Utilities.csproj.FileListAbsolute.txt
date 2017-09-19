@@ -5,4 +5,3 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\netstand
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\netstandard1.2\Diassoft.Utilities.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\netstandard1.2\Diassoft.Utilities.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Debug\netstandard1.2\Diassoft.Utilities.xml
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\netstandard1.2\Diassoft.Utilities.csprojResolveAssemblyReference.cache
