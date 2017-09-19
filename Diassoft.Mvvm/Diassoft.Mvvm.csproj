@@ -2,7 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.2;net451;net46;net461</TargetFrameworks>    
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>    
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>    
+    <Description>Model-View-View-Model Design Pattern Objects implementation.</Description>    
+    <Copyright>© 2017 Diassoft Corporation</Copyright>    
+    <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>    
+    <PackageTags>Diassot Mvvm Model View ViewModel</PackageTags>    
+    <PackageReleaseNotes>This Framework contains a Mvvm compatible with Windows, UWP and Xamarin.</PackageReleaseNotes>    
+    <Version>1.0.0.0</Version>    
+    <Authors>Olavo Henrique Dias</Authors>    
+    <Company>Diassoft.com</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
