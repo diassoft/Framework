@@ -4,61 +4,6 @@
         <name>Diassoft.Intelligence</name>
     </assembly>
     <members>
-        <member name="T:Diassoft.Intelligence.Exceptions.InvalidJulianDateException">
-            <summary>
-            The exception that is thrown when the <see cref="P:Diassoft.Intelligence.Exceptions.InvalidJulianDateException.JulianDate">Julian Date</see> is invalid.
-            </summary>
-        </member>
-        <member name="P:Diassoft.Intelligence.Exceptions.InvalidJulianDateException.JulianDate">
-            <summary>
-            The Julian Date
-            </summary>
-        </member>
-        <member name="P:Diassoft.Intelligence.Exceptions.InvalidJulianDateException.GregorianDate">
-            <summary>
-            The Gregorian Date
-            </summary>
-        </member>
-        <member name="M:Diassoft.Intelligence.Exceptions.InvalidJulianDateException.#ctor(System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Diassoft.Intelligence.Exceptions.InvalidJulianDateException"/>.
-            </summary>
-            <param name="julianDate">The Julian Date</param>
-        </member>
-        <member name="M:Diassoft.Intelligence.Exceptions.InvalidJulianDateException.#ctor(System.DateTime)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Diassoft.Intelligence.Exceptions.InvalidJulianDateException"/>.
-            </summary>
-            <param name="gregorianDate">The gregorian date</param>
-        </member>
-        <member name="T:Diassoft.Intelligence.Extensions.JulianDateExtensionMethods">
-            <summary>
-            Extension Methods to Implement Julian Date Conversion
-            </summary>
-        </member>
-        <member name="M:Diassoft.Intelligence.Extensions.JulianDateExtensionMethods.ToJulian(System.DateTime)">
-            <summary>
-            Converts a <see cref="T:System.DateTime"/> to a Julian Date
-            </summary>
-            <param name="gregorian">The input DateTime</param>
-            <returns>An <see cref="T:System.Int32"/> containing the Julian Date.</returns>
-        </member>
-        <member name="M:Diassoft.Intelligence.Extensions.JulianDateExtensionMethods.TryConvertToJulian(System.DateTime,System.Int32@)">
-            <summary>
-            Try to convert a Gregorian Date to a Julian Date
-            </summary>
-            <param name="gregorian">The Gregorian Date (a <see cref="T:System.DateTime">DateTime</see> field with a date greater or equal to Jan 1st 1900)</param>
-            <param name="julian">Reference to the <see cref="T:System.Int16">int</see> variable where the results will be stored</param>
-            <returns>True if the Gregorian Date is valid, False if not.</returns>
-        </member>
-        <member name="M:Diassoft.Intelligence.Extensions.JulianDateExtensionMethods.CreateFromJulian(System.DateTime,System.Int32)">
-            <summary>
-            Converts a Julian Date to Gregorian Date
-            </summary>
-            <param name="dt">Reference to the DateTime calling object</param>
-            <param name="julian">Julian Date (a number between 1 and 999366)</param>
-            <returns></returns>
-        </member>
         <member name="T:Diassoft.Intelligence.Translators.ITranslatable`2">
             <summary>
             Defines an interface that all Translators must implement

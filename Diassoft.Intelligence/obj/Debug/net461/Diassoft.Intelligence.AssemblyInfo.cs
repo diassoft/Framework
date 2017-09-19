@@ -11,11 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Diassoft.Intelligence")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Diassoft.com")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("Package Description")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("© 2017 Diassoft Corporation")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Provides Methods do not ordinary conversions.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Diassoft.Intelligence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Diassoft.Intelligence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

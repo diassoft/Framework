@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Diassoft.Intelligence.Exceptions
+namespace Diassoft.Utilities
 {
     /// <summary>
     /// The exception that is thrown when the <see cref="JulianDate">Julian Date</see> is invalid.
@@ -40,4 +40,5 @@ namespace Diassoft.Intelligence.Exceptions
         }
 
     }
+
 }

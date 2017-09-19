@@ -1,0 +1,5 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Debug\net46\Diassoft.Utilities.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Debug\net46\Diassoft.Utilities.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net46\Diassoft.Utilities.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net46\Diassoft.Utilities.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net46\Diassoft.Utilities.pdb

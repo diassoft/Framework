@@ -496,8 +496,7 @@ namespace Diassoft.DataAccess
             // Return the formatted field
             if (field is DisplayField)
             {
-                DisplayField dpf = field as DisplayField;
-                if (dpf != null)
+                if (field is DisplayField dpf)
                 {
                     if (dpf.TableAlias != null)
                     {
@@ -605,9 +604,8 @@ namespace Diassoft.DataAccess
             ValidateField(aggregateField);
 
             // Retrieve Aggregate Function Name
-            string aggregateFunctionString = "";
             if (AggregateFunctionMapping == null) throw new NullReferenceException($"There is no definition for the default {nameof(AggregateFunctionMapping)}. Unable to process aggregate fields.");
-            if (!AggregateFunctionMapping.TryGetValue(aggregateField.Function, out aggregateFunctionString)) throw new Exception($"There is no mapping for the Aggregate Function '{Enum.GetName(typeof(AggregateFunctions), aggregateField.Function)}'. Unable to process aggregate field.");
+            if (!AggregateFunctionMapping.TryGetValue(aggregateField.Function, out string aggregateFunctionString)) throw new Exception($"There is no mapping for the Aggregate Function '{Enum.GetName(typeof(AggregateFunctions), aggregateField.Function)}'. Unable to process aggregate field.");
 
             // The Count Aggregation Function accepts "0" and "*", verify that
             if (aggregateField.Function == AggregateFunctions.Count)

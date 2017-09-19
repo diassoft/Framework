@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.2;net451;net46;net461</TargetFrameworks>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Version>1.0.0.0</Version>
+    <Company>Diassoft.com</Company>
+    <Authors>Olavo Henrique Dias</Authors>
+    <Description>Provide Classes and Extension Methods</Description>
+    <Copyright>© 2017 Diassoft Corporation</Copyright>
+    <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>
+    <PackageTags>Diassoft Utilities</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.2|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.2\Diassoft.Utilities.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
