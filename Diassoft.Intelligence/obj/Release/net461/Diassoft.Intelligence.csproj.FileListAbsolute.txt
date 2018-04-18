@@ -1,7 +1,6 @@
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net461\Diassoft.Intelligence.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net461\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\net461\Diassoft.Intelligence.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net461\Diassoft.Intelligence.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net461\Diassoft.Intelligence.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net461\Diassoft.Intelligence.AssemblyInfoInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net461\Diassoft.Intelligence.AssemblyInfo.cs

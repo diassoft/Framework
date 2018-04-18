@@ -8,3 +8,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net46
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net46\Diassoft.DataAccess.csproj.CopyComplete
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net46\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net46\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\net46\Diassoft.DataAccess.csprojResolveAssemblyReference.cache
