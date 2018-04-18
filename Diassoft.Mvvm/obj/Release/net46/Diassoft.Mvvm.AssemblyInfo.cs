@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("© 2018 Diassoft Corporation")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Model-View-View-Model Design Pattern Objects implementation.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.2")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Diassoft.Mvvm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Diassoft.Mvvm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.2")]
