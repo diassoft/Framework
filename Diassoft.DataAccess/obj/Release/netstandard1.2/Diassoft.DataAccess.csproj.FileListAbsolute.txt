@@ -1,8 +1,10 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.deps.json
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.AssemblyInfoInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\bin\Release\netstandard1.2\Diassoft.DataAccess.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Release\netstandard1.2\Diassoft.DataAccess.csprojResolveAssemblyReference.cache

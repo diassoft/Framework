@@ -7,9 +7,11 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Diassoft.DataAccess.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Diassoft.DataAccess.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.csproj.CopyComplete
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Release\Diassoft.DataAccess.Tests.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Release\Diassoft.DataAccess.xml
