@@ -6,13 +6,15 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>    
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>    
     <Description>Model-View-View-Model Design Pattern Objects implementation.</Description>    
-    <Copyright>© 2017 Diassoft Corporation</Copyright>    
+    <Copyright>© 2018 Diassoft Corporation</Copyright>    
     <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>    
     <PackageTags>Diassot Mvvm Model View ViewModel</PackageTags>    
-    <PackageReleaseNotes>This Framework contains a Mvvm compatible with Windows, UWP and Xamarin.</PackageReleaseNotes>    
-    <Version>1.0.0.1</Version>    
+    <PackageReleaseNotes>This Framework contains a Mvvm implementation compatible with Windows, UWP and Xamarin.</PackageReleaseNotes>    
+    <Version>1.0.0.2</Version>    
     <Authors>Olavo Henrique Dias</Authors>    
-    <Company>Diassoft.com</Company>
+    <Company>Diassoft.com</Company>    
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>    
+    <PackageIconUrl>https://github.com/diassoft/Branding/blob/master/Nuget-Package-Icon-v01.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
