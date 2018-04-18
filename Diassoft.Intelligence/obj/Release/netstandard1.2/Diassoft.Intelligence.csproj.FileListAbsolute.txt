@@ -7,3 +7,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\net
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.csprojResolveAssemblyReference.cache
