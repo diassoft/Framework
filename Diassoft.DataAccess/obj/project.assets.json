@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "targets": {
     ".NETFramework,Version=v4.5.1": {
       "System.Data.Common/4.3.0": {
@@ -2664,7 +2664,9 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\olavodias\\.nuget\\packages\\": {}
+    "C:\\Users\\olavodias\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0.1",
@@ -2672,17 +2674,32 @@
       "projectUniqueName": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
       "projectName": "Diassoft.DataAccess",
       "projectPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\Diassoft.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\olavodias\\.nuget\\packages\\",
       "outputPath": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\olavodias\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+      ],
       "originalTargetFrameworks": [
-        "netstandard1.2",
         "net451",
         "net46",
-        "net461"
+        "net461",
+        "netstandard1.2"
       ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/diassoft/api/v3/index.json": {}
+      },
       "frameworks": {
-        "netstandard1.2": {
+        "net451": {
           "projectReferences": {}
         },
         "net46": {
@@ -2691,22 +2708,22 @@
         "net461": {
           "projectReferences": {}
         },
-        "net451": {
+        "netstandard1.2": {
           "projectReferences": {}
         }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
       }
     },
     "frameworks": {
-      "netstandard1.2": {
+      "net451": {
         "dependencies": {
-          "NETStandard.Library": {
-            "target": "Package",
-            "version": "1.6.1",
-            "autoReferenced": true
-          },
           "System.Data.Common": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[4.3.0, )"
           }
         }
       },
@@ -2714,7 +2731,7 @@
         "dependencies": {
           "System.Data.Common": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[4.3.0, )"
           }
         }
       },
@@ -2722,15 +2739,20 @@
         "dependencies": {
           "System.Data.Common": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[4.3.0, )"
           }
         }
       },
-      "net451": {
+      "netstandard1.2": {
         "dependencies": {
+          "NETStandard.Library": {
+            "target": "Package",
+            "version": "[1.6.1, )",
+            "autoReferenced": true
+          },
           "System.Data.Common": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[4.3.0, )"
           }
         }
       }

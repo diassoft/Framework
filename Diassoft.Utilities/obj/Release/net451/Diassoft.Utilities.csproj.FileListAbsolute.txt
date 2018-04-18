@@ -1,6 +1,9 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net451\Diassoft.Utilities.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net451\Diassoft.Utilities.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net451\Diassoft.Utilities.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.AssemblyInfoInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net451\Diassoft.Utilities.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Release\net451\Diassoft.Utilities.xml
