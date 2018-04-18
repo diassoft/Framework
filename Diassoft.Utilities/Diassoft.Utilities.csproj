@@ -5,17 +5,17 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
     <Company>Diassoft.com</Company>
     <Authors>Olavo Henrique Dias</Authors>
-    <Description>Provide Classes and Extension Methods</Description>
+    <Description>Provide Utilities Classes and Extension Methods.</Description>
     <Copyright>© 2018 Diassoft Corporation</Copyright>
     <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>
-    <PackageTags>Diassoft Utilities</PackageTags>
-    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v1.0.0.2</PackageProjectUrl>
+    <PackageTags>Diassoft Framework Utilities Julian Date JulianDate Extension</PackageTags>
+    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v1.0.0.4</PackageProjectUrl>
     <PackageIconUrl>https://github.com/diassoft/Branding/blob/master/Nuget-Package-Icon-v01.png?raw=true</PackageIconUrl>
     <PackageReleaseNotes>This framework contains utility functions and extension methods to deal with Julian Dates.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.2|AnyCPU'">
