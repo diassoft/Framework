@@ -1,8 +1,10 @@
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.deps.json
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.AssemblyInfoInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\bin\Release\netstandard1.2\Diassoft.Intelligence.xml
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Release\netstandard1.2\Diassoft.Intelligence.csprojResolveAssemblyReference.cache
