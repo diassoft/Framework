@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diassoft.Intelligence", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.Intelligence.Tests", "Diassoft.Intelligence.Tests\Diassoft.Intelligence.Tests.csproj", "{3AEAABD0-F310-47D2-87A4-3E813EEE4F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.Utilities", "Diassoft.Utilities\Diassoft.Utilities.csproj", "{6AC0DBAE-7DC2-4B76-9E4E-B20866AEA7D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diassoft.Utilities", "Diassoft.Utilities\Diassoft.Utilities.csproj", "{6AC0DBAE-7DC2-4B76-9E4E-B20866AEA7D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.Utilities.Tests", "Diassoft.Utilities.Tests\Diassoft.Utilities.Tests.csproj", "{E5EF66A3-4488-4A7B-BE1E-66C0470AD7C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diassoft.CodeSnippets", "Diassoft.CodeSnippets\Diassoft.CodeSnippets.csproj", "{E4C54800-4F95-432A-BC88-B0F22EA83E41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{E5EF66A3-4488-4A7B-BE1E-66C0470AD7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5EF66A3-4488-4A7B-BE1E-66C0470AD7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5EF66A3-4488-4A7B-BE1E-66C0470AD7C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C54800-4F95-432A-BC88-B0F22EA83E41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C54800-4F95-432A-BC88-B0F22EA83E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C54800-4F95-432A-BC88-B0F22EA83E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C54800-4F95-432A-BC88-B0F22EA83E41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {552211BB-4760-41B6-B922-33B921D864FB}
 	EndGlobalSection
 EndGlobal

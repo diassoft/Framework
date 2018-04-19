@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Conditional Compilation for NET Framework</Title>
+      <Author>Olavo Henrique Dias</Author>
+      <Description>Adds the conditional compilation #if directive to filter only .NET Framework implementations. Useful when creating .NET Standard Libraries that have specific behavior for .NET Framework.</Description>
+      <Shortcut>cifnet</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+        #if (NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471)
+        #else
+        #endif
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
