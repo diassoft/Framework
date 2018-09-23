@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="Diassoft.Mvvm.UWP.AppTest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Diassoft.Mvvm.UWP.AppTest"
+    RequestedTheme="Light">
+
+</Application>

@@ -13,3 +13,5 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Diassoft.Intelligence.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Diassoft.Intelligence.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Diassoft.Intelligence.xml
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csproj.CopyComplete

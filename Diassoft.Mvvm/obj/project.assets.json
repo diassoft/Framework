@@ -2552,7 +2552,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0.4",
+    "version": "1.1.0",
     "restore": {
       "projectUniqueName": "D:\\Diassoft\\Source Code\\Diassoft Framework\\Diassoft.Mvvm\\Diassoft.Mvvm.csproj",
       "projectName": "Diassoft.Mvvm",
@@ -2578,8 +2578,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://www.myget.org/F/diassoft/api/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net451": {

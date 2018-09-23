@@ -13,3 +13,5 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\bin\Debug\M
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Debug\Diassoft.DataAccess.Tests.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Debug\Diassoft.DataAccess.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Debug\Diassoft.DataAccess.Tests.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Debug\Diassoft.DataAccess.Tests.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess.Tests\obj\Debug\Diassoft.DataAccess.Tests.csproj.CopyComplete

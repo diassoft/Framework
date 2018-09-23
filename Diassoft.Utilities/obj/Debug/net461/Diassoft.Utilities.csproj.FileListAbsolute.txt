@@ -3,3 +3,5 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\bin\Debug\net461\D
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net461\Diassoft.Utilities.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net461\Diassoft.Utilities.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net461\Diassoft.Utilities.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net461\Diassoft.Utilities.csproj.CoreCompileInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Debug\net461\Diassoft.Utilities.AssemblyInfoInputs.cache

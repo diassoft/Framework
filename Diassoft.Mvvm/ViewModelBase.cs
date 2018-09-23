@@ -10,16 +10,16 @@ namespace Diassoft.Mvvm
     /// <summary>
     /// Defines the base class for a ViewModel
     /// </summary>
-    public abstract class ViewModelBase: ObservableObjectBase
+    public abstract partial class ViewModelBase: ObservableObjectBase
     {
         #region Command Registration
-
-        private Dictionary<string, CommandBase> RegisteredCommands;
 
         /// <summary>
         /// Method to be overwritten to wire the internal commands
         /// </summary>
         public abstract void WireCommands();
+
+        private Dictionary<string, CommandBase> RegisteredCommands;
 
         /// <summary>
         /// Register the Command 
@@ -31,25 +31,6 @@ namespace Diassoft.Mvvm
             if (RegisteredCommands.ContainsKey(commandName)) return;
             RegisteredCommands.Add(commandName, command);
         }
-
-#if NETSTANDARD1_2
-
-        /// <summary>
-        /// Method to Requery The Command Status.
-        /// </summary>
-        protected void RequeryCommands()
-        {
-            // Check for commands
-            if (RegisteredCommands?.Count == 0) return;
-
-            // Call Property Changed on each command
-            foreach (KeyValuePair<string, CommandBase> kvp in RegisteredCommands)
-            {
-                kvp.Value.Requery();
-            }
-        }
-
-#endif
 
         #endregion Command Registration
 
@@ -132,41 +113,17 @@ namespace Diassoft.Mvvm
         /// <summary>
         /// Initializes a new instance of the view model
         /// </summary>
-        public ViewModelBase()
-        {
-            RegisteredCommands = new Dictionary<string, CommandBase>();
-            WireCommands();
-        }
+        public ViewModelBase(): this(null) { }
 
         /// <summary>
         /// Initializes a new instance of the view model and tie it to the Dispatcher
         /// </summary>
         /// <param name="dispatcher">Reference to the <see cref="MessageDispatcher">MessageDispatcher</see></param>
-        public ViewModelBase(MessageDispatcher dispatcher) : this()
+        public ViewModelBase(MessageDispatcher dispatcher): base()
         {
+            RegisteredCommands = new Dictionary<string, CommandBase>();
+            WireCommands();
             Dispatcher = dispatcher;
-        }
-
-        /// <summary>
-        /// Sets the Property Value if it changed. Notify proper listeners.
-        /// </summary>
-        /// <typeparam name="T">Type of the Property</typeparam>
-        /// <param name="storage">Reference to the Property (must have a get and set)</param>
-        /// <param name="value">Desired value for the property</param>
-        /// <param name="propertyName">The property name itself</param>
-        /// <returns>
-        /// True if the value has changed. False if the value hasn't changed.
-        /// </returns>
-        protected override bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-        {
-            // Call the ObservableObject SetProperty
-            if (!base.SetProperty<T>(ref storage, value, propertyName)) return false;
-
-#if NETSTANDARD1_2
-            // Requery Commands Wired on ViewModel when not running thru .NET Framework (.NET framework handles that with the CommandManager
-            RequeryCommands();
-#endif
-            return true;
         }
 
     }

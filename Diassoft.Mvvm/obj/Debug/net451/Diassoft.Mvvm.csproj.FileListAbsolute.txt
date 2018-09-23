@@ -7,9 +7,9 @@ D:\Olavo\Clientes\OHD\Diassoft\Github\Framework\Diassoft\Diassoft.Mvvm\obj\Debug
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Debug\net451\Diassoft.Mvvm.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Debug\net451\Diassoft.Mvvm.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Debug\net451\Diassoft.Mvvm.xml
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.AssemblyInfo.cs
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.dll
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.AssemblyInfoInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.AssemblyInfo.cs
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.dll
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Debug\net451\Diassoft.Mvvm.pdb

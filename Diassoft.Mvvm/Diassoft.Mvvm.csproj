@@ -10,12 +10,12 @@
     <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>    
     <PackageTags>Diassoft Framework Mvvm Model View ViewModel UWP Xamarin NET Standard</PackageTags>    
     <PackageReleaseNotes>This Framework contains a Mvvm implementation compatible with Windows, UWP and Xamarin.</PackageReleaseNotes>    
-    <Version>1.0.0.4</Version>    
+    <Version>1.1.0.0</Version>    
     <Authors>Olavo Henrique Dias</Authors>    
     <Company>Diassoft.com</Company>    
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>    
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>    
     <PackageIconUrl>https://github.com/diassoft/Branding/blob/master/Nuget-Package-Icon-v01.png?raw=true</PackageIconUrl>    
-    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v1.0.0.4</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v1.1.0.0</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,7 +39,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Command\" />
     <Folder Include="Messenger\" />
   </ItemGroup>
 

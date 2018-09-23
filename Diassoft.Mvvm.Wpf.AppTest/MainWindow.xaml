@@ -1,0 +1,112 @@
+﻿<Window x:Class="Diassoft.Mvvm.Wpf.AppTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:messenger="clr-namespace:Diassoft.Mvvm.Messenger;assembly=Diassoft.Mvvm"
+        xmlns:viewModels="clr-namespace:Diassoft.Mvvm.Wpf.AppTest.ViewModels"
+        xmlns:converters="clr-namespace:Diassoft.Mvvm.Wpf.AppTest.Converters"
+        xmlns:local="clr-namespace:Diassoft.Mvvm.Wpf.AppTest"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Diassoft Bookstore" Height="450" Width="800">
+    <Window.Resources>
+
+        <messenger:MessageDispatcher x:Key="MessageDispatcher"/>
+        <viewModels:BookViewModel x:Key="MainViewModel"
+                                  Dispatcher="{StaticResource MessageDispatcher}" />
+
+        <viewModels:StatusMessageViewModel x:Key="StatusBarViewModel"
+                                           Dispatcher="{StaticResource MessageDispatcher}"/>
+
+        <converters:StatusBarMessageTypeToColorConverter x:Key="StatusBarMessageTypeToColorConverter"/>
+
+        <sys:String x:Key="ParameterStatusBarBackground">background</sys:String>
+        <sys:String x:Key="ParameterStatusBarFont">font</sys:String>
+
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding>
+            <Binding.Source>
+                <StaticResource ResourceKey="MainViewModel"/>
+            </Binding.Source>
+        </Binding>
+    </Window.DataContext>
+
+    <DockPanel LastChildFill="True">
+
+        <ToolBar DockPanel.Dock="Top">
+            <Button Content="Load Books"
+                    Command="{Binding LoadBooksCommand}"/>
+        </ToolBar>
+
+        <Label DockPanel.Dock="Bottom"
+               DataContext="{StaticResource ResourceKey=StatusBarViewModel}"
+               Content="{Binding Message}"
+               Height="25"
+               Background="{Binding MessageType, Converter={StaticResource StatusBarMessageTypeToColorConverter}, ConverterParameter={StaticResource ParameterStatusBarBackground}}" 
+               Foreground="{Binding MessageType, Converter={StaticResource StatusBarMessageTypeToColorConverter}, ConverterParameter={StaticResource ParameterStatusBarFont}}"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Books"
+                  Grid.Column="0">
+
+                <DataGrid ItemsSource="{Binding Books}"
+                          AutoGenerateColumns="True"
+                          SelectionUnit="FullRow"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+
+                </DataGrid>
+
+            </GroupBox>
+
+            <GroupBox Header="Details"
+                      Grid.Column="1">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0">
+
+                        <Label Content="Title:"
+                           FontWeight="Bold"/>
+
+                        <TextBlock Text="{Binding SelectedBook.Title}"/>
+
+                        <Label Content="Author:"
+                           FontWeight="Bold"/>
+
+                        <TextBlock Text="{Binding SelectedBook.Author}"/>
+
+                        <Label Content="Price:"
+                           FontWeight="Bold"/>
+
+                        <TextBlock Text="{Binding SelectedBook.Price}"/>
+
+                    </StackPanel>
+
+                    <Button Grid.Row="1"
+                            Command="{Binding BuyBookCommand}"
+                            CommandParameter="{Binding SelectedBook}"
+                            Content="Buy"/>
+
+                </Grid>
+
+
+            </GroupBox>
+
+        </Grid>
+
+    </DockPanel>
+
+</Window>

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
-namespace Diassoft.Mvvm
+namespace Diassoft.Mvvm.Command
 {
     /// <summary>
     /// The base class for a Mvvm Command
     /// </summary>
-    public abstract class CommandBase : ObservableObjectBase
+    public abstract partial class CommandBase : ObservableObjectBase, ICommand
     {
         /// <summary>
         /// Funcition to define whether the commmand can be executed or not
@@ -22,15 +23,5 @@ namespace Diassoft.Mvvm
         /// <param name="parameter">Command Input Parameter</param>
         public abstract void Execute(object parameter);
 
-        /// <summary>
-        /// Method that recalculate the command availability to run
-        /// </summary>
-        public abstract void Requery();
-
-        /// <summary>
-        /// Method that recalculate the command availability to run
-        /// </summary>
-        /// <param name="parameter">Command Input Parameter</param>
-        public abstract void Requery(object parameter);
     }
 }
