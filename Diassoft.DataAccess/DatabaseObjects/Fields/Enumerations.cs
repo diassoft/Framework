@@ -152,7 +152,7 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
     /// <summary>
     /// List of Valid Aggregate Functions
     /// </summary>
-    public enum AggregateFunctions : int
+    public enum Aggregates: int
     {
         /// <summary>
         /// Count of Records

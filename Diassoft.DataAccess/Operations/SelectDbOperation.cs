@@ -6,13 +6,14 @@ using Diassoft.DataAccess.DatabaseObjects.Fields;
 using Diassoft.DataAccess.DatabaseObjects.Expressions;
 using System.Data;
 using System.Linq;
+using System.Collections;
 
 namespace Diassoft.DataAccess.Operations
 {
     /// <summary>
     /// A class that represents a Select database operation
     /// </summary>
-    public class SelectDbOperation: InquiryDbOperation
+    public class SelectDbOperation: DbOperation<object[]>
     {
 
         #region Constructors
@@ -23,76 +24,27 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
-        public SelectDbOperation() : base() { }
+        public SelectDbOperation() : this("") { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        public SelectDbOperation(Dialect dialect): base(dialect) { }
+        /// <param name="tableName">The table name for the select statement</param>
+        public SelectDbOperation(string tableName) : this(String.IsNullOrEmpty(tableName) ? null : new Table(tableName)) { }
 
         /// <summary>
         /// Initializes a new instance of the Select Database Operation
         /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection): base(dialect, connection) { }
+        /// <param name="table">Table to Sql against</param>
+        public SelectDbOperation(Table table) : base()
+        {
+            Distinct = false;
+            TopNRows = 0;
+            GroupBy = false;
 
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction): base(dialect, connection, transaction) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        public SelectDbOperation(Dialect dialect, Table table) : base(dialect, table) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection, Table table) : base(dialect, connection, table) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
-        /// <param name="table">The <see cref="Table"/> to be inquired</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table table) : base(dialect, connection, transaction, table) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        public SelectDbOperation(Dialect dialect, params Table[] tables) : base(dialect, tables) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection, params Table[] tables) : base(dialect, connection, tables) { }
-
-        /// <summary>
-        /// Initializes a new instance of the Select Database Operation
-        /// </summary>
-        /// <param name="dialect">The <see cref="DataAccess.Dialect">Dialect</see> to communicate with the database</param>
-        /// <param name="connection">Reference to the <see cref="System.Data.IDbConnection">Connection</see> to the database</param>
-        /// <param name="transaction">Reference to the <see cref="System.Data.IDbTransaction">Transaction</see> in use for the given connection</param>
-        /// <param name="tables">An array of <see cref="Table"/> with the tables to be searched</param>
-        public SelectDbOperation(Dialect dialect, IDbConnection connection, IDbTransaction transaction, Table[] tables) : base(dialect, connection, transaction, tables) { }
+            if (table != null)
+                Tables = new Table[] { table };
+        }
 
         #endregion Constructors
 
@@ -118,162 +70,16 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// A list with the fields to be selected, including aggregates
         /// </summary>
-        public List<DisplayField> SelectFields { get; set; } = new List<DisplayField>();
+        public object[] SelectFields { get; set; }
 
         /// <summary>
-        /// List of Filter Expressions
+        /// An <see cref="List{T}"/> of expressions to apply as filter to the statement
         /// </summary>
-        public List<Expression> Where { get; set; } = new List<Expression>();
+        /// <remarks>Add objects of type <see cref="Expression"/> or an <see cref="Array"/> of <see cref="Expression"/>.
+        /// When adding an <see cref="Array"/>, the items inside the array will be converted in between parenthesis.</remarks>
+        public object[] Where { get; set; }
 
         #endregion Properties
-
-        #region Methods / Functions
-
-        /// <summary>
-        /// Validates the Conditions for the Statement Execution
-        /// </summary>
-        public new void PreStatementValidation()
-        {
-            // Calls the Base PreStatementValidation (This already takes care of validating the number of tables)
-            base.PreStatementValidation();
-
-            // Make sure SelectFields is not a null value
-            if (SelectFields == null) throw new NullReferenceException($"The {nameof(SelectFields)} collection cannot be null.");
-
-            // Make sure Distinct and Group by are not activated at the same time
-            if (Distinct && GroupBy) throw new Exception($"Unable to make a Select Statement with both DISTINCT and GROUP BY activated.");
-            
-            // Check Group By Setup
-            if (GroupBy)
-            {
-                if ((SelectFields == null) ||
-                    (SelectFields?.Count == 0)) throw new Exception($"When using Group By you need to inform the columns you want to group on the {nameof(SelectFields)} collection.");
-            }
-        }
-
-        /// <summary>
-        /// Returns the Statement for the <see cref="SelectDbOperation"/>.
-        /// </summary>
-        /// <returns>A string containing the select statement</returns>
-        public override string GetStatement()
-        {
-            // Make sure it's ok to run the statement 
-            this.PreStatementValidation();
-
-            // For performance issues, use the String Builder Class 
-            StringBuilder sbStatement = new StringBuilder();
-
-            #region Select
-
-            // Display Fields
-            StringBuilder sbSelect = new StringBuilder("SELECT ");
-
-            if (Distinct) sbSelect.Append("DISTINCT ");
-
-            // Check all Non-Aggregate Fields
-            if (SelectFields.Count == 0)
-            {
-                // Select All Fields
-                sbSelect.Append('*');
-                sbSelect.AppendLine();
-            }
-            else
-            {
-                // For formatting purposes, add a line right after the select
-                sbSelect.AppendLine();
-
-                // Select Specific Fields
-                sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-                                                         select String.Concat(String.Empty.PadLeft(7, ' '), 
-                                                                              field.Type == FieldTypes.Display ? 
-                                                                              Dialect.FormatField((DisplayField)field) : Dialect.FormatField((AggregateField)field))));
-            }
-
-            #endregion Select
-
-            #region Select Aggregates
-
-            //// Check all Aggregate Fields
-            //if (SelectFields.Count(field => field.Type == FieldTypes.Aggregate) > 0)
-            //{
-            //    sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-            //                                             where field.Type == FieldTypes.Aggregate
-            //                                             select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatField((AggregateField)field))));
-            //}
-
-            #endregion Select Aggregates
-
-            #region From
-
-            // From Statement
-            sbSelect.Append("  FROM ");
-
-            if (base.Tables == null) throw new NullReferenceException($"Tables are not defined for the {nameof(SelectDbOperation)}.");
-            if (base.Tables.Count == 0) throw new Exception($"There are no tables assigned for the {nameof(SelectDbOperation)}.");
-
-            if (base.Tables.Count == 1)
-            {
-                // Append Single Table
-                sbSelect.AppendLine(base.Dialect.FormatTable(base.Tables[0]));
-            }
-            else
-            {
-                // Append Multiple Tables Separated by a Comma
-                sbSelect.AppendLine();
-                sbSelect.AppendLine(String.Join(",\r\n", from tbl in base.Tables
-                                                         select String.Concat(String.Empty.PadLeft(7, ' '), Dialect.FormatTable(tbl))));
-            }
-
-            #endregion From
-
-            #region Joins
-
-            //TODO: Implement SelectDbOperation -> Joins
-
-            #endregion Joins
-
-            #region Where
-
-            //TODO: Implement SelectDbOperation -> Where
-
-            // Add Filters, if needed
-            if (Where?.Count > 0)
-            {
-                sbSelect.AppendLine(" WHERE ");
-
-            }
-
-            #endregion Where
-
-            #region Group By
-
-            // Group By Fields
-            if (GroupBy)
-            {
-                sbSelect.AppendLine("GROUP BY");
-
-                if (SelectFields?.Count(field => field.Type == FieldTypes.Display) > 0)
-                {
-                    // Add all display fields but make sure to not have the alternate name on it
-                    sbSelect.AppendLine(String.Join(",\r\n", from field in SelectFields
-                                                             where field.Type == FieldTypes.Display
-                                                             select String.Concat(String.Empty.PadLeft(9,' '), Dialect.FormatField(new DisplayField(field.Name, field.TableAlias)))));
-                }
-            }
-
-            #endregion Group By
-
-            #region Having
-
-            //TODO: Implement SelectDbOperation -> Having
-
-            #endregion Having
-
-            // Return the Final Statement
-            return sbSelect.ToString();
-        }
-
-        #endregion Methods / Functions
-
+        
     }
 }

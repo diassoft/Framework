@@ -7,7 +7,7 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
     /// <summary>
     /// Represents the base for any Field
     /// </summary>
-    public abstract class Field
+    public class Field
     {
         /// <summary>
         /// The Field Name
@@ -22,11 +22,12 @@ namespace Diassoft.DataAccess.DatabaseObjects.Fields
         /// <summary>
         /// Initializes a new instance of a <see cref="Field"/>.
         /// </summary>
-        public Field()
-        {
-            Name = "";
-            Type = FieldTypes.None;
-        }
+        public Field(): this("") { }
+
+        /// <summary>
+        /// Initializes a new instance of a <see cref="Field"/>.
+        /// </summary>
+        public Field(string name): this(name, FieldTypes.None) { }
 
         /// <summary>
         /// Initializes a new instance of a <see cref="Field"/>.

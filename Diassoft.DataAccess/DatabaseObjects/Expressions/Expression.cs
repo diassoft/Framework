@@ -1,59 +1,53 @@
-﻿using System;
+﻿using Diassoft.DataAccess.DatabaseObjects.Fields;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Diassoft.DataAccess.DatabaseObjects.Fields;
 
 namespace Diassoft.DataAccess.DatabaseObjects.Expressions
 {
     /// <summary>
-    /// Represents the base class for an Expression. Assignments and Filters are considered expressions. (x = y)
+    /// Represents an Expression to be used in a T-SQL Statement
     /// </summary>
-    public abstract class Expression
+    public class Expression
     {
-        /// <summary>
-        /// The Field to be Used
-        /// </summary>
-        public Field Field { get; set; }
-
         /// <summary>
         /// The <see cref="FieldOperators">FieldOperator</see>
         /// </summary>
         public FieldOperators Operator { get; set; }
 
         /// <summary>
-        /// Initializes a new expression
+        /// The left side of the expression
         /// </summary>
-        protected Expression()
-        {
-
-        }
+        public object Field1 { get; set; }
 
         /// <summary>
-        /// Initializes a new expression
+        /// The right side of the expression
         /// </summary>
-        /// <param name="field">The Field to be Processed by the <see cref="Expression"/>.</param>
-        protected Expression(Field field): this()
-        {
-            Field = field;
-        }
+        public object Field2 { get; set; }
 
         /// <summary>
-        /// Initializes a new expression
+        /// The connection between this and the next expression
         /// </summary>
-        /// <param name="operator">The Operator. See <see cref="FieldOperators"/> for reference</param>
-        protected Expression(FieldOperators @operator) : this()
+        public FieldAndOr AndOr { get; set; }
+
+        /// <summary>
+        /// Initializes a new <see cref="Expression"/>
+        /// </summary>
+        public Expression(): this(null, FieldOperators.None, null, FieldAndOr.None) { }
+
+        /// <summary>
+        /// Initializes a new <see cref="Expression"/>
+        /// </summary>
+        /// <param name="field1">The left side of the expression</param>
+        /// <param name="operator">The operator</param>
+        /// <param name="field2">The right side of the expression</param>
+        /// <param name="andOr">The connection between this and the next expression</param>
+        public Expression(object field1, FieldOperators @operator, object field2, FieldAndOr andOr)
         {
+            AndOr = andOr;
+            Field1 = field1;
             Operator = @operator;
-        }
-
-        /// <summary>
-        /// Initializes a new expression
-        /// </summary>
-        /// <param name="field">The Field to be Processed by the <see cref="Expression"/>.</param>
-        /// <param name="operator">The Operator. See <see cref="FieldOperators"/> for reference</param>
-        protected Expression(Field field, FieldOperators @operator): this(field)
-        {
-            Operator = @operator;
+            Field2 = field2;
         }
 
     }
