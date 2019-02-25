@@ -43,7 +43,7 @@ namespace Diassoft.DataAccess.Operations
             GroupBy = false;
 
             if (table != null)
-                Tables = new Table[] { table };
+                Table = new Table[] { table };
         }
 
         #endregion Constructors

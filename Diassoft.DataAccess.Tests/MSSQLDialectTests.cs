@@ -15,6 +15,8 @@ namespace Diassoft.DataAccess.Tests
         // Dialect to be used among all testing
         MSSQLDialect myDialect = new MSSQLDialect();
 
+        #region SelectDbOperation
+
         [TestMethod]
         public void TestSelectDbOperation_001_SimpleSelect()
         {
@@ -101,7 +103,7 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation()
             {
-                Tables = new object[]
+                Table = new object[]
                 {
                     new Table("testtable", "dbo", "0"),
                     new Table("testtable2", "dbo", "1")
@@ -219,5 +221,144 @@ namespace Diassoft.DataAccess.Tests
             // Assertion
             Assert.AreEqual<string>(expectedStatement, statement);
         }
+
+        [TestMethod]
+        public void TestSelectDbOperation_009_SelectWithBetweenOperator()
+        {
+            // Initializes the Select Statement
+            SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                Where = new object[]
+                {
+                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
+                    new Expression(new Field("field4"), FieldOperators.Between, new string[] { "A01", "A02" }, FieldAndOr.None),
+                }
+            };
+
+            string statement = myDialect.Select(select);
+            string expectedStatement = "SELECT *\r\n" +
+                                       "  FROM [dbo].[testtable] T_0\r\n" +
+                                       " WHERE\r\n" +
+                                       "       [field1]='Test' AND\r\n" +
+                                       "       [field2]>15 AND\r\n" +
+                                       "       [field3]<15 AND\r\n" +
+                                       "       [field4] BETWEEN 'A01' AND 'A02'\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+
+        #endregion SelectDbOperation
+
+        #region InsertDbOperation
+
+        [TestMethod]
+        public void TestInsertDbOperation_001_SimpleInsert()
+        {
+            // Initializes the Insert Statement
+            InsertDbOperation insert = new InsertDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                Assignments = new AssignExpression[]
+                {
+                    new AssignExpression(new Field("field1"),"value1"),
+                    new AssignExpression(new Field("field2"),"value2"),
+                    new AssignExpression(new Field("field3"),200),
+                    new AssignExpression(new Field("field4"),new DateTime(2020, 1, 1)),
+                }
+            };
+
+            string statement = myDialect.Insert(insert);
+            string expectedStatement = "INSERT INTO [dbo].[testtable]\r\n" +
+                                       "            (\r\n" +
+                                       "                    [field1],\r\n" +
+                                       "                    [field2],\r\n" +
+                                       "                    [field3],\r\n" +
+                                       "                    [field4]\r\n" +
+                                       "            )\r\n" +
+                                       "     VALUES (\r\n" +
+                                       "                    'value1',\r\n" +
+                                       "                    'value2',\r\n" +
+                                       "                    200,\r\n" +
+                                       "                    '2020-01-01 00:00:00'\r\n" +
+                                       "            )\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+        #endregion InsertDbOperation
+
+        #region UpdateDbOperation
+
+        [TestMethod]
+        public void TestUpdateDbOperation_001_SimpleUpdate()
+        {
+            // Initializes the Insert Statement
+            UpdateDbOperation update = new UpdateDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                Assignments = new AssignExpression[]
+                {
+                    new AssignExpression(new Field("field1"),"value1"),
+                    new AssignExpression(new Field("field2"),"value2"),
+                    new AssignExpression(new Field("field3"),200),
+                    new AssignExpression(new Field("field4"),new DateTime(2020, 1, 1)),
+                },
+                Where = new object[]
+                {
+                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
+                }
+            };
+
+            string statement = myDialect.Update(update);
+            string expectedStatement = "UPDATE [dbo].[testtable]\r\n" +
+                                       "   SET\r\n" +
+                                       "       [field1]='value1',\r\n" +
+                                       "       [field2]='value2',\r\n" +
+                                       "       [field3]=200,\r\n" +
+                                       "       [field4]='2020-01-01 00:00:00'\r\n" +
+                                       " WHERE\r\n" +
+                                       "       [field1]='Test' AND\r\n" +
+                                       "       [field2]>15 AND\r\n" +
+                                       "       [field3]<15\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+        #endregion UpdateDbOperation
+
+        #region DeleteDbOperation
+
+        [TestMethod]
+        public void TestDeleteDbOperation_001_SimpleDelete()
+        {
+            // Initializes the Insert Statement
+            DeleteDbOperation delete = new DeleteDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                Where = new object[]
+                {
+                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
+                }
+            };
+
+            string statement = myDialect.Delete(delete);
+            string expectedStatement = "DELETE FROM [dbo].[testtable]\r\n" +
+                                       " WHERE\r\n" +
+                                       "       [field1]='Test' AND\r\n" +
+                                       "       [field2]>15 AND\r\n" +
+                                       "       [field3]<15\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+        #endregion DeleteDbOperation
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Diassoft.DataAccess.DatabaseObjects;
-using Diassoft.DataAccess.DatabaseObjects.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,38 +6,37 @@ using System.Text;
 namespace Diassoft.DataAccess.Operations
 {
     /// <summary>
-    /// A class that represents an Insert database operation
+    /// A class that represents a Delete database operation
     /// </summary>
-    public class InsertDbOperation: DbOperation<Table>
+    public class DeleteDbOperation: DbOperation<Table>
     {
+
         /// <summary>
-        /// The Assignments
+        /// The filters for the assignment
         /// </summary>
-        public AssignExpression[] Assignments { get; set; }
+        public object[] Where { get; set; }
 
         /// <summary>
         /// Initializes a new <see cref="InsertDbOperation"/>
         /// </summary>
-        public InsertDbOperation(): this((Table)null) { }
+        public DeleteDbOperation() : this((Table)null) { }
 
         /// <summary>
-        /// Initializes a new <see cref="InsertDbOperation"/>
+        /// Initializes a new <see cref="DeleteDbOperation"/>
         /// </summary>
         /// <param name="tableName">A <see cref="string"/> representing the object to be modified</param>
-        public InsertDbOperation(string tableName): this(new Table(tableName)) { }
+        public DeleteDbOperation(string tableName) : this(new Table(tableName)) { }
 
         /// <summary>
-        /// Initializes a new <see cref="InsertDbOperation"/>
+        /// Initializes a new <see cref="DeleteDbOperation"/>
         /// </summary>
         /// <param name="table">A <see cref="Table"/> representing the object to be modified</param>
-        public InsertDbOperation(Table table)
+        public DeleteDbOperation(Table table)
         {
             base.Table = table;
 
             // Always remove the alias on an insert operation
             base.Table.Alias = "";
-
         }
-
     }
 }

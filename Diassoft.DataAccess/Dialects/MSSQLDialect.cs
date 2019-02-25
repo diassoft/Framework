@@ -62,8 +62,8 @@ namespace Diassoft.DataAccess.Dialects
             StringBuilder sbSelect = new StringBuilder();
 
             // Ensure there are tables on the operation
-            if (select.Tables == null) throw new Exception("There are no tables on the Select Statement");
-            if (select.Tables.Length == 0) throw new Exception("There are no tables on the Select Statement");
+            if (select.Table == null) throw new Exception("There are no tables on the Select Statement");
+            if (select.Table.Length == 0) throw new Exception("There are no tables on the Select Statement");
 
             // Make sure Distinct and Group by are not activated at the same time
             if ((select.Distinct) && (select.GroupBy))
@@ -121,16 +121,16 @@ namespace Diassoft.DataAccess.Dialects
             // From Statement
             sbSelect.Append("  FROM ");
 
-            if (select.Tables.Length == 1)
+            if (select.Table.Length == 1)
             {
                 // Append Single Table
-                sbSelect.AppendLine(FormatTable(select.Tables[0]));
+                sbSelect.AppendLine(FormatTable(select.Table[0]));
             }
             else
             {
                 // Append Multiple Tables Separated by a Comma
                 sbSelect.AppendLine();
-                sbSelect.AppendLine(String.Join(",\r\n", from tbl in @select.Tables
+                sbSelect.AppendLine(String.Join(",\r\n", from tbl in @select.Table
                                                          select String.Concat(String.Empty.PadLeft(7, ' '), FormatTable(tbl))));
             }
 
@@ -179,8 +179,152 @@ namespace Diassoft.DataAccess.Dialects
 
         }
 
+        /// <summary>
+        /// Inserts data into the database using the Microsoft SQL Server T-SQL Dialect. 
+        /// </summary>
+        /// <param name="insert">The <see cref="InsertDbOperation"/></param>
+        /// <returns>A string containing the T-SQL</returns>
+        public override string Insert(InsertDbOperation insert)
+        {
+            // String Builders
+            StringBuilder sbInsert = new StringBuilder();
 
+            // Validate Table
+            if (insert.Table == null)
+                throw new Exception("Insert requires a table. Table is null.");
 
+            if (String.IsNullOrEmpty(insert.Table.Name))
+                throw new Exception("Insert requires a table. Table is blank or empty.");
+
+            // Validate Assignments
+            if (insert.Assignments == null)
+                throw new Exception("No assignments defined for the Insert Operation");
+
+            if (insert.Assignments.Length == 0)
+                throw new Exception("Zero assignments defined for the Insert Operation");
+
+            // Create arrays for insert data
+            string[] insertFields = new string[insert.Assignments.Length];
+            string[] insertValues = new string[insert.Assignments.Length];
+
+            // Now format the sintax
+            for (int f = 0; f < insert.Assignments.Length; f++)
+            {
+                insertFields[f] = FormatExpressionField(insert.Assignments[f].Field1);
+                insertValues[f] = FormatExpressionField(insert.Assignments[f].Field2);
+            }
+
+            // Format for output
+            sbInsert.Append("INSERT INTO ");
+            sbInsert.AppendLine(FormatTable(insert.Table));
+
+            sbInsert.AppendLine("            (");
+            sbInsert.Append("                    ");
+            sbInsert.AppendLine(String.Join(",\r\n                    ", insertFields));
+            sbInsert.AppendLine("            )");
+            sbInsert.AppendLine("     VALUES (");
+            sbInsert.Append("                    ");
+            sbInsert.AppendLine(String.Join(",\r\n                    ", insertValues));
+            sbInsert.AppendLine("            )");
+
+            return sbInsert.ToString();
+        }
+
+        /// <summary>
+        /// Converts an Update Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="update">The <see cref="UpdateDbOperation"/></param>
+        /// <returns>A string contaiing the T-SQL</returns>
+        public override string Update(UpdateDbOperation update)
+        {
+            // String Builders
+            StringBuilder sbUpdate = new StringBuilder();
+
+            // Validate Table
+            if (update.Table == null)
+                throw new Exception("Update requires a table. Table is null.");
+
+            if (String.IsNullOrEmpty(update.Table.Name))
+                throw new Exception("Update requires a table. Table is blank or empty.");
+
+            // Validate Assignments
+            if (update.Assignments == null)
+                throw new Exception("No assignments defined for the Update Operation");
+
+            if (update.Assignments.Length == 0)
+                throw new Exception("Zero assignments defined for the Update Operation");
+
+            // ===================================================================
+            // UPDATE
+            // ===================================================================
+
+            sbUpdate.Append("UPDATE ");
+            sbUpdate.AppendLine(FormatTable(update.Table));
+
+            // ===================================================================
+            // SET
+            // ===================================================================
+            sbUpdate.AppendLine("   SET");
+
+            string[] updateAssignments = new string[update.Assignments.Length];
+
+            for (int i = 0; i < update.Assignments.Length; i++)
+            {
+                var a = update.Assignments[i];
+                updateAssignments[i] = $"       {FormatExpressionField(a.Field1)}={FormatExpressionField(a.Field2)}";
+            }
+
+            sbUpdate.AppendLine(String.Join(",\r\n", updateAssignments));
+
+            // ===================================================================
+            // WHERE
+            // ===================================================================
+
+            if (update.Where?.Length > 0)
+            {
+                sbUpdate.AppendLine(" WHERE");
+                sbUpdate.Append(FormatExpressions(update.Where, 1));
+            }
+
+            return sbUpdate.ToString();
+        }
+
+        /// <summary>
+        /// Converts a Delete Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="delete">The <see cref="DeleteDbOperation"/></param>
+        /// <returns>A string contaiing the T-SQL</returns>
+        public override string Delete(DeleteDbOperation delete)
+        {
+            // String Builders
+            StringBuilder sbDelete = new StringBuilder();
+
+            // Validate Table
+            if (delete.Table == null)
+                throw new Exception("Delete requires a table. Table is null.");
+
+            if (String.IsNullOrEmpty(delete.Table.Name))
+                throw new Exception("Delete requires a table. Table is blank or empty.");
+
+            // ===================================================================
+            // DELETE FROM
+            // ===================================================================
+
+            sbDelete.Append("DELETE FROM ");
+            sbDelete.AppendLine(FormatTable(delete.Table));
+
+            // ===================================================================
+            // WHERE
+            // ===================================================================
+
+            if (delete.Where?.Length > 0)
+            {
+                sbDelete.AppendLine(" WHERE");
+                sbDelete.Append(FormatExpressions(delete.Where, 1));
+            }
+
+            return sbDelete.ToString();
+        }
 
     }
 }

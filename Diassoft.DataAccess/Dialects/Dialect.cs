@@ -156,9 +156,66 @@ namespace Diassoft.DataAccess.Dialects
             AfterQueryStatements.AddRange(list);
         }
 
+        /// <summary>
+        /// Returns the final query to be executed, including the additional statements
+        /// </summary>
+        /// <param name="query">The current query</param>
+        /// <returns>A query containing the pre and post statements</returns>
+        public string GetFinalStatement(string query)
+        {
+            // Append the Before and After statements
+            if (BeforeQueryStatements.Count > 0)
+                query = String.Join($"{StatementEndCharacter}\r\n", BeforeQueryStatements.ToArray()) + "\r\n" + query;
+
+            if (AfterQueryStatements.Count > 0)
+                query = "\r\n" + query + String.Join($"{StatementEndCharacter}\r\n", AfterQueryStatements.ToArray());
+
+            return query;
+        }
+
         #endregion Quick Initialization Methods
 
         #region Abstract Methods
+
+        /// <summary>
+        /// Converts a Select Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="select">The <see cref="SelectDbOperation"/></param>
+        /// <returns>A string containing the T-SQL</returns>
+        public abstract string Select(SelectDbOperation select);
+
+        /// <summary>
+        /// Converts a Select Into Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="select">The <see cref="SelectDbOperation"/></param>
+        /// <param name="intoTable">The destination table</param>
+        /// <returns>A string containing the T-SQL</returns>
+        public abstract string SelectInto(SelectDbOperation select, Table intoTable);
+
+        /// <summary>
+        /// Converts an Insert Into Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="insert">The <see cref="InsertDbOperation"/></param>
+        /// <returns>A string containing the T-SQL</returns>
+        public abstract string Insert(InsertDbOperation insert);
+
+        /// <summary>
+        /// Converts an Update Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="update">The <see cref="UpdateDbOperation"/></param>
+        /// <returns>A string contaiing the T-SQL</returns>
+        public abstract string Update(UpdateDbOperation update);
+
+        /// <summary>
+        /// Converts a Delete Database Operation into a valid T-SQL Statement
+        /// </summary>
+        /// <param name="delete">The <see cref="DeleteDbOperation"/></param>
+        /// <returns>A string contaiing the T-SQL</returns>
+        public abstract string Delete(DeleteDbOperation delete);
+
+        #endregion Abstract Methods
+
+        #region Formatting Methods
 
         /// <summary>
         /// Formats a <see cref="DateTime"/> accordingly to the Database Dialect
@@ -208,21 +265,6 @@ namespace Diassoft.DataAccess.Dialects
         {
             return (value ? "1" : "0");
         }
-
-        /// <summary>
-        /// Converts a Select Database Operation into a valid T-SQL Statement
-        /// </summary>
-        /// <param name="select">The <see cref="SelectDbOperation"/></param>
-        /// <returns>A string containing the T-SQL</returns>
-        public abstract string Select(SelectDbOperation select);
-
-        /// <summary>
-        /// Converts a Select Into Database Operation into a valid T-SQL Statement
-        /// </summary>
-        /// <param name="select">The <see cref="SelectDbOperation"/></param>
-        /// <param name="intoTable">The destination table</param>
-        /// <returns>A string containing the T-SQL</returns>
-        public abstract string SelectInto(SelectDbOperation select, Table intoTable);
 
         /// <summary>
         /// Formats a <see cref="List{T}"/> of expressions into a sql statement 
@@ -358,16 +400,25 @@ namespace Diassoft.DataAccess.Dialects
                 (expression.Operator == FieldOperators.Like) ||
                 (expression.Operator == FieldOperators.NotIn))
             {
-                sbExpression.Append(formattedOperator.Replace("value", FormatExpressionField(expression.Field2)));
+                sbExpression.Append(" ");
+                sbExpression.Append(formattedOperator.Replace("{value}", FormatExpressionField(expression.Field2)));
             }
             else if ((expression.Operator == FieldOperators.Between) ||
                      (expression.Operator == FieldOperators.NotBetween))
             {
                 // Make sure the Field2 is an array of two
-                if (expression.Field2.GetType() == typeof(Array))
+                if (expression.Field2.GetType().IsArray)
                 {
                     var a = (Array)expression.Field2;
-                    //TODO: implement this shit
+
+                    if ((a.GetLength(0) == 0) || (a.GetLength(0) == 1))
+                        throw new Exception("Array size is not valid for between operator. It must be at least two.");
+
+                    string formattedBetween = formattedOperator.Replace("{value1}", FormatExpressionField(a.GetValue(0)));
+                    formattedBetween = formattedBetween.Replace("{value2}", FormatExpressionField(a.GetValue(1)));
+
+                    sbExpression.Append(" ");
+                    sbExpression.Append(formattedBetween);
                 }
             }
             else
@@ -403,10 +454,6 @@ namespace Diassoft.DataAccess.Dialects
             }
             else return field.ToString();
         }
-
-        #endregion Abstract Methods
-
-        #region Formatting Methods
 
         /// <summary>
         /// Validates the table information

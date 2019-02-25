@@ -7,9 +7,9 @@ using System.Text;
 namespace Diassoft.DataAccess.Operations
 {
     /// <summary>
-    /// A class that represents an Insert database operation
+    /// A class that represents an Update database operation
     /// </summary>
-    public class InsertDbOperation: DbOperation<Table>
+    public class UpdateDbOperation: DbOperation<Table>
     {
         /// <summary>
         /// The Assignments
@@ -17,21 +17,26 @@ namespace Diassoft.DataAccess.Operations
         public AssignExpression[] Assignments { get; set; }
 
         /// <summary>
-        /// Initializes a new <see cref="InsertDbOperation"/>
+        /// The filters for the assignment
         /// </summary>
-        public InsertDbOperation(): this((Table)null) { }
+        public object[] Where { get; set; }
 
         /// <summary>
-        /// Initializes a new <see cref="InsertDbOperation"/>
+        /// Initializes a new <see cref="UpdateDbOperation"/>
+        /// </summary>
+        public UpdateDbOperation() : this((Table)null) { }
+
+        /// <summary>
+        /// Initializes a new <see cref="UpdateDbOperation"/>
         /// </summary>
         /// <param name="tableName">A <see cref="string"/> representing the object to be modified</param>
-        public InsertDbOperation(string tableName): this(new Table(tableName)) { }
+        public UpdateDbOperation(string tableName) : this(new Table(tableName)) { }
 
         /// <summary>
-        /// Initializes a new <see cref="InsertDbOperation"/>
+        /// Initializes a new <see cref="UpdateDbOperation"/>
         /// </summary>
         /// <param name="table">A <see cref="Table"/> representing the object to be modified</param>
-        public InsertDbOperation(Table table)
+        public UpdateDbOperation(Table table)
         {
             base.Table = table;
 
@@ -39,6 +44,5 @@ namespace Diassoft.DataAccess.Operations
             base.Table.Alias = "";
 
         }
-
     }
 }

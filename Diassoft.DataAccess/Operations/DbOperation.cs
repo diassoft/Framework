@@ -14,7 +14,7 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// The Tables to be changed
         /// </summary>
-        public T Tables { get; set; }
+        public T Table { get; set; }
 
         #region Constructors
 
