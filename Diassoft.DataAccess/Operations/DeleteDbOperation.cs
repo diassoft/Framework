@@ -1,4 +1,5 @@
 ﻿using Diassoft.DataAccess.DatabaseObjects;
+using Diassoft.DataAccess.DatabaseObjects.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,9 +13,10 @@ namespace Diassoft.DataAccess.Operations
     {
 
         /// <summary>
-        /// The filters for the assignment
+        /// An <see cref="WhereCollection"/> containing <see cref="FilterExpression"/> or <see cref="GroupedFilterExpression"/> representing the filter criterias for the query
         /// </summary>
-        public object[] Where { get; set; }
+        /// <remarks>Accept objects that implement the <see cref="IFilterExpression"/> interface.</remarks>
+        public WhereCollection Where { get; set; }
 
         /// <summary>
         /// Initializes a new <see cref="InsertDbOperation"/>

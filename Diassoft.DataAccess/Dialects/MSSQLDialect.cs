@@ -41,6 +41,18 @@ namespace Diassoft.DataAccess.Dialects
         }
 
         /// <summary>
+        /// Formats a <see cref="DateTime"/> accordingly to the Database Dialect
+        /// </summary>
+        /// <param name="dateTime">The <see cref="DateTime"/> to format</param>
+        /// <returns>A <see cref="string"/> containing the formatted date</returns>
+        protected override string FormatDate(DateTime dateTime)
+        {
+            if (dateTime == DateTime.MinValue) return "NULL";
+
+            return $"{FieldValueChar}{dateTime.ToString($"{DateFormat} {TimeFormat}")}{FieldValueChar}";
+        }
+
+        /// <summary>
         /// Selects data from the database using the Microsoft SQL Server T-SQL Dialect
         /// </summary>
         /// <param name="select">An <see cref="SelectDbOperation"/> representing the Select to Perform</param>
@@ -72,7 +84,7 @@ namespace Diassoft.DataAccess.Dialects
             // Check Group By Setup
             if (select.GroupBy)
             {
-                if ((select.SelectFields == null) || (select.SelectFields?.Length == 0))
+                if ((select.SelectFields == null) || (select.SelectFields?.Count == 0))
                     throw new Exception($"When using Group By you need to inform the columns you want to group on the {nameof(select.SelectFields)} collection.");
             }
 
@@ -86,7 +98,7 @@ namespace Diassoft.DataAccess.Dialects
             if (select.Distinct) sbSelect.Append("DISTINCT ");
 
             // Check all Non-Aggregate Fields
-            if (select.SelectFields?.Length > 0)
+            if (select.SelectFields?.Count > 0)
             {
                 // For formatting purposes, add a line right after the select
                 sbSelect.AppendLine();
@@ -144,10 +156,10 @@ namespace Diassoft.DataAccess.Dialects
             // WHERE AREA
             // ====================================================================================
 
-            if (select.Where?.Length > 0)
+            if (select.Where?.Count > 0)
             {
                 sbSelect.AppendLine(" WHERE");
-                sbSelect.Append(FormatExpressions(select.Where, 1));
+                sbSelect.Append(FormatExpressions(select.Where.ToArray(), 1));
             }
 
             // ====================================================================================
@@ -173,6 +185,19 @@ namespace Diassoft.DataAccess.Dialects
             // ====================================================================================
 
             //TODO: Implement
+
+            // ====================================================================================
+            // ORDER BY AREA
+            // ====================================================================================
+
+            if (select.OrderBy?.Count > 0)
+            {
+                sbSelect.AppendLine("ORDER BY");
+                sbSelect.AppendLine(String.Join(",\r\n", from orderByField in @select.OrderBy
+                                                         select String.Concat(String.Empty.PadLeft(9, ' '),
+                                                                              FormatField(orderByField),
+                                                                              orderByField.SortMode == SortModes.Descending ? " DESC" : "")));
+            }
 
             // Returns the Result of the Select Statement
             return sbSelect.ToString();
@@ -280,10 +305,10 @@ namespace Diassoft.DataAccess.Dialects
             // WHERE
             // ===================================================================
 
-            if (update.Where?.Length > 0)
+            if (update.Where?.Count > 0)
             {
                 sbUpdate.AppendLine(" WHERE");
-                sbUpdate.Append(FormatExpressions(update.Where, 1));
+                sbUpdate.Append(FormatExpressions(update.Where.ToArray(), 1));
             }
 
             return sbUpdate.ToString();
@@ -317,10 +342,10 @@ namespace Diassoft.DataAccess.Dialects
             // WHERE
             // ===================================================================
 
-            if (delete.Where?.Length > 0)
+            if (delete.Where?.Count > 0)
             {
                 sbDelete.AppendLine(" WHERE");
-                sbDelete.Append(FormatExpressions(delete.Where, 1));
+                sbDelete.Append(FormatExpressions(delete.Where.ToArray(), 1));
             }
 
             return sbDelete.ToString();

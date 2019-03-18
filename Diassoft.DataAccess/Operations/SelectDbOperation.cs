@@ -70,14 +70,18 @@ namespace Diassoft.DataAccess.Operations
         /// <summary>
         /// A list with the fields to be selected, including aggregates
         /// </summary>
-        public object[] SelectFields { get; set; }
+        public FieldCollection SelectFields { get; set; }
 
         /// <summary>
-        /// An <see cref="List{T}"/> of expressions to apply as filter to the statement
+        /// An <see cref="WhereCollection"/> containing <see cref="FilterExpression"/> or <see cref="GroupedFilterExpression"/> representing the filter criterias for the query
         /// </summary>
-        /// <remarks>Add objects of type <see cref="Expression"/> or an <see cref="Array"/> of <see cref="Expression"/>.
-        /// When adding an <see cref="Array"/>, the items inside the array will be converted in between parenthesis.</remarks>
-        public object[] Where { get; set; }
+        /// <remarks>Accept objects that implement the <see cref="IFilterExpression"/> interface.</remarks>
+        public WhereCollection Where { get; set; }
+
+        /// <summary>
+        /// A <see cref="OrderByCollection"/> containing the <see cref="OrderByField">OrderByFields</see> to be applied for sorting the data
+        /// </summary>
+        public OrderByCollection OrderBy { get; set; }
 
         #endregion Properties
         

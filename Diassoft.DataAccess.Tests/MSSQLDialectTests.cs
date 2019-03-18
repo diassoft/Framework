@@ -37,7 +37,7 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                SelectFields = new object[]
+                SelectFields = new FieldCollection()
                 {
                     new DisplayField("field1", "0", "field1_alternate"),
                     new DisplayField("field2", "0", "field2_alternate"),
@@ -46,7 +46,7 @@ namespace Diassoft.DataAccess.Tests
 
 
             string statement = myDialect.Select(select);
-            string expectedStatement = "SELECT \r\n" + 
+            string expectedStatement = "SELECT \r\n" +
                                        "       T_0.[field1] field1_alternate,\r\n" +
                                        "       T_0.[field2] field2_alternate\r\n" +
                                        "  FROM [dbo].[testtable] T_0\r\n";
@@ -61,7 +61,7 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                SelectFields = new object[]
+                SelectFields = new FieldCollection()
                 {
                     new AggregateField(Aggregates.Count, "0")
                 }
@@ -82,7 +82,7 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                SelectFields = new object[]
+                SelectFields = new FieldCollection()
                 {
                     new AggregateField(Aggregates.Count, "*")
                 }
@@ -126,7 +126,7 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                SelectFields = new object[]
+                SelectFields = new FieldCollection()
                 {
                     new DisplayField("field1", "0", "field1_alternate"),
                     new DisplayField("field2", "0"),
@@ -163,11 +163,11 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                Where = new object[]
+                Where = new WhereCollection()
                 {
-                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
-                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
                 }
             };
 
@@ -189,18 +189,18 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                Where = new object[]
+                Where = new WhereCollection()
                 {
-                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
-                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field4"), FieldOperators.Equal, new DateTime(2020, 1, 1), FieldAndOr.And),
-                    new Expression[]
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field4"), FieldOperators.Equal, new DateTime(2020, 1, 1), FieldAndOr.And),
+                    new GroupedFilterExpression(FieldAndOr.And)
                     {
-                        new Expression(new Field("field5"), FieldOperators.Equal, "Test", FieldAndOr.Or),
-                        new Expression(new Field("field5"), FieldOperators.Equal, "Test2", FieldAndOr.And),
+                        new FilterExpression(new Field("field5"), FieldOperators.Equal, "Test", FieldAndOr.Or),
+                        new FilterExpression(new Field("field5"), FieldOperators.Equal, "Test2", FieldAndOr.And),
                     },
-                    new Expression(new Field("field6"), FieldOperators.Equal, new DateTime(2020, 1, 1), FieldAndOr.None),
+                    new FilterExpression(new Field("field6"), FieldOperators.Equal, new DateTime(2020, 1, 1), FieldAndOr.And),
                 }
             };
 
@@ -228,12 +228,12 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Select Statement
             SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
             {
-                Where = new object[]
+                Where = new WhereCollection()
                 {
-                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
-                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field4"), FieldOperators.Between, new string[] { "A01", "A02" }, FieldAndOr.None),
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field4"), FieldOperators.Between, new string[] { "A01", "A02" }, FieldAndOr.And),
                 }
             };
 
@@ -245,6 +245,95 @@ namespace Diassoft.DataAccess.Tests
                                        "       [field2]>15 AND\r\n" +
                                        "       [field3]<15 AND\r\n" +
                                        "       [field4] BETWEEN 'A01' AND 'A02'\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+        [TestMethod]
+        public void TestSelectDbOperation_010_SelectWithIsNullOperator()
+        {
+            // Initializes the Select Statement
+            SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                Where = new WhereCollection()
+                {
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field4"), FieldOperators.IsNull, null, FieldAndOr.None),
+                }
+            };
+
+            string statement = myDialect.Select(select);
+            string expectedStatement = "SELECT *\r\n" +
+                                       "  FROM [dbo].[testtable] T_0\r\n" +
+                                       " WHERE\r\n" +
+                                       "       [field1]='Test' AND\r\n" +
+                                       "       [field2]>15 AND\r\n" +
+                                       "       [field3]<15 AND\r\n" +
+                                       "       [field4] IS NULL\r\n";
+
+            // Assertion
+            Assert.AreEqual<string>(expectedStatement, statement);
+        }
+
+        [TestMethod]
+        public void TestSelectDbOperation_011_SelectComplexWithAllOptions()
+        {
+            // Initializes the Select Statement
+            SelectDbOperation select = new SelectDbOperation(new Table("testtable", "dbo", "0"))
+            {
+                SelectFields = new FieldCollection()
+                {
+                    new DisplayField("field1", "0", "field1_alternate"),
+                    new DisplayField("field2", "0"),
+                    new AggregateField(Aggregates.Max, "field3", "0"),
+                    new AggregateField(Aggregates.Min, "field4"),
+                    new AggregateField(Aggregates.CountDistinct, "field5", "0"),
+                    new AggregateField(Aggregates.Average, "field6", "0"),
+                    new AggregateField(Aggregates.Sum, "field7"),
+                },
+                Where = new WhereCollection()
+                {
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field4"), FieldOperators.Between, new string[] { "A01", "A02" }, FieldAndOr.And),
+                    new FilterExpression(new Field("field5"), FieldOperators.IsNull, null, FieldAndOr.And),
+                    new FilterExpression(new Field("field6"), FieldOperators.NotIsNull, null, FieldAndOr.And),
+                },
+                GroupBy = true,
+                OrderBy = new OrderByCollection()
+                {
+                    new OrderByField("field1", "0", SortModes.Ascending),
+                    new OrderByField("field2", SortModes.Descending),
+                },
+            };
+
+            string statement = myDialect.Select(select);
+            string expectedStatement = "SELECT \r\n" +
+                                       "       T_0.[field1] field1_alternate,\r\n" +
+                                       "       T_0.[field2],\r\n" +
+                                       "       MAX(T_0.[field3]),\r\n" +
+                                       "       MIN([field4]),\r\n" +
+                                       "       COUNT(DISTINCT T_0.[field5]),\r\n" +
+                                       "       AVG(T_0.[field6]),\r\n" +
+                                       "       SUM([field7])\r\n" +
+                                       "  FROM [dbo].[testtable] T_0\r\n" +
+                                       " WHERE\r\n" +
+                                       "       [field1]='Test' AND\r\n" +
+                                       "       [field2]>15 AND\r\n" +
+                                       "       [field3]<15 AND\r\n" +
+                                       "       [field4] BETWEEN 'A01' AND 'A02' AND\r\n" +
+                                       "       [field5] IS NULL AND\r\n" +
+                                       "       [field6] IS NOT NULL\r\n" +
+                                       "GROUP BY\r\n" +
+                                       "         T_0.[field1],\r\n" +
+                                       "         T_0.[field2]\r\n" +
+                                       "ORDER BY\r\n" +
+                                       "         T_0.[field1],\r\n" +
+                                       "         [field2] DESC\r\n";
 
             // Assertion
             Assert.AreEqual<string>(expectedStatement, statement);
@@ -306,11 +395,11 @@ namespace Diassoft.DataAccess.Tests
                     new AssignExpression(new Field("field3"),200),
                     new AssignExpression(new Field("field4"),new DateTime(2020, 1, 1)),
                 },
-                Where = new object[]
+                Where = new WhereCollection()
                 {
-                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
-                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
                 }
             };
 
@@ -340,11 +429,11 @@ namespace Diassoft.DataAccess.Tests
             // Initializes the Insert Statement
             DeleteDbOperation delete = new DeleteDbOperation(new Table("testtable", "dbo", "0"))
             {
-                Where = new object[]
+                Where = new WhereCollection()
                 {
-                    new Expression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
-                    new Expression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
-                    new Expression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
+                    new FilterExpression(new Field("field1"), FieldOperators.Equal, "Test", FieldAndOr.And),
+                    new FilterExpression(new Field("field2"), FieldOperators.GreaterThan, 15, FieldAndOr.And),
+                    new FilterExpression(new Field("field3"), FieldOperators.LessThan, 15, FieldAndOr.None),
                 }
             };
 

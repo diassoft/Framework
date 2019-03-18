@@ -17,9 +17,10 @@ namespace Diassoft.DataAccess.Operations
         public AssignExpression[] Assignments { get; set; }
 
         /// <summary>
-        /// The filters for the assignment
+        /// An <see cref="WhereCollection"/> containing <see cref="FilterExpression"/> or <see cref="GroupedFilterExpression"/> representing the filter criterias for the query
         /// </summary>
-        public object[] Where { get; set; }
+        /// <remarks>Accept objects that implement the <see cref="IFilterExpression"/> interface.</remarks>
+        public WhereCollection Where { get; set; }
 
         /// <summary>
         /// Initializes a new <see cref="UpdateDbOperation"/>

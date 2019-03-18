@@ -11,7 +11,8 @@ namespace Diassoft.DataAccess
     /// <summary>
     /// Represents the Database Context
     /// </summary>
-    public class DbContext<TConnectionType> where TConnectionType : IDbConnection
+    public class DbContext<TConnectionType>: IDbContext
+                                             where TConnectionType : IDbConnection
     {
         /// <summary>
         /// Initializes a new instance of a <see cref="DbContext{TConnectionType}">Database Context</see>

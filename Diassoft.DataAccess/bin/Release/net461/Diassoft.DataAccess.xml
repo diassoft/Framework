@@ -720,6 +720,13 @@
             Initializes a new instance of the Microsoft SQL T-SQL Dialect
             </summary>
         </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.FormatDate(System.DateTime)">
+            <summary>
+            Formats a <see cref="T:System.DateTime"/> accordingly to the Database Dialect
+            </summary>
+            <param name="dateTime">The <see cref="T:System.DateTime"/> to format</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted date</returns>
+        </member>
         <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.Select(Diassoft.DataAccess.Operations.SelectDbOperation)">
             <summary>
             Selects data from the database using the Microsoft SQL Server T-SQL Dialect
@@ -780,6 +787,66 @@
             <param name="message">The error message</param>
             <param name="dbOperation">The <see cref="P:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.DbOperation"/></param>
             <param name="exception">The reason to cause the exception</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.IDbContext">
+            <summary>
+            Represents an Database Context Interface
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.IDbContext.Dialect">
+            <summary>
+            The Dialect to communicate with the Database
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.IDbContext.ConnectionString">
+            <summary>
+            The Connection String with the Database Server
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.GetConnection">
+            <summary>
+            Returns a Database Connection
+            </summary>
+            <remarks>If requires a <see cref="P:Diassoft.DataAccess.IDbContext.Dialect"/> and a <see cref="P:Diassoft.DataAccess.IDbContext.ConnectionString"/> to be setup</remarks>
+            <returns>A <see cref="T:System.Data.IDbConnection"/> with the connection to a database</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteReader(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="selectDbOperation">A <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> with the statement to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteReader(System.String,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="commandText">The SQL Syntax</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteNonQuery(Diassoft.DataAccess.Operations.DbOperation{Diassoft.DataAccess.DatabaseObjects.Table},System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a Non Query statement (Insert, Update or Delete)
+            </summary>
+            <param name="dbOperation">A valid object that inherits from <see cref="T:Diassoft.DataAccess.Operations.DbOperation`1"/>. Some examples are <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>, <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/> and <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/>.</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteScalar(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a query that would return only one row and one column
+            </summary>
+            <param name="selectDbOperation">The <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns>A <see cref="T:System.Object"/> containing the results</returns>
         </member>
         <member name="T:Diassoft.DataAccess.Operations.DbOperation`1">
             <summary>

@@ -6,6 +6,7 @@ using Diassoft.DataAccess.DatabaseObjects;
 using Diassoft.DataAccess.DatabaseObjects.Expressions;
 using Diassoft.DataAccess.DatabaseObjects.Fields;
 using Diassoft.DataAccess.Operations;
+using System.Collections.ObjectModel;
 
 namespace Diassoft.DataAccess.Dialects
 {
@@ -35,7 +36,7 @@ namespace Diassoft.DataAccess.Dialects
                 { FieldOperators.In, "IN ({value})" },
                 { FieldOperators.NotIn, "NOT IN ({value})" },
                 { FieldOperators.IsNull, "IS NULL" },
-                { FieldOperators.NotIsNull, "NOT IS NULL" },
+                { FieldOperators.NotIsNull, "IS NOT NULL" },
                 { FieldOperators.Between, "BETWEEN {value1} AND {value2}" },
                 { FieldOperators.NotBetween, "NOT BETWEEN {value1} AND {value2}" }
             };
@@ -269,91 +270,143 @@ namespace Diassoft.DataAccess.Dialects
         /// <summary>
         /// Formats a <see cref="List{T}"/> of expressions into a sql statement 
         /// </summary>
-        /// <param name="expressions">A <see cref="List{T}"/> of <see cref="object"/> containing expressions. Only objects of type <see cref="Expression"/> or an <see cref="Array"/> of <see cref="Expression"/> are accepted.</param>
+        /// <param name="expressions">A <see cref="List{T}"/> of <see cref="object"/> containing expressions. Only objects of type <see cref="FilterExpression"/> or an <see cref="Array"/> of <see cref="FilterExpression"/> are accepted.</param>
         /// <param name="identLevel">The identation level</param>
         /// <returns>A <see cref="string"/> containing the formatted expressions</returns>
-        protected virtual string FormatExpressions(object[] expressions, int identLevel)
+        protected virtual string FormatExpressions(IFilterExpression[] expressions, int identLevel)
         {
             if (expressions == null) return "";
             if (expressions.Length == 0) return "";
 
             StringBuilder sbExpressions = new StringBuilder();
 
-            foreach (object exp in expressions)
+            // Loop thru expressions
+            for (int iExp = 0; iExp < expressions.Length; iExp++)
             {
-                if ((exp.GetType() == typeof(Array)) ||
-                    (exp.GetType() == typeof(List<Expression>)) ||
-                    (exp.GetType() == typeof(Expression[])))
+                IFilterExpression exp = expressions[iExp];
+
+                // Check type of expression
+                if (exp is GroupedFilterExpression gExp)
                 {
-                    // Collection of Expressions
-                    System.Collections.IEnumerator e = null;
+                    // Grouped Filter Expression
 
-                    if (exp.GetType() == typeof(Array))
-                        e = ((Array)exp).GetEnumerator();
-                    else if (exp.GetType() == typeof(List<Expression>))
-                        e = ((List<Expression>)exp).GetEnumerator();
-                    else if (exp.GetType() == typeof(Expression[]))
-                        e = ((Expression[])exp).GetEnumerator();
+                    // Make sure the expression isn't empty
+                    if (gExp.Count == 0)
+                        continue;
 
-                    if (e == null)
-                        throw new Exception("Unable to find enumerator for expression");
-
-                    // Move it to a manageable list
-                    List<Expression> expressionsToFormat = new List<Expression>();
-                    FieldAndOr lastAndOr = FieldAndOr.None;
-
-                    while ((e.MoveNext()) && (e.Current != null))
-                    {
-                        if (e.Current.GetType() == typeof(Expression))
-                        {
-                            var currentExp = (Expression)e.Current;
-                            expressionsToFormat.Add(currentExp);
-                            lastAndOr = currentExp.AndOr;
-                        }
-                    }
-
-                    // Update the last item with None for formatting
-                    if (expressionsToFormat.Count == 0)
-                        throw new Exception("Unable to identify Expressions inside the given array");
-
-                    expressionsToFormat[expressionsToFormat.Count - 1].AndOr = FieldAndOr.None;
+                    gExp[gExp.Count - 1].AndOr = FieldAndOr.None;
 
                     // Format Expressions
                     sbExpressions.Append(String.Empty.PadRight(7 * identLevel, ' '));
                     sbExpressions.AppendLine("(");
 
-                    foreach (var eToFormat in expressionsToFormat)
-                        sbExpressions.AppendLine(FormatExpression(eToFormat, identLevel+1));
-
+                    foreach (var eToFormat in gExp)
+                    {
+                        if (eToFormat is FilterExpression fExp_2)
+                            sbExpressions.AppendLine(FormatExpression(fExp_2, identLevel + 1));
+                        else if (eToFormat is GroupedFilterExpression fGExp_2)
+                            sbExpressions.AppendLine(FormatExpressions(fGExp_2.ToArray<IFilterExpression>(), identLevel + 1));
+                    }
+                        
                     sbExpressions.Append(String.Empty.PadRight(7 * identLevel, ' '));
                     sbExpressions.Append(")");
 
-                    if (lastAndOr == FieldAndOr.And)
+                    if (gExp.AndOr == FieldAndOr.And)
                         sbExpressions.AppendLine(" AND");
-                    else if (lastAndOr == FieldAndOr.Or)
+                    else if (gExp.AndOr == FieldAndOr.Or)
                         sbExpressions.AppendLine(" OR");
-
                 }
-                else if (exp.GetType() == typeof(Expression))
+                else if (exp is FilterExpression fExp)
                 {
-                    sbExpressions.AppendLine(FormatExpression((Expression)exp, identLevel));
+                    // Simple Expression
+
+                    // Automatically set last expression to "None"
+                    if (iExp == expressions.Length - 1)
+                        fExp.AndOr = FieldAndOr.None;
+
+                    sbExpressions.AppendLine(FormatExpression(fExp, identLevel));
                 }
                 else
                 {
+                    // Invalid Type
                     throw new Exception($"Object of type '{exp.GetType().FullName}' cannot be considered an expression");
                 }
+
+                //if (exp.GetType() == typeof(GroupedFilterExpression))
+                //{
+                //    // Collection of Expressions
+                //    System.Collections.IEnumerator e = null;
+
+                //    if (exp.GetType() == typeof(Array))
+                //        e = ((Array)exp).GetEnumerator();
+                //    else if (exp.GetType() == typeof(List<FilterExpression>))
+                //        e = ((List<FilterExpression>)exp).GetEnumerator();
+                //    else if (exp.GetType() == typeof(FilterExpression[]))
+                //        e = ((FilterExpression[])exp).GetEnumerator();
+
+                //    if (e == null)
+                //        throw new Exception("Unable to find enumerator for expression");
+
+                //    // Move it to a manageable list
+                //    List<FilterExpression> expressionsToFormat = new List<FilterExpression>();
+                //    FieldAndOr lastAndOr = FieldAndOr.None;
+
+                //    while ((e.MoveNext()) && (e.Current != null))
+                //    {
+                //        if (e.Current.GetType() == typeof(FilterExpression))
+                //        {
+                //            var currentExp = (FilterExpression)e.Current;
+                //            expressionsToFormat.Add(currentExp);
+                //            lastAndOr = currentExp.AndOr;
+                //        }
+                //    }
+
+                //    // Update the last item with None for formatting
+                //    if (expressionsToFormat.Count == 0)
+                //        throw new Exception("Unable to identify Expressions inside the given array");
+
+                //    expressionsToFormat[expressionsToFormat.Count - 1].AndOr = FieldAndOr.None;
+
+                //    // Format Expressions
+                //    sbExpressions.Append(String.Empty.PadRight(7 * identLevel, ' '));
+                //    sbExpressions.AppendLine("(");
+
+                //    foreach (var eToFormat in expressionsToFormat)
+                //        sbExpressions.AppendLine(FormatExpression(eToFormat, identLevel+1));
+
+                //    sbExpressions.Append(String.Empty.PadRight(7 * identLevel, ' '));
+                //    sbExpressions.Append(")");
+
+                //    if (lastAndOr == FieldAndOr.And)
+                //        sbExpressions.AppendLine(" AND");
+                //    else if (lastAndOr == FieldAndOr.Or)
+                //        sbExpressions.AppendLine(" OR");
+
+                //}
+                //else if (exp.GetType() == typeof(FilterExpression))
+                //{
+                //    // Automatically set last expression to "None"
+                //    if (iExp == expressions.Length -1)
+                //        ((FilterExpression)exp).AndOr = FieldAndOr.None;
+
+                //    sbExpressions.AppendLine(FormatExpression((FilterExpression)exp, identLevel));
+                //}
+                //else
+                //{
+                //    throw new Exception($"Object of type '{exp.GetType().FullName}' cannot be considered an expression");
+                //}
             }
 
             return sbExpressions.ToString();
         }
 
         /// <summary>
-        /// Format a <see cref="Expression"/> into a SQL Statement
+        /// Format a <see cref="FilterExpression"/> into a SQL Statement
         /// </summary>
         /// <param name="expression"></param>
         /// <param name="identLevel"></param>
         /// <returns></returns>
-        protected virtual string FormatExpression(Expression expression, int identLevel)
+        protected virtual string FormatExpression(FilterExpression expression, int identLevel)
         {
             // Make sure expression is not null
             if (expression == null)
@@ -394,7 +447,7 @@ namespace Diassoft.DataAccess.Dialects
             // ======================================
             string formattedOperator = FormatOperator(expression.Operator);
 
-            // Some operators have place holders (IN, NOT IN, LIKE, NOT LIKE, BETWEEN, NOT BETWEEN)
+            // Some operators have placeholders (IN, NOT IN, LIKE, NOT LIKE, BETWEEN, NOT BETWEEN)
             if ((expression.Operator == FieldOperators.In) ||
                 (expression.Operator == FieldOperators.NotIn) ||
                 (expression.Operator == FieldOperators.Like) ||
@@ -402,6 +455,12 @@ namespace Diassoft.DataAccess.Dialects
             {
                 sbExpression.Append(" ");
                 sbExpression.Append(formattedOperator.Replace("{value}", FormatExpressionField(expression.Field2)));
+            }
+            else if ((expression.Operator == FieldOperators.IsNull) ||
+                     (expression.Operator == FieldOperators.NotIsNull))
+            {
+                sbExpression.Append(" ");
+                sbExpression.Append(formattedOperator);
             }
             else if ((expression.Operator == FieldOperators.Between) ||
                      (expression.Operator == FieldOperators.NotBetween))
@@ -675,11 +734,24 @@ namespace Diassoft.DataAccess.Dialects
 
                 if (!String.IsNullOrEmpty(dpf.TableAlias))
                     sbDisplayField.Append($"T_{dpf.TableAlias}.{CharacterBegin}{field.Name}{CharacterEnd}");
+                else
+                    sbDisplayField.Append($"{CharacterBegin}{field.Name}{CharacterEnd}");
 
                 if (!String.IsNullOrEmpty(dpf.AlternateName))
                     sbDisplayField.Append(" ").Append(dpf.AlternateName);
 
                 return sbDisplayField.ToString();
+            }
+            else if (field is OrderByField obf)
+            {
+                StringBuilder sbOrderByField = new StringBuilder();
+
+                if (!String.IsNullOrEmpty(obf.TableAlias))
+                    sbOrderByField.Append($"T_{obf.TableAlias}.{CharacterBegin}{field.Name}{CharacterEnd}");
+                else
+                    sbOrderByField.Append($"{CharacterBegin}{field.Name}{CharacterEnd}");
+
+                return sbOrderByField.ToString();
             }
             else
             {

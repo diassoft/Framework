@@ -6,3 +6,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net45
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.AssemblyInfoInputs.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\net451\Diassoft.Intelligence.csprojResolveAssemblyReference.cache

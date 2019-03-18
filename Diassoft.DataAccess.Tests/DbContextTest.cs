@@ -100,7 +100,7 @@ namespace Diassoft.DataAccess.Tests
 
                 int rowCount = (int)dbContext.ExecuteScalar(new SelectDbOperation("Person")
                 {
-                    SelectFields = new object[]
+                    SelectFields = new FieldCollection()
                     {
                         new AggregateField(Aggregates.Count, "0")
                     }

@@ -31,44 +31,116 @@
             <param name="field1">The left side of the assignment</param>
             <param name="field2">The right side of the assignment</param>
         </member>
-        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression">
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression">
             <summary>
             Represents an Expression to be used in a T-SQL Statement
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.Operator">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.Operator">
             <summary>
             The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators">FieldOperator</see>
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.Field1">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.Field1">
             <summary>
             The left side of the expression
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.Field2">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.Field2">
             <summary>
             The right side of the expression
             </summary>
         </member>
-        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.AndOr">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.AndOr">
             <summary>
             The connection between this and the next expression
             </summary>
         </member>
-        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor">
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.Enclose">
             <summary>
-            Initializes a new <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression"/>
+            Defines whether the expression should be enclosed between parenthesis
             </summary>
         </member>
-        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression.#ctor(System.Object,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators,System.Object,Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr)">
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.#ctor">
             <summary>
-            Initializes a new <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.Expression"/>
+            Initializes a new <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression.#ctor(System.Object,Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators,System.Object,Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/>
             </summary>
             <param name="field1">The left side of the expression</param>
             <param name="operator">The operator</param>
             <param name="field2">The right side of the expression</param>
             <param name="andOr">The connection between this and the next expression</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression">
+            <summary>
+            Represents a Collection of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression"/>
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.AndOr">
+            <summary>
+            The connection between this and the next expression
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.Enclose">
+            <summary>
+            Defines whether the expression should be enclosed in parenthesis or not
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.#ctor(Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression"/>
+            </summary>
+            <param name="andOr">The connection between this and the next expression</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.InsertItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression)">
+            <summary>
+            Inserts a new item into the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.SetItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression)">
+            <summary>
+            Sets the item on the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.RemoveItem(System.Int32)">
+            <summary>
+            Removes an item from the collection
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression.ClearItems">
+            <summary>
+            Clear all items from the collection
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression">
+            <summary>
+            Defines the Interface to be implemented by Expressions
+            </summary>
+            <remarks>Expressions are used in the Where and Having clauses</remarks>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression.AndOr">
+            <summary>
+            The connection between this and the next expression
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression.Enclose">
+            <summary>
+            Defines whether the expression should be enclosed in parenthesis or not
+            </summary>
         </member>
         <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.AggregateField">
             <summary>
@@ -236,4 +308,916 @@
             GreaterThanOrEqual Operator (when a value is greater than or equal to another value)
             </summary>
         </member>
-        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.LessThanOrEqual"
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.LessThanOrEqual">
+            <summary>
+            LessThanOrEqual Operator (when a value is less than or equal to another value)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.Like">
+            <summary>
+            Like Operator (when a value is similar to another value).
+            </summary>
+            <remarks>
+            When using this operator, you need to add the symbol '%' to the text. If there isn't one, it will be added to the end by the engine.
+            The engine will use the proper symbol when necessary.
+            </remarks>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotLike">
+            <summary>
+            Not Like Operator (when a value is not similar to another value).
+            </summary>
+            <remarks>
+            When using this operator, you need to add the symbol '%' to the text. If there isn't one, it will be added to the end by the engine.
+            The engine will use the proper symbol when necessary.
+            </remarks>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.In">
+            <summary>
+            In Operator (when a value is in the list of values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotIn">
+            <summary>
+            NotIn Operator (when a value is not in the list of values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.IsNull">
+            <summary>
+            IsNull Operator (when the value is null)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotIsNull">
+            <summary>
+            NotIsNull Operator (when the value is not null)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.Between">
+            <summary>
+            Between Operator (when the value is between two values)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators.NotBetween">
+            <summary>
+            NotBetween Operator (when the value is not between two values)
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr">
+            <summary>
+            Syntax Connector
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.None">
+            <summary>
+            Undefined Connector
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.And">
+            <summary>
+            Combine two syntaxes with the AND operator
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.FieldAndOr.Or">
+            <summary>
+            Combine two syntaxes with the OR operator
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates">
+            <summary>
+            List of Valid Aggregate Functions
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.Count">
+            <summary>
+            Count of Records
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.Max">
+            <summary>
+            Maximum Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.Min">
+            <summary>
+            Minimum Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.Average">
+            <summary>
+            Average Value of a Field
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.CountDistinct">
+            <summary>
+            Count of Distinct Records (to avoid duplication)
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.Aggregates.Sum">
+            <summary>
+            Sum of the Value of a Field
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field">
+            <summary>
+            Represents the base for any Field
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.Field.Name">
+            <summary>
+            The Field Name
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.Field.Type">
+            <summary>
+            The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.Field.#ctor">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.Field.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/>.
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.Field.#ctor(System.String,Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="type">The Field Type according to the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.FieldTypes"/> enumeration.</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField">
+            <summary>
+            Represents a field to be used in an Order By
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField.TableAlias">
+            <summary>
+            The Table Alias
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField.SortMode">
+            <summary>
+            Represents the Sorting Mode
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField.#ctor(System.String,Diassoft.DataAccess.DatabaseObjects.Fields.SortModes)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="sortMode">The Sorting Mode (Ascending or Descending)</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField.#ctor(System.String,System.String,Diassoft.DataAccess.DatabaseObjects.Fields.SortModes)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField"/>.
+            </summary>
+            <param name="name">The Field Name</param>
+            <param name="tableAlias">The Table Alias</param>
+            <param name="sortMode">The Sorting Mode (Ascending or Descending)</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Fields.SortModes">
+            <summary>
+            Representing the Sorting Modes
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.SortModes.Ascending">
+            <summary>
+            Sorts the data ascendingly
+            </summary>
+        </member>
+        <member name="F:Diassoft.DataAccess.DatabaseObjects.Fields.SortModes.Descending">
+            <summary>
+            Sorts the data descendingly
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.DatabaseObjects.Table">
+            <summary>
+            Represents a Table in the Database
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Table.Owner">
+            <summary>
+            The table Owner. Some databases name it as library.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Table.Name">
+            <summary>
+            The table name without any formatting
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DatabaseObjects.Table.Alias">
+            <summary>
+            An alias for the table name (used in Select Statements)
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Table.#ctor">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> database object
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Table.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> database object
+            </summary>
+            <param name="tableName">The table name without any formatting</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Table.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> database object
+            </summary>
+            <param name="tableName">The table name without any formatting</param>
+            <param name="tableOwner">The table Owner. Some databases name it as library.</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.DatabaseObjects.Table.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> database object
+            </summary>
+            <param name="tableName">The table name without any formatting</param>
+            <param name="tableOwner">The table Owner. Some databases name it as library.</param>
+            <param name="tableAlias">An alias for the table name (used in Select Statements)</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.DbContext`1">
+            <summary>
+            Represents the Database Context
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.#ctor(Diassoft.DataAccess.Dialects.Dialect,System.String)">
+            <summary>
+            Initializes a new instance of a <see cref="T:Diassoft.DataAccess.DbContext`1">Database Context</see>
+            </summary>
+            <param name="dialect">A <see cref="T:Diassoft.DataAccess.Dialects.Dialect"/> to be used to communicate with the database</param>
+            <param name="connectionString">A <see cref="T:System.String"/> representing the Connection String</param>
+        </member>
+        <member name="P:Diassoft.DataAccess.DbContext`1.Dialect">
+            <summary>
+            The Dialect to communicate with the Database
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.DbContext`1.ConnectionString">
+            <summary>
+            The Connection String with the Database Server
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.ValidateConfiguration">
+            <summary>
+            Verify if all settings are correct before doing any database transaction
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.GetConnection">
+            <summary>
+            Returns a Database Connection
+            </summary>
+            <remarks>If requires a <see cref="P:Diassoft.DataAccess.DbContext`1.Dialect"/> and a <see cref="P:Diassoft.DataAccess.DbContext`1.ConnectionString"/> to be setup</remarks>
+            <returns>A <see cref="T:System.Data.IDbConnection"/> with the connection to a database</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.ExecuteReader(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="selectDbOperation">A <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> with the statement to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.ExecuteReader(System.String,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="commandText">The SQL Syntax</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.ExecuteNonQuery(Diassoft.DataAccess.Operations.DbOperation{Diassoft.DataAccess.DatabaseObjects.Table},System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a Non Query statement (Insert, Update or Delete)
+            </summary>
+            <param name="dbOperation">A valid object that inherits from <see cref="T:Diassoft.DataAccess.Operations.DbOperation`1"/>. Some examples are <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>, <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/> and <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/>.</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.DbContext`1.ExecuteScalar(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a query that would return only one row and one column
+            </summary>
+            <param name="selectDbOperation">The <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns>A <see cref="T:System.Object"/> containing the results</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.Dialects.Dialect">
+            <summary>
+            Represents the Base class for a Dialect.
+            </summary>
+            <remarks>Dialects are used to communicate with the database using their syntax</remarks>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.#ctor">
+            <summary>
+            Initializes a new instance of the Dialect Class
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.ReservedWords">
+            <summary>
+            The list of reserved words for the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldNameChar">
+            <summary>
+            The Character to add before and after any field. Add two characters to consider the first for the beginning and the second for the end. 
+            Use it for databases where you add field names that follow this example: [myFieldName].
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.FieldValueChar">
+            <summary>
+            The Character to add before and after any text field. Use it to add " or ' before any text assignment. The default value is '.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TableNameChar">
+            <summary>
+            The Character to add before and after any table name. Add two characters to consider the first for the beginning and the second for the end. 
+            Use it for databases where you add table names that follow this example: [myTableName].
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DateFormat">
+            <summary>
+            The default date format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.TimeFormat">
+            <summary>
+            The default time format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.NumericFormat">
+            <summary>
+            The default Numeric format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.DecimalFormat">
+            <summary>
+            The default Decimal format to be used by the dialect
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.BeforeQueryStatements">
+            <summary>
+            Any statement that might be executed right before running any query
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.AfterQueryStatements">
+            <summary>
+            Any statement that might be executed right after a query runs
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.StatementEndCharacter">
+            <summary>
+            The character to be appended at the end of any statement
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.Operators">
+            <summary>
+            A Dictionary Containing the Operators
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Dialects.Dialect.AggregateFunctions">
+            <summary>
+            A Dictionary Containing the Aggregate Functions
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.AddReservedWords(System.String[])">
+            <summary>
+            Adds many reserved words to the list
+            </summary>
+            <param name="list">List of reserved words</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.AddBeforeStatements(System.String[])">
+            <summary>
+            Adds many sql statements to run before any query to the list
+            </summary>
+            <param name="list">The list of sql statements</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.AddAfterStatements(System.String[])">
+            <summary>
+            Adds many sql statements to run after any query to the list
+            </summary>
+            <param name="list">The list of sql statements</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.GetFinalStatement(System.String)">
+            <summary>
+            Returns the final query to be executed, including the additional statements
+            </summary>
+            <param name="query">The current query</param>
+            <returns>A query containing the pre and post statements</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.Select(Diassoft.DataAccess.Operations.SelectDbOperation)">
+            <summary>
+            Converts a Select Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="select">The <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/></param>
+            <returns>A string containing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.SelectInto(Diassoft.DataAccess.Operations.SelectDbOperation,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Converts a Select Into Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="select">The <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/></param>
+            <param name="intoTable">The destination table</param>
+            <returns>A string containing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.Insert(Diassoft.DataAccess.Operations.InsertDbOperation)">
+            <summary>
+            Converts an Insert Into Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="insert">The <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/></param>
+            <returns>A string containing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.Update(Diassoft.DataAccess.Operations.UpdateDbOperation)">
+            <summary>
+            Converts an Update Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="update">The <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/></param>
+            <returns>A string contaiing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.Delete(Diassoft.DataAccess.Operations.DeleteDbOperation)">
+            <summary>
+            Converts a Delete Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="delete">The <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/></param>
+            <returns>A string contaiing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatDate(System.DateTime)">
+            <summary>
+            Formats a <see cref="T:System.DateTime"/> accordingly to the Database Dialect
+            </summary>
+            <param name="dateTime">The <see cref="T:System.DateTime"/> to format</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted date</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatString(System.String)">
+            <summary>
+            Formats a <see cref="T:System.String"/> accordingly to the Database Dialect
+            </summary>
+            <param name="value">The string input</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted results</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatOperator(Diassoft.DataAccess.DatabaseObjects.Fields.FieldOperators)">
+            <summary>
+            Formats the Operator accordingly to the database dialect
+            </summary>
+            <param name="operator">The opeperator</param>
+            <returns>A string containing the formatted operator</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatBoolean(System.Boolean)">
+            <summary>
+            Formats a <see cref="T:System.Boolean"/> accordingly to the Database Dialect
+            </summary>
+            <param name="value">The bool input</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted results</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatExpressions(Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression[],System.Int32)">
+            <summary>
+            Formats a <see cref="T:System.Collections.Generic.List`1"/> of expressions into a sql statement 
+            </summary>
+            <param name="expressions">A <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:System.Object"/> containing expressions. Only objects of type <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> or an <see cref="T:System.Array"/> of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> are accepted.</param>
+            <param name="identLevel">The identation level</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted expressions</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatExpression(Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression,System.Int32)">
+            <summary>
+            Format a <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> into a SQL Statement
+            </summary>
+            <param name="expression"></param>
+            <param name="identLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatExpressionField(System.Object)">
+            <summary>
+            Formats an Expression Field into a String
+            </summary>
+            <param name="field">An object representing a field</param>
+            <returns>A <see cref="T:System.String"/> containingt he formatted object</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.ValidateTable(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Validates the table information
+            </summary>
+            <param name="table">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> to be formatted</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatTable(System.Object)">
+            <summary>
+            Returns the Table Formatted
+            </summary>
+            <param name="tableObject">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> object</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted table</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.ValidateField(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Validate the field
+            </summary>
+            <param name="field">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> object to be validated</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.Dialect.FormatField(Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Formats the field to a valid string appendable to a query
+            </summary>
+            <param name="field">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field"/> to be formatted</param>
+            <returns>A <see cref="T:System.String"/> with the formatted field.</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.Dialects.MSSQLDialect">
+            <summary>
+            Represents the Microsoft SQL Server T-SQL Dialect
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.#ctor">
+            <summary>
+            Initializes a new instance of the Microsoft SQL T-SQL Dialect
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.FormatDate(System.DateTime)">
+            <summary>
+            Formats a <see cref="T:System.DateTime"/> accordingly to the Database Dialect
+            </summary>
+            <param name="dateTime">The <see cref="T:System.DateTime"/> to format</param>
+            <returns>A <see cref="T:System.String"/> containing the formatted date</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.Select(Diassoft.DataAccess.Operations.SelectDbOperation)">
+            <summary>
+            Selects data from the database using the Microsoft SQL Server T-SQL Dialect
+            </summary>
+            <param name="select">An <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> representing the Select to Perform</param>
+            <returns>A <see cref="T:System.String"/> containing the select statement to be executed</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.SelectInto(Diassoft.DataAccess.Operations.SelectDbOperation,Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Selects data from the database using the Microsoft SQL Server T-SQL Dialect. Appends the result into a table
+            </summary>
+            <param name="select">An <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> representing the Select to Perform</param>
+            <param name="intoTable">The <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> where the data should be inserted</param>
+            <returns>A <see cref="T:System.String"/> containing the select statement to be executed</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.Insert(Diassoft.DataAccess.Operations.InsertDbOperation)">
+            <summary>
+            Inserts data into the database using the Microsoft SQL Server T-SQL Dialect. 
+            </summary>
+            <param name="insert">The <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/></param>
+            <returns>A string containing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.Update(Diassoft.DataAccess.Operations.UpdateDbOperation)">
+            <summary>
+            Converts an Update Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="update">The <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/></param>
+            <returns>A string contaiing the T-SQL</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.Dialects.MSSQLDialect.Delete(Diassoft.DataAccess.Operations.DeleteDbOperation)">
+            <summary>
+            Converts a Delete Database Operation into a valid T-SQL Statement
+            </summary>
+            <param name="delete">The <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/></param>
+            <returns>A string contaiing the T-SQL</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException">
+            <summary>
+            Represents an <see cref="T:System.Exception"/> that is thrown when the Query Syntax is invalid
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.DbOperation">
+            <summary>
+            The <see cref="P:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.DbOperation"/>where the error happened
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.#ctor(System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException"/>
+            </summary>
+            <param name="message">The error message</param>
+            <param name="dbOperation">The <see cref="P:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.DbOperation"/></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.#ctor(System.String,System.Object,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException"/>
+            </summary>
+            <param name="message">The error message</param>
+            <param name="dbOperation">The <see cref="P:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException.DbOperation"/></param>
+            <param name="exception">The reason to cause the exception</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.IDbContext">
+            <summary>
+            Represents an Database Context Interface
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.IDbContext.Dialect">
+            <summary>
+            The Dialect to communicate with the Database
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.IDbContext.ConnectionString">
+            <summary>
+            The Connection String with the Database Server
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.GetConnection">
+            <summary>
+            Returns a Database Connection
+            </summary>
+            <remarks>If requires a <see cref="P:Diassoft.DataAccess.IDbContext.Dialect"/> and a <see cref="P:Diassoft.DataAccess.IDbContext.ConnectionString"/> to be setup</remarks>
+            <returns>A <see cref="T:System.Data.IDbConnection"/> with the connection to a database</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteReader(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="selectDbOperation">A <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> with the statement to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteReader(System.String,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Returns a Data Reader based on the input sql command
+            </summary>
+            <param name="commandText">The SQL Syntax</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <remarks>The Database Connection is closed once you call the <see cref="M:System.Data.IDataReader.Close"/> method</remarks>
+            <returns>A <see cref="T:System.Data.IDataReader"/> object to iterate thru the results.</returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteNonQuery(Diassoft.DataAccess.Operations.DbOperation{Diassoft.DataAccess.DatabaseObjects.Table},System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a Non Query statement (Insert, Update or Delete)
+            </summary>
+            <param name="dbOperation">A valid object that inherits from <see cref="T:Diassoft.DataAccess.Operations.DbOperation`1"/>. Some examples are <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>, <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/> and <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/>.</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diassoft.DataAccess.IDbContext.ExecuteScalar(Diassoft.DataAccess.Operations.SelectDbOperation,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            Executes a query that would return only one row and one column
+            </summary>
+            <param name="selectDbOperation">The <see cref="T:Diassoft.DataAccess.Operations.SelectDbOperation"/> to be executed</param>
+            <param name="connection">Reference to an existing <see cref="T:System.Data.IDbConnection"/> to be used. If nothing is informed, the system will create one.</param>
+            <param name="transaction">Reference to an existing <see cref="T:System.Data.IDbTransaction"/> to be used. If nothing is informed, the system will not consider transaction.</param>
+            <returns>A <see cref="T:System.Object"/> containing the results</returns>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.DbOperation`1">
+            <summary>
+            Represents the Base of Any Database Operation Class
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.DbOperation`1.Table">
+            <summary>
+            The Tables to be changed
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DbOperation`1.#ctor">
+            <summary>
+            Initializes a new instance of the Database Operation
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.DeleteDbOperation">
+            <summary>
+            A class that represents a Delete database operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.DeleteDbOperation.Where">
+            <summary>
+            An <see cref="T:Diassoft.DataAccess.Operations.WhereCollection"/> containing <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> or <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression"/> representing the filter criterias for the query
+            </summary>
+            <remarks>Accept objects that implement the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression"/> interface.</remarks>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DeleteDbOperation.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DeleteDbOperation.#ctor(System.String)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/>
+            </summary>
+            <param name="tableName">A <see cref="T:System.String"/> representing the object to be modified</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.DeleteDbOperation.#ctor(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/>
+            </summary>
+            <param name="table">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> representing the object to be modified</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.FieldCollection">
+            <summary>
+            Represents a Collection of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.Field">Fields</see>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.FieldCollection.InsertItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Inserts a new item into the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.FieldCollection.SetItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Fields.Field)">
+            <summary>
+            Sets the item on the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.FieldCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes an item from the collection
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.FieldCollection.ClearItems">
+            <summary>
+            Clear all items from the collection
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.InsertDbOperation">
+            <summary>
+            A class that represents an Insert database operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.InsertDbOperation.Assignments">
+            <summary>
+            The Assignments
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InsertDbOperation.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InsertDbOperation.#ctor(System.String)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>
+            </summary>
+            <param name="tableName">A <see cref="T:System.String"/> representing the object to be modified</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.InsertDbOperation.#ctor(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.InsertDbOperation"/>
+            </summary>
+            <param name="table">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> representing the object to be modified</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.OrderByCollection">
+            <summary>
+            Represents a collection of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField">OrderByFields</see>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.OrderByCollection.InsertItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField)">
+            <summary>
+            Inserts a new item into the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.OrderByCollection.SetItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField)">
+            <summary>
+            Sets the item on the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.OrderByCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes an item from the collection
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.OrderByCollection.ClearItems">
+            <summary>
+            Clear all items from the collection
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.SelectDbOperation">
+            <summary>
+            A class that represents a Select database operation
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="tableName">The table name for the select statement</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.SelectDbOperation.#ctor(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new instance of the Select Database Operation
+            </summary>
+            <param name="table">Table to Sql against</param>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.Distinct">
+            <summary>
+            Defines whether the select will be of the distinct fields.
+            By default the value is false.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.TopNRows">
+            <summary>
+            Defines the Top N Rows to be displayed.
+            By default the value is zero.
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.GroupBy">
+            <summary>
+            Defines whether there will be a Group By at the end of the query
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.SelectFields">
+            <summary>
+            A list with the fields to be selected, including aggregates
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.Where">
+            <summary>
+            An <see cref="T:Diassoft.DataAccess.Operations.WhereCollection"/> containing <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> or <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression"/> representing the filter criterias for the query
+            </summary>
+            <remarks>Accept objects that implement the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression"/> interface.</remarks>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.SelectDbOperation.OrderBy">
+            <summary>
+            A <see cref="T:Diassoft.DataAccess.Operations.OrderByCollection"/> containing the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Fields.OrderByField">OrderByFields</see> to be applied for sorting the data
+            </summary>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.UpdateDbOperation">
+            <summary>
+            A class that represents an Update database operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.UpdateDbOperation.Assignments">
+            <summary>
+            The Assignments
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Operations.UpdateDbOperation.Where">
+            <summary>
+            An <see cref="T:Diassoft.DataAccess.Operations.WhereCollection"/> containing <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.FilterExpression"/> or <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.GroupedFilterExpression"/> representing the filter criterias for the query
+            </summary>
+            <remarks>Accept objects that implement the <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression"/> interface.</remarks>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.UpdateDbOperation.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.UpdateDbOperation.#ctor(System.String)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/>
+            </summary>
+            <param name="tableName">A <see cref="T:System.String"/> representing the object to be modified</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.UpdateDbOperation.#ctor(Diassoft.DataAccess.DatabaseObjects.Table)">
+            <summary>
+            Initializes a new <see cref="T:Diassoft.DataAccess.Operations.UpdateDbOperation"/>
+            </summary>
+            <param name="table">A <see cref="T:Diassoft.DataAccess.DatabaseObjects.Table"/> representing the object to be modified</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.Operations.WhereCollection">
+            <summary>
+            Represents the Where Clause Collection of <see cref="T:Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression"/>
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.WhereCollection.InsertItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression)">
+            <summary>
+            Inserts a new item into the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.WhereCollection.SetItem(System.Int32,Diassoft.DataAccess.DatabaseObjects.Expressions.IFilterExpression)">
+            <summary>
+            Sets the item on the collection
+            </summary>
+            <param name="index"></param>
+            <param name="newItem"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.WhereCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes an item from the collection
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Operations.WhereCollection.ClearItems">
+            <summary>
+            Clear all items from the collection
+            </summary>
+        </member>
+    </members>
+</doc>
