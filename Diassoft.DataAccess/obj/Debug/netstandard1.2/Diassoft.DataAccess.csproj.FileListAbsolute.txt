@@ -7,4 +7,3 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstan
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.AssemblyInfoInputs.cache
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\netstandard1.2\Diassoft.DataAccess.csprojResolveAssemblyReference.cache
