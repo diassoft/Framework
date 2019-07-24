@@ -44,6 +44,8 @@ namespace Diassoft.DataAccess.Operations
             // Always remove the alias on an insert operation
             base.Table.Alias = "";
 
+            Where = new WhereCollection();
+
         }
     }
 }

@@ -44,6 +44,10 @@ namespace Diassoft.DataAccess.Operations
 
             if (table != null)
                 Table = new Table[] { table };
+
+            SelectFields = new FieldCollection();
+            Where = new WhereCollection();
+            OrderBy = new OrderByCollection();
         }
 
         #endregion Constructors
