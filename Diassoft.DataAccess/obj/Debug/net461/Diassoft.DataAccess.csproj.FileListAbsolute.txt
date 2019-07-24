@@ -8,4 +8,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.AssemblyInfoInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.csproj.CopyComplete
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.DataAccess\obj\Debug\net461\Diassoft.DataAccess.csprojAssemblyReference.cache

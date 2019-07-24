@@ -7,4 +7,3 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\netst
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\netstandard1.2\Diassoft.Intelligence.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\netstandard1.2\Diassoft.Intelligence.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\netstandard1.2\Diassoft.Intelligence.AssemblyInfoInputs.cache
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence\obj\Debug\netstandard1.2\Diassoft.Intelligence.csprojResolveAssemblyReference.cache

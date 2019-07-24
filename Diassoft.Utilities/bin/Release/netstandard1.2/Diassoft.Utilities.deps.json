@@ -214,7 +214,10 @@
           "runtime.native.System": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+          "lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Runtime.Numerics/4.3.0": {

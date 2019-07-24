@@ -6,4 +6,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\Diassoft.Utilities.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\Diassoft.Utilities.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\Diassoft.Utilities.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\Diassoft.Utilities.csprojResolveAssemblyReference.cache
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities\obj\Release\net46\Diassoft.Utilities.csprojAssemblyReference.cache

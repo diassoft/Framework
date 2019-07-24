@@ -9,6 +9,8 @@ namespace Diassoft.DataAccess.Exceptions
     /// </summary>
     public class DatabaseOperationException: System.Exception
     {
+        private static readonly string DEFAULTMESSAGE = "Error during the execution of a database operation";
+
         /// <summary>
         /// The Sql Statement
         /// </summary>
@@ -17,7 +19,7 @@ namespace Diassoft.DataAccess.Exceptions
         /// <summary>
         /// Initializes a new instance of the DatabaseOperationException
         /// </summary>
-        public DatabaseOperationException(): this("Error during the execution of a database operation") { }
+        public DatabaseOperationException(): this(null) { }
 
         /// <summary>
         /// Initializes a new instance of the DatabaseOperationException
@@ -38,7 +40,7 @@ namespace Diassoft.DataAccess.Exceptions
         /// <param name="message">The Error Message</param>
         /// <param name="innerException">The inner exception to complement the exception</param>
         /// <param name="sqlStatement">The SQL Statement generating the failure</param>
-        public DatabaseOperationException(string message, Exception innerException, string sqlStatement): base(message, innerException)
+        public DatabaseOperationException(string message, Exception innerException, string sqlStatement): base(message ?? DEFAULTMESSAGE, innerException)
         {
             SqlStatement = sqlStatement;
         }

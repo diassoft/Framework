@@ -1,9 +1,9 @@
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\bin\Release\net461\Diassoft.Mvvm.pdb
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.AssemblyInfoInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.AssemblyInfo.cs
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Mvvm\obj\Release\net461\Diassoft.Mvvm.csprojAssemblyReference.cache

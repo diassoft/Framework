@@ -7,7 +7,6 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.pdb
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Diassoft.Intelligence.dll
@@ -15,3 +14,4 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\bin\Debug\Diassoft.Intelligence.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csproj.CopyComplete
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Intelligence.Tests\obj\Debug\Diassoft.Intelligence.Tests.csprojAssemblyReference.cache

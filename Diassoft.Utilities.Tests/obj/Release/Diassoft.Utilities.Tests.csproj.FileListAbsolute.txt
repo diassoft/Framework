@@ -10,8 +10,8 @@ D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Diassoft.Utilities.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.csprojResolveAssemblyReference.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.csproj.CoreCompileInputs.cache
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.csproj.CopyComplete
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.dll
 D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.pdb
+D:\Diassoft\Source Code\Diassoft Framework\Diassoft.Utilities.Tests\obj\Release\Diassoft.Utilities.Tests.csprojAssemblyReference.cache

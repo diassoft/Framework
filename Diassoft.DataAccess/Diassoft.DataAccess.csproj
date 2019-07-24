@@ -10,12 +10,12 @@ Accepts Dialects to parse the sql statements accordingly to the database in use.
     <Copyright>© 2019 Diassoft Corporation</Copyright>
     <RepositoryUrl>https://github.com/diassoft/Framework</RepositoryUrl>
     <PackageTags>Diassoft Data Access DAL SQL DB2 400 AS400</PackageTags>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
+    <Version>2.1.0.0</Version>
     <Authors>Olavo Henrique Dias</Authors>
     <Company>Diassoft.com</Company>
-    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v1.1.0.0</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/diassoft/Framework/releases/tag/v2.1.0.0</PackageProjectUrl>
     <PackageIconUrl>https://github.com/diassoft/Branding/blob/master/Nuget-Package-Icon-v01.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 

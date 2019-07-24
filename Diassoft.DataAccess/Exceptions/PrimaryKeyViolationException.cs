@@ -9,10 +9,12 @@ namespace Diassoft.DataAccess.Exceptions
     /// </summary>
     public class PrimaryKeyViolationException : DatabaseOperationException
     {
+        private static readonly string DEFAULTMESSAGE = "A primary key violation prevented the operation from happening";
+
         /// <summary>
         /// Initializes a new instance of the Primary Key Violation Exception
         /// </summary>
-        public PrimaryKeyViolationException(): this("A primary key violation prevented the operation from happening") { }
+        public PrimaryKeyViolationException(): this(null) { }
         /// <summary>
         /// Initializes a new instance of the Primary Key Violation Exception
         /// </summary>
@@ -30,6 +32,6 @@ namespace Diassoft.DataAccess.Exceptions
         /// <param name="message">The Error Message</param>
         /// <param name="innerException">The inner exception to complement the exception</param>
         /// <param name="sqlStatement">The SQL Statement generating the failure</param>
-        public PrimaryKeyViolationException(string message, Exception innerException, string sqlStatement) : base(message, innerException, sqlStatement) { }
+        public PrimaryKeyViolationException(string message, Exception innerException, string sqlStatement) : base(message ?? DEFAULTMESSAGE, innerException, sqlStatement) { }
     }
 }

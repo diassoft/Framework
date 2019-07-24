@@ -1,5 +1,6 @@
 ﻿using Diassoft.DataAccess.DatabaseObjects;
 using Diassoft.DataAccess.Dialects;
+using Diassoft.DataAccess.Exceptions;
 using Diassoft.DataAccess.Operations;
 using System;
 using System.Collections.Generic;
@@ -58,9 +59,7 @@ namespace Diassoft.DataAccess
             ValidateConfiguration();
 
             // The Object that will be returned
-            IDbConnection connection = Activator.CreateInstance(typeof(TConnectionType)) as IDbConnection;
-
-            if (connection == null)
+            if (!(Activator.CreateInstance(typeof(TConnectionType)) is IDbConnection connection))
                 throw new Exception($"The system was unable to find a parameterless constructor for the type '{typeof(TConnectionType).FullName}'");
 
             // Opens the Connection (exceptions are thrown in case the connection is invalid)
@@ -111,7 +110,14 @@ namespace Diassoft.DataAccess
 
                 command.CommandText = Dialect.GetFinalStatement(command.CommandText);
 
-                return command.ExecuteReader(CommandBehavior.CloseConnection);
+                try
+                {
+                    return command.ExecuteReader(CommandBehavior.CloseConnection);
+                }
+                catch (Exception e)
+                {
+                    throw new DatabaseOperationException(null, e, command.CommandText);
+                }
             }
         }
 
@@ -150,9 +156,17 @@ namespace Diassoft.DataAccess
 
                     command.CommandText = Dialect.GetFinalStatement(command.CommandText);
 
-                    int result = command.ExecuteNonQuery();
+                    try
+                    {
+                        int result = command.ExecuteNonQuery();
 
-                    return result;
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DatabaseOperationException(null, e, command.CommandText);
+                    }
+
                 }
             }
             catch
@@ -203,7 +217,14 @@ namespace Diassoft.DataAccess
 
                     command.CommandText = Dialect.GetFinalStatement(command.CommandText);
 
-                    return command.ExecuteScalar();
+                    try
+                    {
+                        return command.ExecuteScalar();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DatabaseOperationException(null, e, command.CommandText);
+                    }
                 }
             }
             catch

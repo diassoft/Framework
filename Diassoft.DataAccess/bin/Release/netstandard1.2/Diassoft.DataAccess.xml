@@ -886,6 +886,73 @@
             <param name="delete">The <see cref="T:Diassoft.DataAccess.Operations.DeleteDbOperation"/></param>
             <returns>A string contaiing the T-SQL</returns>
         </member>
+        <member name="T:Diassoft.DataAccess.Exceptions.DatabaseOperationException">
+            <summary>
+            Represents an Exception thrown when there is an error in a database operation
+            </summary>
+        </member>
+        <member name="P:Diassoft.DataAccess.Exceptions.DatabaseOperationException.SqlStatement">
+            <summary>
+            The Sql Statement
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.DatabaseOperationException.#ctor">
+            <summary>
+            Initializes a new instance of the DatabaseOperationException
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.DatabaseOperationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the DatabaseOperationException
+            </summary>
+            <param name="message">The Error Message</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.DatabaseOperationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the DatabaseOperationException
+            </summary>
+            <param name="message">The Error Message</param>
+            <param name="innerException">The inner exception to complement the exception</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.DatabaseOperationException.#ctor(System.String,System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the DatabaseOperationException
+            </summary>
+            <param name="message">The Error Message</param>
+            <param name="innerException">The inner exception to complement the exception</param>
+            <param name="sqlStatement">The SQL Statement generating the failure</param>
+        </member>
+        <member name="T:Diassoft.DataAccess.Exceptions.PrimaryKeyViolationException">
+            <summary>
+            Exception thrown when a Primary Key is violated
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.PrimaryKeyViolationException.#ctor">
+            <summary>
+            Initializes a new instance of the Primary Key Violation Exception
+            </summary>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.PrimaryKeyViolationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Primary Key Violation Exception
+            </summary>
+            <param name="message">The Error Message</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.PrimaryKeyViolationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the Primary Key Violation Exception
+            </summary>
+            <param name="message">The Error Message</param>
+            <param name="innerException">The inner exception to complement the exception</param>
+        </member>
+        <member name="M:Diassoft.DataAccess.Exceptions.PrimaryKeyViolationException.#ctor(System.String,System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the Primary Key Violation Exception
+            </summary>
+            <param name="message">The Error Message</param>
+            <param name="innerException">The inner exception to complement the exception</param>
+            <param name="sqlStatement">The SQL Statement generating the failure</param>
+        </member>
         <member name="T:Diassoft.DataAccess.Exceptions.QuerySyntaxErrorException">
             <summary>
             Represents an <see cref="T:System.Exception"/> that is thrown when the Query Syntax is invalid
