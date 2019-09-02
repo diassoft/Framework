@@ -206,9 +206,6 @@ namespace Diassoft.Intelligence.Translators
             // Internal Variables
             CultureAdditionalInformation cultureAdditionalInfo = StringToDateTranslator.Formats[Culture.Name];
 
-            //TODO: Check Days of the Week
-            
-
             // Try all formats with the date sparator
 #if DEBUG
             foreach (string format in cultureAdditionalInfo.DateFormatsWithSeparator)

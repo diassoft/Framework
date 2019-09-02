@@ -22,26 +22,10 @@
             </summary>
             <param name="parameter">Command Input Parameter</param>
         </member>
-        <member name="P:Diassoft.Mvvm.Command.CommandBase.IsEnabled">
-            <summary>
-            Defines whether the command is enabled or not
-            </summary>
-        </member>
         <member name="E:Diassoft.Mvvm.Command.CommandBase.CanExecuteChanged">
             <summary>
-            Event Triggered when the CanExecute value changes
+            Event triggered when the CanExecute value changes
             </summary>
-        </member>
-        <member name="M:Diassoft.Mvvm.Command.CommandBase.Requery">
-            <summary>
-            Method that recalculate the command availability to run
-            </summary>
-        </member>
-        <member name="M:Diassoft.Mvvm.Command.CommandBase.Requery(System.Object)">
-            <summary>
-            Method that recalculate the command availability to run
-            </summary>
-            <param name="parameter">Command Input Parameter</param>
         </member>
         <member name="T:Diassoft.Mvvm.Command.RelayCommand">
             <summary>
@@ -234,11 +218,6 @@
             Initializes a new instance of the view model and tie it to the Dispatcher
             </summary>
             <param name="dispatcher">Reference to the <see cref="T:Diassoft.Mvvm.Messenger.MessageDispatcher">MessageDispatcher</see></param>
-        </member>
-        <member name="M:Diassoft.Mvvm.ViewModelBase.RequeryCommands">
-            <summary>
-            Method to Requery The Command Status.
-            </summary>
         </member>
         <member name="M:Diassoft.Mvvm.ViewModelBase.SetProperty``1(``0@,``0,System.String)">
             <summary>
